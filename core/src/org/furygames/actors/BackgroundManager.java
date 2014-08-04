@@ -1,58 +1,55 @@
 package org.furygames.actors;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.utils.Disposable;
+import org.furygames.screens.GameScreen;
 
-public class BackgroundManager extends Actor implements Disposable {
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+
+public class BackgroundManager {
 	
 	private final float WIDTH = 1280f;
 	private final float HEIGHT = 720f;
 	private final int TOTAL_BACKGROUNDS = 3;
 		
-	private Texture [] backgrounds;	
-	private int selected;
+	private Texture [] ttBackgrounds;	
+	private Image [] imgBackgrounds;
 	
-	public BackgroundManager (int bg) {
-		backgrounds = new Texture [TOTAL_BACKGROUNDS];
-		selected = bg;
+	public BackgroundManager () {
+		ttBackgrounds = new Texture [TOTAL_BACKGROUNDS];
+		imgBackgrounds = new Image [TOTAL_BACKGROUNDS];
 		
-		setImage(bg);
+		// Inicializar backgrounds
+		ttBackgrounds[0] = new Texture ("backgrounds/bgjungle.jpg");
+		ttBackgrounds[1] = new Texture ("backgrounds/bgbeach.jpg");
+		ttBackgrounds[2] = new Texture ("backgrounds/bgmountains.jpg");
 		
-		setSize(WIDTH, HEIGHT);
-	}
-
-	@Override
-	public void dispose() {
-		for (Texture background : backgrounds)
-			background.dispose();
+		// Inicializar actores img
+		imgBackgrounds[0] = new Image(ttBackgrounds[0]);
+		imgBackgrounds[1] = new Image(ttBackgrounds[1]);
+		imgBackgrounds[2] = new Image(ttBackgrounds[2]);
+		
+		// Le damos tamaño a los actores
+		imgBackgrounds[0].setSize(WIDTH, HEIGHT);
+		imgBackgrounds[1].setSize(WIDTH, HEIGHT);
+		imgBackgrounds[2].setSize(WIDTH, HEIGHT);
+		
+		// Le damos posición a los actores
+		imgBackgrounds[0].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
+		imgBackgrounds[1].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
+		imgBackgrounds[2].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
 	}
 	
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		batch.draw(backgrounds[selected], getX(), getY(), getOriginX(), getOriginY(),
-				getWidth(), getHeight(), getScaleX(), getScaleY());
-		
-		super.draw(batch, parentAlpha);
-	}
-	
-	public void setImage (int bg) {
-		selected = bg;
-		
-		switch (bg) {
+	public Image getImage(int img) {
+		switch (img) {
 		case 1:
-			backgrounds[bg - 1] = new Texture("backgrounds/bgjungle.jpg");
-			break;
+			return imgBackgrounds[0];
 		case 2:
-			backgrounds[bg - 1] = new Texture("backgrounds/bgbeach.jpg");
-			break;
+			return imgBackgrounds[1];
 		case 3:
-			backgrounds[bg - 1] = new Texture("backgrounds/bgmountains.jpg");
-			break;
+			return imgBackgrounds[2];
 		default:
 			break;
 		}
+		return null;
 	}
-
 }

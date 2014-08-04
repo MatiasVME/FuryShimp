@@ -1,5 +1,6 @@
 package org.furygames.screens;
 
+import org.furygames.actors.BackgroundManager;
 import org.furygames.actors.Bananas;
 import org.furygames.actors.Coconut;
 import org.furygames.actors.Rock;
@@ -32,13 +33,14 @@ public final class GameScreen extends GenericScreen {
 	private Music music;
 	private Shimp shimp;
 	private Image bg;
-	private TextureRegion bgRegion;
-	private Texture bgTexture;
+	private BackgroundManager bgManager;
 	private Sound woop;
 	private Sound hit;
 	private VirtualController virtualController;
 	private MonkeyInput monkeyInput;
 	private boolean musicExist = false;
+	private Texture bgTexture;
+	private TextureRegion bgRegion;
 	
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -62,12 +64,15 @@ public final class GameScreen extends GenericScreen {
 		hit = GameSounds.newSound(2); // Sonara el sonido hit al pasar parametro 2
 		
 		//Definiendo fondo de pantalla
+		// No se porque no funciona!
+		bgManager = new BackgroundManager();
+		/*
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
 		bgRegion = new TextureRegion(bgTexture);
 		bg = new Image(bgRegion);
-		bg.setCenterPosition(WIDTH / 2, HEIGHT / 2); 
+		bg.setCenterPosition(WIDTH / 2, HEIGHT / 2);*/
 		
-		stage.addActor(bg);
+		stage.addActor(bgManager.getImage(1));
 		stage.addActor(Creator.createArrowLeft());
 		stage.addActor(Creator.createArrowRigth());
 
