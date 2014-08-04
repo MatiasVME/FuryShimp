@@ -5,6 +5,7 @@ import org.furygames.actors.Coconut;
 import org.furygames.actors.Rock;
 import org.furygames.actors.Shimp;
 import org.furygames.furyshimp.Collides;
+import org.furygames.furyshimp.Creator;
 import org.furygames.furyshimp.FlyingObjets;
 import org.furygames.furyshimp.FuryShimp;
 import org.furygames.furyshimp.GameSounds;
@@ -121,77 +122,7 @@ public class GameScreen extends GenericScreen {
 		Collides.collidesMonkeyRocks(shimp, rocks, hit);
 	}
 
-	// Crea las rocas y las añade al esceneario
-	private void createRocks (int max) {
-		// Un número aleatorio entre 1 y max (que son las rocas que aparecerán en
-		// pantalla.
-		int numOfRocks = MathUtils.random(1, max);
-
-		// Crear las rocas dependiendo del numero aleatorio generado anteriormente.
-		for (int i = 0; i < numOfRocks; i++) {
-			// Crear el vector origen en una posicion aleatorio de la parte superior
-			// de la pantalla.
-			Vector2 origin = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, WIDTH - Rock.WIDTH / 2), 
-					HEIGHT);
-			// Crear el vector destino en una posicion aleatorio de la parte inferior
-			// de la pantalla.
-			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, WIDTH - Rock.WIDTH / 2),
-					0);
-
-			// Añade las rocas al array de rocas, con una velocidad aleatoria.
-			rocks.add(new Rock(origin, destination,
-					MathUtils.random(2f, 4f)));
-		}
-
-		// Recorre el Array rocks para añadir cada roca al escenario
-		for (Rock rock : rocks) {
-			stage.addActor(rock);
-		}
-	}
-
-	// Crea las bananas y las añade al escenario.
-	private void createBananas (int max) {
-		int numOfBananas = MathUtils.random(1, max);
-
-		for (int i = 0; i < numOfBananas; i++) {
-			Vector2 origin = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, WIDTH - Rock.WIDTH / 2), 
-					HEIGHT);
-			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, WIDTH - Rock.WIDTH / 2),
-					0);
-
-			bananas.add(new Bananas(origin, destination,
-					MathUtils.random(2f, 4f)));
-		}
-
-		for (Bananas banana : bananas) {
-			stage.addActor(banana);
-		}
-	}
-
-	// Crea los cocos y los añade al escenario.
-	private void createCoconuts (int max) {
-		int numOfCoconuts = MathUtils.random(1, max);
-
-		for (int i = 0; i < numOfCoconuts; i++) {
-			Vector2 origin = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, WIDTH - Rock.WIDTH / 2), 
-					HEIGHT);
-			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, WIDTH - Rock.WIDTH / 2),
-					0);
-
-			coconuts.add(new Coconut(origin, destination,
-					MathUtils.random(2f, 4f)));
-		}
-
-		for (Coconut coconut : coconuts) {
-			stage.addActor(coconut);
-		}
-	}
+	
 	
 	// Método level que se llama cada vez que el render es actualizado
 	private void level(int level) {
@@ -200,7 +131,7 @@ public class GameScreen extends GenericScreen {
 
 			// Crear rocas del nivel.
 			if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
-				createRocks(2);
+				Creator.createRocks(2, rocks, stage);
 			}
 
 			// Si las rocas no estan volando eliminarlas.
@@ -215,7 +146,7 @@ public class GameScreen extends GenericScreen {
 
 			// Crear bananas del nivel.
 			if (bananas.size == 0 && !FlyingObjets.isFlyingBananas(bananas)) {
-				createBananas(3);
+				Creator.createBananas(3, bananas, stage);
 			}
 
 			// Si las bananas no estan volando eliminarlas.
@@ -230,7 +161,7 @@ public class GameScreen extends GenericScreen {
 			
 			// Crear coconuts del nivel.
 			if (coconuts.size == 0 && !FlyingObjets.isFlyingCoconut(coconuts)) {
-				createCoconuts(3);
+				Creator.createCoconuts(3, coconuts, stage);
 			}
 
 			// Si los coconuts no estan volando eliminarlos.
