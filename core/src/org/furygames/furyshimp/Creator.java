@@ -5,9 +5,12 @@ import org.furygames.actors.Coconut;
 import org.furygames.actors.Rock;
 import org.furygames.screens.GameScreen;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
 public class Creator {
@@ -81,5 +84,29 @@ public class Creator {
 		for (Coconut coconut : coconuts) {
 			stage.addActor(coconut);
 		}
+	}
+	
+	public static Image createArrowLeft () {
+		TextureRegion txtRegion;
+		Texture texture;
+		texture = new Texture("extras/arrowleft.png");
+		txtRegion = new TextureRegion(texture);
+		Image arrowLeft = new Image(txtRegion);
+		arrowLeft.setSize(128, 128);
+		arrowLeft.setPosition(0, 240);
+
+		return arrowLeft;
+	}
+	
+	public static Image createArrowRigth () {
+		TextureRegion txtRegion;
+		Texture texture;
+		texture = new Texture("extras/arrowrigth.png");
+		txtRegion = new TextureRegion(texture);
+		Image arrowRight = new Image(txtRegion);
+		arrowRight.setSize(128, 128);
+		arrowRight.setPosition(GameScreen.WIDTH - arrowRight.getWidth(), 240);
+		
+		return arrowRight;
 	}
 }

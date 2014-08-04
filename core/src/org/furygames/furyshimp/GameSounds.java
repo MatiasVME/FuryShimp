@@ -5,20 +5,20 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public class GameSounds {
-	private static final String SOUNDWOOP="sounds/other/woop.mp3";
-	private static final String SOUNDHIT="sounds/other/hit.mp3";
-	private static final String MUSICRIVERSIDE="sounds/levels/Riverside Ride Short Loop.mp3";
-	public GameSounds(){
-
-	}
-	public Sound newSound(int tipo){
-		Sound s=null;
+	private static final String SOUND_WOOP = "sounds/other/woop.mp3";
+	private static final String SOUND_HIT = "sounds/other/hit.mp3";
+	private static final String MUSIC_RIVERSIDE = "sounds/levels/Riverside Ride Short Loop.mp3";
+	private static final String MUSIC_PLEASANT = "sounds/levels/Pleasant Creek Loop.mp3";
+	
+	public static Sound newSound(int tipo) {
+		Sound s = null;
+		
 		switch (tipo) {
 		case 1:
-			s=Gdx.audio.newSound(Gdx.files.internal(SOUNDWOOP));
+			s = Gdx.audio.newSound(Gdx.files.internal(SOUND_WOOP));
 			break;
 		case 2:
-			s=Gdx.audio.newSound(Gdx.files.internal(SOUNDHIT));
+			s = Gdx.audio.newSound(Gdx.files.internal(SOUND_HIT));
 			break;
 		default:
 			break;
@@ -26,14 +26,18 @@ public class GameSounds {
 		return s;
 
 	}
-	public Music newMusic(int tipo){
-		Music m=null;
+	
+	public static Music newMusic(int tipo) {
+		Music m = null;
+		
 		switch (tipo) {
 		case 1:
-			m=Gdx.audio.newMusic(
-					Gdx.files.internal(MUSICRIVERSIDE));
+			m = Gdx.audio.newMusic(
+					Gdx.files.internal(MUSIC_RIVERSIDE));
 			break;
-
+		case 2:
+			m = Gdx.audio.newMusic(
+					Gdx.files.internal(MUSIC_PLEASANT));
 		default:
 			break;
 		}

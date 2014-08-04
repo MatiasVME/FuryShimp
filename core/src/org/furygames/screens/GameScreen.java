@@ -20,12 +20,10 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
-public class GameScreen extends GenericScreen {
+public final class GameScreen extends GenericScreen {
 	
 	private Levels levels;
 	private Array <Rock> rocks;
@@ -36,11 +34,11 @@ public class GameScreen extends GenericScreen {
 	private Image bg;
 	private TextureRegion bgRegion;
 	private Texture bgTexture;
-	private Image arrowLeft, arrowRigth;
 	private Sound woop;
 	private Sound hit;
 	private VirtualController virtualController;
 	private MonkeyInput monkeyInput;
+	private boolean musicExist = false;
 	
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -59,20 +57,19 @@ public class GameScreen extends GenericScreen {
 		coconuts = new Array <Coconut> ();
 		
 		// Crear el sonido cuando el mono toma algo.
-		woop = new GameSounds().newSound(1);//Sonara el sonido woop al pasar parametro 1
+		woop = GameSounds.newSound(1); // Sonara el sonido woop al pasar parametro 1
 		// Crear el sonido cuando el mono es golpeado.
-		hit = new GameSounds().newSound(2);//Sonara el sonido hit al pasar parametro 2
+		hit = GameSounds.newSound(2); // Sonara el sonido hit al pasar parametro 2
 		
 		//Definiendo fondo de pantalla
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
 		bgRegion = new TextureRegion(bgTexture);
 		bg = new Image(bgRegion);
 		bg.setCenterPosition(WIDTH / 2, HEIGHT / 2);
-		bg.setOrigin(bg.getWidth() / 2, bg.getWidth() / 2);
 		
 		stage.addActor(bg);
-		stage.addActor(createArrowLeft());
-		stage.addActor(createArrowRigth());
+		stage.addActor(Creator.createArrowLeft());
+		stage.addActor(Creator.createArrowRigth());
 
 		// Inputs
 		
@@ -81,7 +78,7 @@ public class GameScreen extends GenericScreen {
 		Gdx.input.setInputProcessor(monkeyInput);
 		
 		shimp = new Shimp(virtualController);
-		createMono();
+		stage.addActor(shimp);
 	}
 	
 	@Override
@@ -122,8 +119,6 @@ public class GameScreen extends GenericScreen {
 		Collides.collidesMonkeyRocks(shimp, rocks, hit);
 	}
 
-	
-	
 	// Método level que se llama cada vez que el render es actualizado
 	private void level(int level) {
 		switch(level){
@@ -175,7 +170,8 @@ public class GameScreen extends GenericScreen {
 			}
 			
 			// Sonido.
-			jungleSonud();
+			if (!musicExist)
+				music(2);
 			
 			
 			break;
@@ -183,50 +179,24 @@ public class GameScreen extends GenericScreen {
 			break;
 		}
 	}
-
-	// Por defecto la musica no existe.
-	private boolean musicExist = false;
 	
 	// Musica de la jungla
-	private void jungleSonud() {
+	private void music(int track) {
+		if (music != null) {
+			music.dispose();
+			music = null;
+		}
+		
 		// Si no existe musica, colocarla.
-		if (!musicExist) {
+		else {
 			// Crear la musica.
-			music = new GameSounds().newMusic(1);//Sonara riverside
+			music = GameSounds.newMusic(track);
 			// Que se haga un loop con la musica, osea que cuando termine empiece de nuevo
 			// indifinidamente.
 			music.setLooping(true);
 			music.play(); // Reproducir musica.
 			// Avisar de que si existe musica.
-			musicExist = true;
+			musicExist  = true;
 		}
-	}
-
-	private void createMono () {
-		stage.addActor(shimp);
-	}
-
-	private Image createArrowLeft () {
-		TextureRegion txtRegion;
-		Texture texture;
-		texture = new Texture("extras/arrowleft.png");
-		txtRegion = new TextureRegion(texture);
-		arrowLeft = new Image(txtRegion);
-		arrowLeft.setSize(128, 128);
-		arrowLeft.setPosition(0, 240);
-
-		return arrowLeft;
-	}
-	
-	private Image createArrowRigth () {
-		TextureRegion txtRegion;
-		Texture texture;
-		texture = new Texture("extras/arrowrigth.png");
-		txtRegion = new TextureRegion(texture);
-		arrowRigth = new Image(txtRegion);
-		arrowRigth.setSize(128, 128);
-		arrowRigth.setPosition(WIDTH - arrowRigth.getWidth(), 240);
-		
-		return arrowRigth;
 	}
 }
