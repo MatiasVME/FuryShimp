@@ -6,23 +6,17 @@ import com.badlogic.gdx.InputAdapter;
 
 public class MonkeyInput extends InputAdapter {
 	
-	private VirtualController vc;
-	
-	public MonkeyInput (VirtualController vc) {
-		this.vc = vc;
-	}
-	
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		
 		if (screenX <= GameScreen.WIDTH / 2) {
 			System.out.println("Izquierda!");
-			vc.setMoveLeft(true);
+			VirtualController.setMoveLeft(true);
 		}
 		
 		else {
 			System.out.println("Derecha!");
-			vc.setMoveRight(true);
+			VirtualController.setMoveRight(true);
 		}
 
 		return super.touchDown(screenX, screenY, pointer, button);
@@ -31,11 +25,11 @@ public class MonkeyInput extends InputAdapter {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (screenX <= GameScreen.WIDTH / 2) {
-			vc.setMoveLeft(false);
+			VirtualController.setMoveLeft(false);
 		}
 		
 		else {
-			vc.setMoveRight(false);
+			VirtualController.setMoveRight(false);
 		}
 		
 		return super.touchUp(screenX, screenY, pointer, button);
