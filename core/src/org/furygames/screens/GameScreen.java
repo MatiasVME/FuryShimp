@@ -34,7 +34,6 @@ public final class GameScreen extends GenericScreen {
 	private BackgroundManager bgManager;
 	private Sound woop;
 	private Sound hit;
-	private VirtualController virtualController;
 	private MonkeyInput monkeyInput;
 	private boolean musicExist = false;
 	
@@ -68,11 +67,10 @@ public final class GameScreen extends GenericScreen {
 
 		// Inputs
 		
-		virtualController = new VirtualController();
-		monkeyInput = new MonkeyInput (virtualController);
+		monkeyInput = new MonkeyInput();
 		Gdx.input.setInputProcessor(monkeyInput);
 		
-		shimp = new Shimp(virtualController);
+		shimp = new Shimp();
 		stage.addActor(shimp);
 	}
 	

@@ -1,23 +1,23 @@
 package org.furygames.inputs;
 
-public class VirtualController {
+public abstract class VirtualController {
 	
-	private boolean moveRight;
-	private boolean moveLeft;
+	private static boolean moveRight;
+	private static boolean moveLeft;
 	
-	public boolean isMoveLeft() {
+	public static boolean isMoveLeft() {
 		return moveLeft;
 	}
 	
-	public void setMoveLeft(boolean moveLeft) {
-		this.moveLeft = moveLeft;
+	public static void setMoveLeft(boolean moveLeft) {
+		VirtualController.moveLeft = moveLeft;
 	}
 	
-	public boolean isMoveRight() {
+	public static boolean isMoveRight() {
 		return moveRight;
 	}
 	
-	public void setMoveRight(boolean moveRight) {
-		this.moveRight = moveRight;
+	public static void setMoveRight(boolean moveRight) {
+		VirtualController.moveRight = moveRight;
 	}
 }

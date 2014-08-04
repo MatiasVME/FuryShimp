@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 
-
 public class Shimp extends GenericActor {
 
 	private static final int SPRITE_WIDTH = 480;
@@ -22,12 +21,10 @@ public class Shimp extends GenericActor {
 	private TextureRegion[] dudeFrames;
 	private Animation dudeAnimation;
 	private float duracion = 0;
-	private VirtualController virtualController;
 	private boolean isFliped = false;
 	
-	public Shimp(VirtualController virtualController) {
+	public Shimp() {
 		super("actors/mono.png");
-		this.virtualController = virtualController;
 		
 		textureRegion = new TextureRegion(texture, SPRITE_WIDTH, SPRITE_HEIGHT);
 
@@ -58,7 +55,7 @@ public class Shimp extends GenericActor {
 		frame = dudeAnimation.getKeyFrame(duracion, true);
 		textureRegion = frame;
 		
-		if (virtualController.isMoveLeft()) {
+		if (VirtualController.isMoveLeft()) {
 			setPosition(getX() - SPEED * delta, getY());
 			
 			if (isFliped) {
@@ -68,7 +65,7 @@ public class Shimp extends GenericActor {
 			}
 		}
 		
-		else if (virtualController.isMoveRight()) {
+		else if (VirtualController.isMoveRight()) {
 			setPosition(getX() + SPEED * delta, getY());
 			
 			if (!isFliped) {
