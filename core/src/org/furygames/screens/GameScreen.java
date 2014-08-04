@@ -65,7 +65,7 @@ public final class GameScreen extends GenericScreen {
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
 		bgRegion = new TextureRegion(bgTexture);
 		bg = new Image(bgRegion);
-		bg.setCenterPosition(WIDTH / 2, HEIGHT / 2);
+		bg.setCenterPosition(WIDTH / 2, HEIGHT / 2); 
 		
 		stage.addActor(bg);
 		stage.addActor(Creator.createArrowLeft());
