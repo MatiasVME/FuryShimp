@@ -23,6 +23,7 @@ public class Shimp extends GenericActor {
 	private Animation dudeAnimation;
 	private float duracion = 0;
 	private VirtualController virtualController;
+	private boolean isFliped = false;
 	
 	public Shimp(VirtualController virtualController) {
 		super("actors/mono.png");
@@ -34,10 +35,8 @@ public class Shimp extends GenericActor {
 		dudeFrames = new TextureRegion[temp.length * temp[0].length];
 		
 		int indice = 0;
-		for (int i = 0; i < temp.length; i++) 
-		{
-			for (int j = 0; j < temp[i].length; j++) 
-			{
+		for (int i = 0; i < temp.length; i++) {
+			for (int j = 0; j < temp[i].length; j++) {
 				dudeFrames[indice++] = temp[i][j];
 			}
 		}
@@ -61,10 +60,22 @@ public class Shimp extends GenericActor {
 		
 		if (virtualController.isMoveLeft()) {
 			setPosition(getX() - SPEED * delta, getY());
+			
+			if (isFliped) {
+				for (TextureRegion f : dudeFrames)
+					f.flip(false, false);
+				isFliped = false;
+			}
 		}
 		
 		else if (virtualController.isMoveRight()) {
 			setPosition(getX() + SPEED * delta, getY());
+			
+			if (!isFliped) {
+				for (TextureRegion f : dudeFrames)
+					f.flip(true, false);
+				isFliped = true;
+			}
 		}
 	}
 

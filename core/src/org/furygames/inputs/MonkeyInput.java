@@ -16,12 +16,10 @@ public class MonkeyInput extends InputAdapter {
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		
 		if (screenX <= GameScreen.WIDTH / 2) {
-			System.out.println("Izquierda!");
 			vc.setMoveLeft(true);
 		}
 		
 		else {
-			System.out.println("Derecha!");
 			vc.setMoveRight(true);
 		}
 

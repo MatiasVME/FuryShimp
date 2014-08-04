@@ -22,7 +22,8 @@ public class GameSounds {
 			break;
 		default:
 			break;
-		}	
+		}
+		
 		return s;
 
 	}
