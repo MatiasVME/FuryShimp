@@ -87,10 +87,8 @@ public class Creator {
 	}
 	
 	public static Image createArrowLeft () {
-		TextureRegion txtRegion;
-		Texture texture;
-		texture = new Texture("extras/arrowleft.png");
-		txtRegion = new TextureRegion(texture);
+		Texture texture = new Texture("extras/arrow.png");
+		TextureRegion txtRegion = new TextureRegion(texture);
 		Image arrowLeft = new Image(txtRegion);
 		arrowLeft.setSize(128, 128);
 		arrowLeft.setPosition(0, 240);
@@ -99,10 +97,9 @@ public class Creator {
 	}
 	
 	public static Image createArrowRigth () {
-		TextureRegion txtRegion;
-		Texture texture;
-		texture = new Texture("extras/arrowrigth.png");
-		txtRegion = new TextureRegion(texture);
+		Texture texture = new Texture("extras/arrow.png");
+		TextureRegion txtRegion = new TextureRegion(texture);
+		txtRegion.flip(true, false);
 		Image arrowRight = new Image(txtRegion);
 		arrowRight.setSize(128, 128);
 		arrowRight.setPosition(GameScreen.WIDTH - arrowRight.getWidth(), 240);

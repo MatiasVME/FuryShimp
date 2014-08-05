@@ -21,7 +21,6 @@ public class Shimp extends GenericActor {
 	private TextureRegion[] dudeFrames;
 	private Animation dudeAnimation;
 	private float duracion = 0;
-	private boolean isFliped = false;
 	private boolean moveLeft;
 	private boolean moveRight;
 	
