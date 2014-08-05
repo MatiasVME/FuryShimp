@@ -12,11 +12,19 @@ public class Score {
 		Score.badScore = badScore;
 	}
 	
-	public int getGoodScore() {
+	public static void addBadScore (int amount) {
+		Score.badScore += amount;
+	}
+	
+	public static int getGoodScore() {
 		return goodScore;
 	}
 	
 	public static void setGoodScore(int goodScore) {
 		Score.goodScore = goodScore;
+	}
+	
+	public static void addGoodScore (int amount) {
+		Score.goodScore += amount;
 	}
 }

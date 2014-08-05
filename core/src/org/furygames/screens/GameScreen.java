@@ -11,6 +11,7 @@ import org.furygames.furyshimp.FlyingObjets;
 import org.furygames.furyshimp.FuryShimp;
 import org.furygames.furyshimp.GameSounds;
 import org.furygames.furyshimp.Levels;
+import org.furygames.furyshimp.Score;
 import org.furygames.inputs.MonkeyInput;
 
 import com.badlogic.gdx.Gdx;
@@ -29,12 +30,13 @@ public final class GameScreen extends GenericScreen {
 	private Array <Coconut> coconuts;
 	private Music music;
 	private Shimp shimp;
-	private Image bg;
 	private BackgroundManager bgManager;
+	private Image currentBackground;
 	private Sound woop;
 	private Sound hit;
 	private MonkeyInput monkeyInput;
 	private boolean musicExist = false;
+	private boolean nivelClear = true;
 	
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -59,8 +61,9 @@ public final class GameScreen extends GenericScreen {
 		
 		//Definiendo fondo de pantalla
 		bgManager = new BackgroundManager();
+		currentBackground = bgManager.getImage(1);
 		
-		stage.addActor(bgManager.getImage(1));
+		stage.addActor(currentBackground);
 		stage.addActor(Creator.createArrowLeft());
 		stage.addActor(Creator.createArrowRigth());
 
@@ -82,6 +85,7 @@ public final class GameScreen extends GenericScreen {
 				level(1);
 				break;
 			case LEVEL2:
+				level(2);
 				break;
 			case LEVEL3:
 				break;
@@ -111,7 +115,11 @@ public final class GameScreen extends GenericScreen {
 	private void level(int level) {
 		switch(level){
 		case 1:
-
+			
+			if (nivelClear) {
+				nivelClear = false;
+			}
+			
 			// Crear rocas del nivel.
 			if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
 				Creator.createRocks(2, rocks, stage);
@@ -159,9 +167,72 @@ public final class GameScreen extends GenericScreen {
 			
 			// Sonido.
 			if (!musicExist)
-				music(2);
+				music(1);
 			
+			if (Score.getGoodScore() >= 20) {
+				levels = Levels.LEVEL2;
+				System.out.println("level2!");
+			}
 			
+			break;
+		case 2:
+			// Eliminar cosas del nivel1
+			if (!nivelClear) {
+				//currentBackground = bgManager.getImage(2);
+				//shimp.dispose();
+				
+				//stage.addActor(currentBackground);
+				nivelClear = true;
+			}
+			
+			// Crear rocas del nivel.
+			if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
+				Creator.createRocks(4, rocks, stage);
+			}
+
+			// Si las rocas no estan volando eliminarlas.
+			else if (!FlyingObjets.isFlyingRocks(rocks)){
+				// Remover Rocas
+				for (Rock rock : rocks)
+					rock.remove();
+
+				// Vaciar array.
+				rocks.clear();
+			}
+
+			// Crear bananas del nivel.
+			if (bananas.size == 0 && !FlyingObjets.isFlyingBananas(bananas)) {
+				Creator.createBananas(4, bananas, stage);
+			}
+
+			// Si las bananas no estan volando eliminarlas.
+			else if (!FlyingObjets.isFlyingBananas(bananas)){
+				// Remover bananas.
+				for (Bananas banana : bananas)
+					banana.remove();
+
+				// Vaciar array.
+				bananas.clear();
+			}
+			
+			// Crear coconuts del nivel.
+			if (coconuts.size == 0 && !FlyingObjets.isFlyingCoconut(coconuts)) {
+				Creator.createCoconuts(4, coconuts, stage);
+			}
+
+			// Si los coconuts no estan volando eliminarlos.
+			else if (!FlyingObjets.isFlyingCoconut(coconuts)){
+				// Remover coconuts.
+				for (Coconut coconut : coconuts)
+					coconut.remove();
+
+				// Vaciar array.
+				coconuts.clear();
+			}
+			
+			// Sonido.
+			if (!musicExist)
+				music(1);
 			break;
 		default:
 			break;
