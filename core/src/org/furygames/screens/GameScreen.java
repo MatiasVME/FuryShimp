@@ -12,7 +12,6 @@ import org.furygames.furyshimp.FuryShimp;
 import org.furygames.furyshimp.GameSounds;
 import org.furygames.furyshimp.Levels;
 import org.furygames.inputs.MonkeyInput;
-import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;

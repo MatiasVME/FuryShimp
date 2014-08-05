@@ -22,6 +22,8 @@ public class Shimp extends GenericActor {
 	private Animation dudeAnimation;
 	private float duracion = 0;
 	private boolean isFliped = false;
+	private boolean moveLeft;
+	private boolean moveRight;
 	
 	public Shimp() {
 		super("actors/mono.png");
@@ -58,22 +60,22 @@ public class Shimp extends GenericActor {
 		if (VirtualController.isMoveLeft()) {
 			setPosition(getX() - SPEED * delta, getY());
 			
-			if (isFliped) {
-				for (TextureRegion f : dudeFrames)
-					f.flip(false, false);
-				isFliped = false;
-			}
+			moveLeft = true;
+			moveRight = false;
 		}
 		
 		else if (VirtualController.isMoveRight()) {
 			setPosition(getX() + SPEED * delta, getY());
 			
-			if (!isFliped) {
-				for (TextureRegion f : dudeFrames)
-					f.flip(true, false);
-				isFliped = true;
-			}
+			moveLeft = false;
+			moveRight = true;
 		}
+		
+		if (moveRight && !textureRegion.isFlipX())
+			textureRegion.flip(true, false);
+		if (moveLeft && textureRegion.isFlipX())
+			textureRegion.flip(true, false);
+		
 	}
 
 	@Override
