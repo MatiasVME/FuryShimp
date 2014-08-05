@@ -64,8 +64,7 @@ public final class GameScreen extends GenericScreen {
 		stage.addActor(Creator.createArrowLeft());
 		stage.addActor(Creator.createArrowRigth());
 
-		// Inputs
-		
+		// Movimiento del mono mediante touchScreen
 		monkeyInput = new MonkeyInput();
 		Gdx.input.setInputProcessor(monkeyInput);
 		
@@ -93,9 +92,6 @@ public final class GameScreen extends GenericScreen {
 
 		stage.draw();
 		stage.act();
-		
-		// Inputs
-		//
 
 		// Condicion si el boton presionado es BACK ejecutar la accion.
 		if(Gdx.input.isKeyPressed(Keys.BACK))

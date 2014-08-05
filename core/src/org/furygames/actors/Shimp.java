@@ -15,7 +15,7 @@ public class Shimp extends GenericActor {
 
 	private static final int SPRITE_WIDTH = 480;
 	private static final int SPRITE_HEIGHT = 210;
-	private static final float SPEED = 500f;
+	private static final float SPEED = 250f;
 
 	private static TextureRegion frame;
 	private TextureRegion[] dudeFrames;
@@ -43,7 +43,7 @@ public class Shimp extends GenericActor {
 		// hace que se repita un frame.
 		dudeFrames[dudeFrames.length - 1] = dudeFrames[0];
 		
-		dudeAnimation = new Animation(0.05f, dudeFrames);
+		dudeAnimation = new Animation(0.03f, dudeFrames);
 		
 		setCenterPosition(GameScreen.WIDTH / 2, 30f);
 	}

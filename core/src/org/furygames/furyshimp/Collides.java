@@ -24,6 +24,9 @@ public class Collides {
 				
 				if (sound != null)
 					sound.play();
+				
+				//sumamos 2 puntos de puntuacion del mono
+				Score.setGoodScore(2);
 			}
 		}
 	}
@@ -39,6 +42,9 @@ public class Collides {
 				
 				if (sound != null)
 					sound.play();
+				
+				//sumamos 1 punto de puntuacion del mono
+				Score.setGoodScore(1);
 			}
 		}
 	}
@@ -54,6 +60,9 @@ public class Collides {
 				
 				if (sound != null)
 					sound.play();
+				
+				//restamos 1 punto de puntuacion del mono
+				Score.setBadScore(1);
 			}
 		}
 	}
