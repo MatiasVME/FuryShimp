@@ -31,7 +31,7 @@ public class Creator {
 			// de la pantalla.
 			Vector2 destination = new Vector2(
 					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
-					0);
+					0 - Rock.HEIGHT);
 
 			// Añade las rocas al array de rocas, con una velocidad aleatoria.
 			rocks.add(new Rock(origin, destination,
@@ -50,11 +50,11 @@ public class Creator {
 
 		for (int i = 0; i < numOfBananas; i++) {
 			Vector2 origin = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2), 
+					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
-					0);
+					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2),
+					0 - Bananas.HEIGHT);
 
 			bananas.add(new Bananas(origin, destination,
 					MathUtils.random(2f, 4f)));
@@ -71,11 +71,11 @@ public class Creator {
 
 		for (int i = 0; i < numOfCoconuts; i++) {
 			Vector2 origin = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2), 
+					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
-					0);
+					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2),
+					0 - Coconut.HEIGHT);
 
 			coconuts.add(new Coconut(origin, destination,
 					MathUtils.random(2f, 4f)));
