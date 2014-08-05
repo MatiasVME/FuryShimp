@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
 public class Creator {
+	
 	// Crea las rocas y las añade al esceneario
 	public static void createRocks (int max, Array <Rock> rocks, Stage stage) {
 		// Un número aleatorio entre 1 y max (que son las rocas que aparecerán en

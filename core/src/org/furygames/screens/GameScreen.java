@@ -1,10 +1,10 @@
 package org.furygames.screens;
 
-import org.furygames.actors.BackgroundManager;
 import org.furygames.actors.Bananas;
 import org.furygames.actors.Coconut;
 import org.furygames.actors.Rock;
 import org.furygames.actors.Shimp;
+import org.furygames.furyshimp.BackgroundManager;
 import org.furygames.furyshimp.Collides;
 import org.furygames.furyshimp.Creator;
 import org.furygames.furyshimp.FlyingObjets;
@@ -19,6 +19,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
@@ -169,17 +170,22 @@ public final class GameScreen extends GenericScreen {
 			if (!musicExist)
 				music(1);
 			
-			if (Score.getGoodScore() >= 20) {
+			if (Score.getGoodScore() >= 10) {
 				levels = Levels.LEVEL2;
 				System.out.println("level2!");
 			}
 			
 			break;
+			
 		case 2:
 			// Eliminar cosas del nivel1
 			if (!nivelClear) {
-				//currentBackground = bgManager.getImage(2);
-				//shimp.dispose();
+				currentBackground = bgManager.getImage(2);
+				
+				// Hack: Accede al primer actor que es el background y lo cambia,
+				// esto se podría optimizar de alguna forma, ya que no 
+				// necesariamente el primer actor debería ser el background.
+				stage.getActors().items[0] = currentBackground;
 				
 				//stage.addActor(currentBackground);
 				nivelClear = true;
@@ -234,6 +240,7 @@ public final class GameScreen extends GenericScreen {
 			if (!musicExist)
 				music(1);
 			break;
+			
 		default:
 			break;
 		}

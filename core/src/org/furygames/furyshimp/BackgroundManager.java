@@ -1,4 +1,4 @@
-package org.furygames.actors;
+package org.furygames.furyshimp;
 
 import org.furygames.screens.GameScreen;
 
