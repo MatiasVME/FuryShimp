@@ -187,6 +187,10 @@ public final class GameScreen extends GenericScreen {
 				// necesariamente el primer actor debería ser el background.
 				stage.getActors().items[0] = currentBackground;
 				
+				music.dispose();
+				music = null;
+				musicExist = false;
+				
 				//stage.addActor(currentBackground);
 				nivelClear = true;
 			}
@@ -238,7 +242,7 @@ public final class GameScreen extends GenericScreen {
 			
 			// Sonido.
 			if (!musicExist)
-				music(1);
+				music(2);
 			break;
 			
 		default:

@@ -19,7 +19,7 @@ public class Creator {
 	public static void createRocks (int max, Array <Rock> rocks, Stage stage) {
 		// Un número aleatorio entre 1 y max (que son las rocas que aparecerán en
 		// pantalla.
-		int numOfRocks = MathUtils.random(1, max);
+		int numOfRocks = MathUtils.random(0, max);
 
 		// Crear las rocas dependiendo del numero aleatorio generado anteriormente.
 		for (int i = 0; i < numOfRocks; i++) {
@@ -36,7 +36,37 @@ public class Creator {
 
 			// Añade las rocas al array de rocas, con una velocidad aleatoria.
 			rocks.add(new Rock(origin, destination,
-					MathUtils.random(2f, 4f)));
+					MathUtils.random(2f, 4f), false));
+		}
+
+		// Recorre el Array rocks para añadir cada roca al escenario
+		for (Rock rock : rocks) {
+			stage.addActor(rock);
+		}
+	}
+	
+	// Crea las rocas grandes en el esenario
+	public static void createLargeRocks (int max, Array <Rock> rocks, Stage stage) {
+		// Un número aleatorio entre 1 y max (que son las rocas que aparecerán en
+		// pantalla.
+		int numOfRocks = MathUtils.random(0, max);
+
+		// Crear las rocas dependiendo del numero aleatorio generado anteriormente.
+		for (int i = 0; i < numOfRocks; i++) {
+			// Crear el vector origen en una posicion aleatorio de la parte superior
+			// de la pantalla.
+			Vector2 origin = new Vector2(
+					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2), 
+					GameScreen.HEIGHT);
+			// Crear el vector destino en una posicion aleatorio de la parte inferior
+			// de la pantalla.
+			Vector2 destination = new Vector2(
+					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
+					0 - Rock.HEIGHT);
+
+			// Añade las rocas al array de rocas, con una velocidad aleatoria.
+			rocks.add(new Rock(origin, destination,
+					MathUtils.random(2f, 4f), true));
 		}
 
 		// Recorre el Array rocks para añadir cada roca al escenario
@@ -47,7 +77,7 @@ public class Creator {
 
 	// Crea las bananas y las añade al escenario.
 	public static void createBananas (int max, Array <Bananas> bananas, Stage stage) {
-		int numOfBananas = MathUtils.random(1, max);
+		int numOfBananas = MathUtils.random(0, max);
 
 		for (int i = 0; i < numOfBananas; i++) {
 			Vector2 origin = new Vector2(
@@ -68,7 +98,7 @@ public class Creator {
 
 	// Crea los cocos y los añade al escenario.
 	public static void createCoconuts (int max, Array <Coconut> coconuts, Stage stage) {
-		int numOfCoconuts = MathUtils.random(1, max);
+		int numOfCoconuts = MathUtils.random(0, max);
 
 		for (int i = 0; i < numOfCoconuts; i++) {
 			Vector2 origin = new Vector2(
