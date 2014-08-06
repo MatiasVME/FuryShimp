@@ -5,7 +5,6 @@ import org.furygames.furyshimp.FuryShimp;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -18,14 +17,12 @@ import com.badlogic.gdx.utils.Timer.Task;
 public class SplashScreen extends GenericScreen {
 
 
-	private final float DURATION = 17f; // Segundos
+	private final float DURATION = 3f; // Segundos
 	
 	private Image splash2;
 	private Texture bgTexture;//textura para el fondo
 	private TextureRegion bgRegion;
-	private static FileHandle file;
-	private Music audio;
-	private Sound sound;
+	private Music music;
 	
 	private Image splash;
 	private TextureRegion splashRegion;
@@ -42,10 +39,10 @@ public class SplashScreen extends GenericScreen {
 		
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
 		bgRegion = new TextureRegion(bgTexture);
-		splash2=new Image(bgRegion);
-		pb=new ParallelAction();
+		splash2 = new Image(bgRegion);
+		pb = new ParallelAction();
 		
-		sound=Gdx.audio.newSound(Gdx.files.internal("sounds/levels/Movie Theater Intro_0.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro_0.mp3"));
 		
 		splashTexture = new Texture("splash.png");
 		splashRegion = new TextureRegion(splashTexture);
@@ -74,7 +71,7 @@ public class SplashScreen extends GenericScreen {
 		//insertamos (imagen) dentro del escenario stage
 		stage.addActor(splash2);
 		stage.addActor(splash);
-		sound.play();
+		music.play();
 	}
 
 	@Override

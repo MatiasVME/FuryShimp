@@ -18,7 +18,11 @@ public class Rock extends Droppable {
 		isLarge = large;
 
 		textureRegion.setRegion(0, 0, WIDTH, HEIGHT);
-		setOrigin(WIDTH / 2 / 2, HEIGHT / 2 / 2);
+		
+		if (isLarge)
+			setOrigin(WIDTH / 2, HEIGHT / 2);
+		else
+			setOrigin(WIDTH / 2 / 2, HEIGHT / 2 / 2);
 		
 		// Movimiento.
 		ParallelAction pa = new ParallelAction();
