@@ -117,12 +117,12 @@ public final class GameScreen extends GenericScreen {
 		stage.act();
 		
 		batch.begin();
+		
 		//Si el tiempo en ejecucion, que no a parado se le resta el tiempo que hemos almacenado nos dar� el 
 		//tiempo en millis que ha pasado, en caso de ser mayor que 1000 es que habr� llegado al segundo
 		//Al entrar en el condicional, volvemos  a asignar el tiempo actual de ejecucion a la variable time
 		//provocando lo mismo una y otra vez.
-		if(TimeUtils.millis() - time > 1000)
-		{
+		if(TimeUtils.millis() - time > 1000) {
 			 //Esta parte se ejecutar� cada segundo.
 			 time = TimeUtils.millis();			 
 			 SECONDS--;
@@ -166,7 +166,7 @@ public final class GameScreen extends GenericScreen {
 	
 	//compruebo si el mono tiene vidas
 	private void comprobarVidas() {
-		if(Score.getLifes() <= 0)
+		if(Score.getLifes() <= 0) 
 		{
 			finalizarPartida();
 		}
@@ -241,6 +241,9 @@ public final class GameScreen extends GenericScreen {
 			// Sonido.
 			if (!musicExist)
 				music(1);
+			
+			if (Score.getScore() >= 20)
+				levels = Levels.LEVEL2;
 			
 			break;
 			

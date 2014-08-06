@@ -23,6 +23,7 @@ public class Shimp extends GenericActor {
 	private float duracion = 0;
 	private boolean moveLeft;
 	private boolean moveRight;
+	private boolean isMoving = false;
 	
 	public Shimp() {
 		super("actors/mono.png");
@@ -53,14 +54,24 @@ public class Shimp extends GenericActor {
 		super.act(delta);
 		
 		duracion += delta;
-		frame = dudeAnimation.getKeyFrame(duracion, true);
+
+		// Si se esta moviendo los frames avanzan
+		if (isMoving)
+			frame = dudeAnimation.getKeyFrame(duracion, true);
+		// Si no se esta moviendo se queda en un frame
+		else
+			frame = dudeAnimation.getKeyFrame(1);
+		
 		textureRegion = frame;
+		
+		isMoving = false;
 		
 		if (VirtualController.isMoveLeft()) {
 			setPosition(getX() - SPEED * delta, getY());
 			
 			moveLeft = true;
 			moveRight = false;
+			isMoving = true;
 		}
 		
 		else if (VirtualController.isMoveRight()) {
@@ -68,13 +79,14 @@ public class Shimp extends GenericActor {
 			
 			moveLeft = false;
 			moveRight = true;
+			isMoving = true;
 		}
 		
 		if (moveRight && !textureRegion.isFlipX())
 			textureRegion.flip(true, false);
-		if (moveLeft && textureRegion.isFlipX())
-			textureRegion.flip(true, false);
 		
+		else if (moveLeft && textureRegion.isFlipX())
+			textureRegion.flip(true, false);
 	}
 
 	@Override
