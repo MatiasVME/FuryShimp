@@ -29,10 +29,8 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public final class GameScreen extends GenericScreen {
 	
-	private float SECONDS = 180f; // Segundos
-	
+	private int SECONDS = 60; // Segundos
 	private long time;
-	
 	private Levels levels;
 	private Array <Rock> rocks;
 	private Array <Bananas> bananas;
@@ -56,13 +54,13 @@ public final class GameScreen extends GenericScreen {
 	public void show() {
 		super.show();
 		
+		//tratar el tiempo transcurrido
 		time = TimeUtils.millis();
 		
 		//establecemos el estilo de los marcadores
 		font = new BitmapFont(Gdx.files.internal("fonts/jungle.fnt"), 
 				Gdx.files.internal("fonts/jungle.png"), false);
         font.setColor(Color.BLACK);
-        //font.setScale(1.3f);
 		
 		// Dejar el enums levels en estado de LEVEL1
 		levels = Levels.LEVEL1;
@@ -126,13 +124,13 @@ public final class GameScreen extends GenericScreen {
 		if(TimeUtils.millis() - time > 1000)
 		{
 			 //Esta parte se ejecutar� cada segundo.
-			 time= TimeUtils.millis();			 
+			 time = TimeUtils.millis();			 
 			 SECONDS--;
 			 comprobarTiempo();
 		}
 		 
-		font.draw(batch, String.valueOf("Tiempo: " + SECONDS), 
-				Gdx.graphics.getWidth() - 900, 
+		font.draw(batch, String.valueOf("00:" + SECONDS), 
+				Gdx.graphics.getWidth() - 730, 
 				Gdx.graphics.getHeight() - 20);
 		font.draw(batch, String.valueOf("Puntuacion: " + Score.getScore()), 
 				Gdx.graphics.getWidth() - 540, 
@@ -181,7 +179,7 @@ public final class GameScreen extends GenericScreen {
 		musicExist = false;
 		Score.setLifes(3);
 		Score.setScore(0);
-		SECONDS=180;
+		SECONDS=60;
 		VirtualController.setMoveLeft(false);
 		VirtualController.setMoveRight(false);
 	}
