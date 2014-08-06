@@ -19,7 +19,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
@@ -252,7 +251,7 @@ public final class GameScreen extends GenericScreen {
 		}
 	}
 	
-	// Musica de la jungla
+	// Musica.
 	private void music(int track) {
 		if (music != null) {
 			music.dispose();

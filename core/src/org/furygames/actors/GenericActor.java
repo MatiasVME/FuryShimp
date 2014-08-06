@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.Disposable;
 
 public abstract class GenericActor extends Actor implements Disposable {
 
+	private final float RECT_TRIMMER = 10f;
+	
 	protected Texture texture;
 	protected TextureRegion textureRegion;
 	// Rectangulo que tendrán en comun todos los elementos, sirve 
@@ -52,7 +54,8 @@ public abstract class GenericActor extends Actor implements Disposable {
 		
 		// Cada vez que se actualize la posición de la imagen, también se actualiza
 		// la posición del rectangulo, que es el que detecta coliciones.
-		rect.set(getX(), getY(), getWidth(), getHeight());
+		rect.set(getX() + RECT_TRIMMER, getY() + RECT_TRIMMER, 
+				getWidth() - RECT_TRIMMER * 2, getHeight() - RECT_TRIMMER * 2);
 	}
 	
 	public Rectangle getRectangle () {
