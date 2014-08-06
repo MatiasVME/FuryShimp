@@ -4,6 +4,7 @@ import org.furygames.actors.Bananas;
 import org.furygames.actors.Coconut;
 import org.furygames.actors.Rock;
 import org.furygames.actors.Shimp;
+import org.furygames.furyshimp.BackgroundManager;
 import org.furygames.furyshimp.Collides;
 import org.furygames.furyshimp.Creator;
 import org.furygames.furyshimp.FlyingObjets;
@@ -12,6 +13,7 @@ import org.furygames.furyshimp.GameSounds;
 import org.furygames.furyshimp.Levels;
 import org.furygames.furyshimp.Score;
 import org.furygames.inputs.MonkeyInput;
+import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -22,12 +24,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public final class GameScreen extends GenericScreen {
 	
-	private final float DURATION = 5f; // Segundos
+	private float SECONDS = 180f; // Segundos
+	
+	private long time;
 	
 	private Levels levels;
 	private Array <Rock> rocks;
@@ -52,9 +55,12 @@ public final class GameScreen extends GenericScreen {
 	public void show() {
 		super.show();
 		
+		time = TimeUtils.millis();
+		
 		//establecemos el estilo de los marcadores
 		font = new BitmapFont();
         font.setColor(Color.BLACK);
+        font.setScale(1.3f);
 		
 		// Dejar el enums levels en estado de LEVEL1
 		levels = Levels.LEVEL1;
@@ -83,17 +89,8 @@ public final class GameScreen extends GenericScreen {
 		
 		shimp = new Shimp();
 		stage.addActor(shimp);
-		
-		
-		//Cronometrar partida
-		Timer.schedule(new Task() {
-			@Override
-			public void run() {
-				universalMonkey.setScreen(universalMonkey.getMenuScreen());
-			}
-		}, DURATION);
-	}
-	
+	}    
+    
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
@@ -120,8 +117,20 @@ public final class GameScreen extends GenericScreen {
 		stage.act();
 		
 		batch.begin();
+		//Si el tiempo en ejecucion, que no a parado se le resta el tiempo que hemos almacenado nos dará el //tiempo en millis que ha pasado, en caso de ser mayor que 1000 es que habrá llegado al segundo
+		//Al entrar en el condicional, volvemos  a asignar el tiempo actual de ejecucion a la variable time
+		//provocando lo mismo una y otra vez.
+		 if(TimeUtils.millis() - time > 1000)
+		 {
+			 //Esta parte se ejecutará cada segundo.
+			 time= TimeUtils.millis();			 
+			 SECONDS--;
+			 comprobarTiempo();
+		}
+		 
+		font.draw(batch, String.valueOf("Tiempo: " + SECONDS), Gdx.graphics.getWidth() - 450, Gdx.graphics.getHeight() - 20);
+		font.draw(batch, String.valueOf("Puntuacion: " + Score.getScore()), Gdx.graphics.getWidth() - 270, Gdx.graphics.getHeight() - 20);
 		font.draw(batch, String.valueOf("Vidas: " + Score.getLifes()), Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Puntuacion: " + Score.getScore()), Gdx.graphics.getWidth() - 250, Gdx.graphics.getHeight() - 20);
 		batch.end();
 
 		// Condicion si el boton presionado es BACK ejecutar la accion.
@@ -140,11 +149,32 @@ public final class GameScreen extends GenericScreen {
 		Collides.collidesMonkeyRocks(shimp, rocks, hit);
 	}
 	
+	//compruebo si el tiempo no ha expirado
+	private void comprobarTiempo() {
+		if(SECONDS <= 0)
+		{
+			finalizarPartida();
+		}
+	}
+	
+	//compruebo si el mono tiene vidas
 	private void comprobarVidas() {
 		if(Score.getLifes() <= 0)
 		{
-			universalMonkey.setScreen(universalMonkey.getMenuScreen());
+			finalizarPartida();
 		}
+	}
+	
+	//metodo que finaliza la partida
+	private void finalizarPartida() {
+		universalMonkey.setScreen(universalMonkey.getMenuScreen());
+		music.dispose();
+		musicExist  = false;
+		Score.setLifes(3);
+		Score.setScore(0);
+		SECONDS=180;
+		VirtualController.setMoveLeft(false);
+		VirtualController.setMoveRight(false);
 	}
 
 	// MÃ©todo level que se llama cada vez que el render es actualizado

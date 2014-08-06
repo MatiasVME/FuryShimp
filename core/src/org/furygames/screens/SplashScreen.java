@@ -65,6 +65,7 @@ public class SplashScreen extends GenericScreen {
 				universalMonkey.setScreen(universalMonkey.getMenuScreen());
 				splashTexture.dispose();
 				bgTexture.dispose();
+				music.dispose();
 			}
 		}, DURATION);
 
