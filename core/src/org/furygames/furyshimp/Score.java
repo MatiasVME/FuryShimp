@@ -1,30 +1,30 @@
 package org.furygames.furyshimp;
 
 public class Score {
-	private static int badScore = 0;
-	private static int goodScore = 0;
+	private static int lifes = 3;
+	private static int score = 0;
 	
-	public int getBadScore() {
-		return badScore;
+	public static int getLifes() {
+		return lifes;
 	}
 	
-	public static void setBadScore(int badScore) {
-		Score.badScore = badScore;
+	public static void setLifes(int lifes) {
+		Score.lifes = lifes;
 	}
 	
-	public static void addBadScore (int amount) {
-		Score.badScore += amount;
+	public static void removeLife (int lifes) {
+		Score.lifes -= lifes;
 	}
 	
-	public static int getGoodScore() {
-		return goodScore;
+	public static int getScore() {
+		return score;
 	}
 	
-	public static void setGoodScore(int goodScore) {
-		Score.goodScore = goodScore;
+	public static void setScore(int score) {
+		Score.score = score;
 	}
 	
-	public static void addGoodScore (int amount) {
-		Score.goodScore += amount;
+	public static void addScore (int score) {
+		Score.score += score;
 	}
 }

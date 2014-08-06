@@ -25,8 +25,8 @@ public class Collides {
 				if (sound != null)
 					sound.play();
 				
-				//s umamos 2 puntos de puntuacion del mono
-				Score.addGoodScore(2);
+				//sumamos 2 puntos de puntuacion del mono
+				Score.addScore(2);
 			}
 		}
 	}
@@ -44,7 +44,7 @@ public class Collides {
 					sound.play();
 				
 				//sumamos 1 punto de puntuacion del mono
-				Score.addGoodScore(1);
+				Score.addScore(1);
 			}
 		}
 	}
@@ -61,8 +61,8 @@ public class Collides {
 				if (sound != null)
 					sound.play();
 				
-				//restamos 1 punto de puntuacion del mono
-				Score.addBadScore(1);
+				//restamos 1 vida del mono
+				Score.removeLife(1);
 			}
 		}
 	}

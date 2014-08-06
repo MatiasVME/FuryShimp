@@ -13,16 +13,25 @@ import org.furygames.furyshimp.GameSounds;
 import org.furygames.furyshimp.Levels;
 import org.furygames.furyshimp.Score;
 import org.furygames.inputs.MonkeyInput;
+import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public final class GameScreen extends GenericScreen {
+	
+	private float SECONDS = 180f; // Segundos
+	
+	private long time;
 	
 	private Levels levels;
 	private Array <Rock> rocks;
@@ -34,6 +43,7 @@ public final class GameScreen extends GenericScreen {
 	private Image currentBackground;
 	private Sound woop;
 	private Sound hit;
+	private BitmapFont font;
 	private MonkeyInput monkeyInput;
 	private boolean musicExist = false;
 	private boolean nivelClear = true;
@@ -45,6 +55,13 @@ public final class GameScreen extends GenericScreen {
 	@Override
 	public void show() {
 		super.show();
+		
+		time = TimeUtils.millis();
+		
+		//establecemos el estilo de los marcadores
+		font = new BitmapFont();
+        font.setColor(Color.BLACK);
+        font.setScale(1.3f);
 		
 		// Dejar el enums levels en estado de LEVEL1
 		levels = Levels.LEVEL1;
@@ -73,8 +90,8 @@ public final class GameScreen extends GenericScreen {
 		
 		shimp = new Shimp();
 		stage.addActor(shimp);
-	}
-	
+	}    
+    
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
@@ -91,11 +108,31 @@ public final class GameScreen extends GenericScreen {
 				break;
 		}
 
-		// Detección de coliciones.
+		// Deteccion de coliciones.
 		collidesDetection();
-
+		
+		//comprobar vidas del juego
+		comprobarVidas();
+		
 		stage.draw();
 		stage.act();
+		
+		batch.begin();
+		//Si el tiempo en ejecucion, que no a parado se le resta el tiempo que hemos almacenado nos dar� el //tiempo en millis que ha pasado, en caso de ser mayor que 1000 es que habr� llegado al segundo
+		//Al entrar en el condicional, volvemos  a asignar el tiempo actual de ejecucion a la variable time
+		//provocando lo mismo una y otra vez.
+		 if(TimeUtils.millis() - time > 1000)
+		 {
+			 //Esta parte se ejecutar� cada segundo.
+			 time= TimeUtils.millis();			 
+			 SECONDS--;
+			 comprobarTiempo();
+		}
+		 
+		font.draw(batch, String.valueOf("Tiempo: " + SECONDS), Gdx.graphics.getWidth() - 450, Gdx.graphics.getHeight() - 20);
+		font.draw(batch, String.valueOf("Puntuacion: " + Score.getScore()), Gdx.graphics.getWidth() - 270, Gdx.graphics.getHeight() - 20);
+		font.draw(batch, String.valueOf("Vidas: " + Score.getLifes()), Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 20);
+		batch.end();
 
 		// Condicion si el boton presionado es BACK ejecutar la accion.
 		if(Gdx.input.isKeyPressed(Keys.BACK))
@@ -105,10 +142,40 @@ public final class GameScreen extends GenericScreen {
 	private void collidesDetection() {
 		// Deteccion shimp banana
 		Collides.collidesMonkeyBananas(shimp, bananas, woop);
+		
 		// Deteccion shimp coconut
 		Collides.collidesMonkeyCoconuts(shimp, coconuts, woop);
+		
 		// Deteccion shimp rock
 		Collides.collidesMonkeyRocks(shimp, rocks, hit);
+	}
+	
+	//compruebo si el tiempo no ha expirado
+	private void comprobarTiempo() {
+		if(SECONDS <= 0)
+		{
+			finalizarPartida();
+		}
+	}
+	
+	//compruebo si el mono tiene vidas
+	private void comprobarVidas() {
+		if(Score.getLifes() <= 0)
+		{
+			finalizarPartida();
+		}
+	}
+	
+	//metodo que finaliza la partida
+	private void finalizarPartida() {
+		universalMonkey.setScreen(universalMonkey.getMenuScreen());
+		music.dispose();
+		musicExist  = false;
+		Score.setLifes(3);
+		Score.setScore(0);
+		SECONDS=180;
+		VirtualController.setMoveLeft(false);
+		VirtualController.setMoveRight(false);
 	}
 
 	// Método level que se llama cada vez que el render es actualizado
@@ -169,10 +236,7 @@ public final class GameScreen extends GenericScreen {
 			if (!musicExist)
 				music(1);
 			
-			if (Score.getGoodScore() >= 10) {
-				levels = Levels.LEVEL2;
-				System.out.println("level2!");
-			}
+
 			
 			break;
 			
