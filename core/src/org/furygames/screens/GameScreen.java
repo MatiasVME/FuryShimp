@@ -1,6 +1,5 @@
 package org.furygames.screens;
 
-import org.furygames.actors.BackgroundManager;
 import org.furygames.actors.Bananas;
 import org.furygames.actors.Coconut;
 import org.furygames.actors.Rock;
@@ -206,17 +205,23 @@ public final class GameScreen extends GenericScreen {
 			if (!musicExist)
 				music(1);
 			
-			if (Score.getScore() >= 20) {
-				levels = Levels.LEVEL2;
-				System.out.println("level2!");
-			}
+
 			
 			break;
+			
 		case 2:
 			// Eliminar cosas del nivel1
 			if (!nivelClear) {
-				//currentBackground = bgManager.getImage(2);
-				//shimp.dispose();
+				currentBackground = bgManager.getImage(2);
+				
+				// Hack: Accede al primer actor que es el background y lo cambia,
+				// esto se podría optimizar de alguna forma, ya que no 
+				// necesariamente el primer actor debería ser el background.
+				stage.getActors().items[0] = currentBackground;
+				
+				music.dispose();
+				music = null;
+				musicExist = false;
 				
 				//stage.addActor(currentBackground);
 				nivelClear = true;
@@ -224,7 +229,8 @@ public final class GameScreen extends GenericScreen {
 			
 			// Crear rocas del nivel.
 			if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
-				Creator.createRocks(4, rocks, stage);
+				Creator.createRocks(3, rocks, stage);
+				Creator.createLargeRocks(1, rocks, stage);
 			}
 
 			// Si las rocas no estan volando eliminarlas.
@@ -240,6 +246,7 @@ public final class GameScreen extends GenericScreen {
 			// Crear bananas del nivel.
 			if (bananas.size == 0 && !FlyingObjets.isFlyingBananas(bananas)) {
 				Creator.createBananas(4, bananas, stage);
+				Creator.createLargeBananas(1, bananas, stage);
 			}
 
 			// Si las bananas no estan volando eliminarlas.
@@ -269,8 +276,9 @@ public final class GameScreen extends GenericScreen {
 			
 			// Sonido.
 			if (!musicExist)
-				music(1);
+				music(2);
 			break;
+			
 		default:
 			break;
 		}

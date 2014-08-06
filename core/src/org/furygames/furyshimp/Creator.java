@@ -15,11 +15,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 
 public class Creator {
+	
 	// Crea las rocas y las añade al esceneario
 	public static void createRocks (int max, Array <Rock> rocks, Stage stage) {
 		// Un número aleatorio entre 1 y max (que son las rocas que aparecerán en
 		// pantalla.
-		int numOfRocks = MathUtils.random(1, max);
+		int numOfRocks = MathUtils.random(0, max);
 
 		// Crear las rocas dependiendo del numero aleatorio generado anteriormente.
 		for (int i = 0; i < numOfRocks; i++) {
@@ -32,11 +33,11 @@ public class Creator {
 			// de la pantalla.
 			Vector2 destination = new Vector2(
 					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
-					0);
+					0 - Rock.HEIGHT);
 
 			// Añade las rocas al array de rocas, con una velocidad aleatoria.
 			rocks.add(new Rock(origin, destination,
-					MathUtils.random(2f, 4f)));
+					MathUtils.random(2f, 4f), false));
 		}
 
 		// Recorre el Array rocks para añadir cada roca al escenario
@@ -44,21 +45,63 @@ public class Creator {
 			stage.addActor(rock);
 		}
 	}
+	
+	// Crea las rocas grandes en el esenario
+	public static void createLargeRocks (int max, Array <Rock> rocks, Stage stage) {
+		int numOfRocks = MathUtils.random(0, max);
 
-	// Crea las bananas y las añade al escenario.
-	public static void createBananas (int max, Array <Bananas> bananas, Stage stage) {
-		int numOfBananas = MathUtils.random(1, max);
-
-		for (int i = 0; i < numOfBananas; i++) {
+		for (int i = 0; i < numOfRocks; i++) {
 			Vector2 origin = new Vector2(
 					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
 					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
-					0);
+					0 - Rock.HEIGHT);
+
+			rocks.add(new Rock(origin, destination,
+					MathUtils.random(2f, 4f), true));
+		}
+
+		for (Rock rock : rocks) {
+			stage.addActor(rock);
+		}
+	}
+
+	// Crea las bananas y las añade al escenario.
+	public static void createBananas (int max, Array <Bananas> bananas, Stage stage) {
+		int numOfBananas = MathUtils.random(0, max);
+
+		for (int i = 0; i < numOfBananas; i++) {
+			Vector2 origin = new Vector2(
+					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2), 
+					GameScreen.HEIGHT);
+			Vector2 destination = new Vector2(
+					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2),
+					0 - Bananas.HEIGHT);
 
 			bananas.add(new Bananas(origin, destination,
-					MathUtils.random(2f, 4f)));
+					MathUtils.random(2f, 4f), false));
+		}
+
+		for (Bananas banana : bananas) {
+			stage.addActor(banana);
+		}
+	}
+	
+	// Crea las bananas y las añade al escenario.
+	public static void createLargeBananas (int max, Array <Bananas> bananas, Stage stage) {
+		int numOfBananas = MathUtils.random(0, max);
+
+		for (int i = 0; i < numOfBananas; i++) {
+			Vector2 origin = new Vector2(
+					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2), 
+					GameScreen.HEIGHT);
+			Vector2 destination = new Vector2(
+					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2),
+					0 - Bananas.HEIGHT);
+
+			bananas.add(new Bananas(origin, destination,
+					MathUtils.random(1f, 2f), true));
 		}
 
 		for (Bananas banana : bananas) {
@@ -68,15 +111,15 @@ public class Creator {
 
 	// Crea los cocos y los añade al escenario.
 	public static void createCoconuts (int max, Array <Coconut> coconuts, Stage stage) {
-		int numOfCoconuts = MathUtils.random(1, max);
+		int numOfCoconuts = MathUtils.random(0, max);
 
 		for (int i = 0; i < numOfCoconuts; i++) {
 			Vector2 origin = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2), 
+					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
-					0);
+					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2),
+					0 - Coconut.HEIGHT);
 
 			coconuts.add(new Coconut(origin, destination,
 					MathUtils.random(2f, 4f)));
