@@ -59,9 +59,10 @@ public final class GameScreen extends GenericScreen {
 		time = TimeUtils.millis();
 		
 		//establecemos el estilo de los marcadores
-		font = new BitmapFont();
+		font = new BitmapFont(Gdx.files.internal("fonts/jungle.fnt"), 
+				Gdx.files.internal("fonts/jungle.png"), false);
         font.setColor(Color.BLACK);
-        font.setScale(1.3f);
+        //font.setScale(1.3f);
 		
 		// Dejar el enums levels en estado de LEVEL1
 		levels = Levels.LEVEL1;
@@ -84,7 +85,7 @@ public final class GameScreen extends GenericScreen {
 		stage.addActor(Creator.createArrowLeft());
 		stage.addActor(Creator.createArrowRigth());
 
-		// Movimiento del mono mediante touchScreen
+		// Movimiento del mono mediante touchScreen y teclado
 		monkeyInput = new MonkeyInput();
 		Gdx.input.setInputProcessor(monkeyInput);
 		
@@ -118,20 +119,27 @@ public final class GameScreen extends GenericScreen {
 		stage.act();
 		
 		batch.begin();
-		//Si el tiempo en ejecucion, que no a parado se le resta el tiempo que hemos almacenado nos dar� el //tiempo en millis que ha pasado, en caso de ser mayor que 1000 es que habr� llegado al segundo
+		//Si el tiempo en ejecucion, que no a parado se le resta el tiempo que hemos almacenado nos dar� el 
+		//tiempo en millis que ha pasado, en caso de ser mayor que 1000 es que habr� llegado al segundo
 		//Al entrar en el condicional, volvemos  a asignar el tiempo actual de ejecucion a la variable time
 		//provocando lo mismo una y otra vez.
-		 if(TimeUtils.millis() - time > 1000)
-		 {
+		if(TimeUtils.millis() - time > 1000)
+		{
 			 //Esta parte se ejecutar� cada segundo.
 			 time= TimeUtils.millis();			 
 			 SECONDS--;
 			 comprobarTiempo();
 		}
 		 
-		font.draw(batch, String.valueOf("Tiempo: " + SECONDS), Gdx.graphics.getWidth() - 450, Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Puntuacion: " + Score.getScore()), Gdx.graphics.getWidth() - 270, Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Vidas: " + Score.getLifes()), Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 20);
+		font.draw(batch, String.valueOf("Tiempo: " + SECONDS), 
+				Gdx.graphics.getWidth() - 900, 
+				Gdx.graphics.getHeight() - 20);
+		font.draw(batch, String.valueOf("Puntuacion: " + Score.getScore()), 
+				Gdx.graphics.getWidth() - 540, 
+				Gdx.graphics.getHeight() - 20);
+		font.draw(batch, String.valueOf("Vidas: " + Score.getLifes()), 
+				Gdx.graphics.getWidth() - 200, 
+				Gdx.graphics.getHeight() - 20);
 		batch.end();
 
 		// Condicion si el boton presionado es BACK ejecutar la accion.
@@ -170,7 +178,7 @@ public final class GameScreen extends GenericScreen {
 	private void finalizarPartida() {
 		universalMonkey.setScreen(universalMonkey.getMenuScreen());
 		music.dispose();
-		musicExist  = false;
+		musicExist = false;
 		Score.setLifes(3);
 		Score.setScore(0);
 		SECONDS=180;
@@ -235,8 +243,6 @@ public final class GameScreen extends GenericScreen {
 			// Sonido.
 			if (!musicExist)
 				music(1);
-			
-
 			
 			break;
 			
