@@ -56,8 +56,7 @@ public class MenuScreen extends GenericScreen {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		super.render(delta);
 
 		stage.draw();
 		stage.act();

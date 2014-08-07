@@ -53,7 +53,7 @@ public final class GameScreen extends GenericScreen {
 	@Override
 	public void show() {
 		super.show();
-		
+		System.out.println("Show");
 		//tratar el tiempo transcurrido
 		time = TimeUtils.millis();
 		
@@ -93,8 +93,8 @@ public final class GameScreen extends GenericScreen {
     
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		// En GenericScreen esta la llamada a los métodos glClearColor y glClear
+		super.render(delta);
 
 		switch (levels) {
 			case LEVEL1:
@@ -158,16 +158,14 @@ public final class GameScreen extends GenericScreen {
 	
 	//compruebo si el tiempo no ha expirado
 	private void comprobarTiempo() {
-		if(SECONDS <= 0)
-		{
+		if(SECONDS <= 0) {
 			finalizarPartida();
 		}
 	}
 	
 	//compruebo si el mono tiene vidas
 	private void comprobarVidas() {
-		if(Score.getLifes() <= 0) 
-		{
+		if(Score.getLifes() <= 0) {
 			finalizarPartida();
 		}
 	}
@@ -179,7 +177,7 @@ public final class GameScreen extends GenericScreen {
 		musicExist = false;
 		Score.setLifes(3);
 		Score.setScore(0);
-		SECONDS=60;
+		SECONDS = 60;
 		VirtualController.setMoveLeft(false);
 		VirtualController.setMoveRight(false);
 	}
@@ -191,6 +189,7 @@ public final class GameScreen extends GenericScreen {
 			
 			if (nivelClear) {
 				nivelClear = false;
+				System.out.println(nivelClear);
 			}
 			
 			// Crear rocas del nivel.
@@ -242,7 +241,7 @@ public final class GameScreen extends GenericScreen {
 			if (!musicExist)
 				music(1);
 			
-			if (Score.getScore() >= 20)
+			if (Score.getScore() >= 10)
 				levels = Levels.LEVEL2;
 			
 			break;
@@ -261,8 +260,9 @@ public final class GameScreen extends GenericScreen {
 				music = null;
 				musicExist = false;
 				
-				//stage.addActor(currentBackground);
 				nivelClear = true;
+				
+				universalMonkey.setScreen(universalMonkey.getNextLevelScreen());
 			}
 			
 			// Crear rocas del nivel.

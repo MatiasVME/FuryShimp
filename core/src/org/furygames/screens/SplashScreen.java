@@ -58,6 +58,7 @@ public class SplashScreen extends GenericScreen {
 		splash.addAction(pa);
 		
 		splash2.setAlign(0);
+		
 		// Cambiar de pantalla 
 		Timer.schedule(new Task() {
 			@Override
@@ -77,8 +78,7 @@ public class SplashScreen extends GenericScreen {
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		super.render(delta);
 
 		stage.draw();
 		stage.act();
