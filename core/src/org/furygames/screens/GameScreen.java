@@ -48,16 +48,11 @@ public final class GameScreen extends GenericScreen {
 	
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
-	}
-	
-	@Override
-	public void show() {
-		super.show();
-		System.out.println("Show");
-		//tratar el tiempo transcurrido
+		
+		// tratar el tiempo transcurrido
 		time = TimeUtils.millis();
 		
-		//establecemos el estilo de los marcadores
+		// establecemos el estilo de los marcadores
 		font = new BitmapFont(Gdx.files.internal("fonts/jungle.fnt"), 
 				Gdx.files.internal("fonts/jungle.png"), false);
         font.setColor(Color.BLACK);
@@ -78,7 +73,12 @@ public final class GameScreen extends GenericScreen {
 		//Definiendo fondo de pantalla
 		bgManager = new BackgroundManager();
 		currentBackground = bgManager.getImage(1);
-		
+	}
+	
+	@Override
+	public void show() {
+		super.show();
+
 		stage.addActor(currentBackground);
 		stage.addActor(Creator.createArrowLeft());
 		stage.addActor(Creator.createArrowRigth());
