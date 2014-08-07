@@ -67,7 +67,9 @@ public class Shimp extends GenericActor {
 		isMoving = false;
 		
 		if (VirtualController.isMoveLeft()) {
-			setPosition(getX() - SPEED * delta, getY());
+			
+			if (getX() >= 0)
+				setPosition(getX() - SPEED * delta, getY());
 			
 			moveLeft = true;
 			moveRight = false;
@@ -75,7 +77,9 @@ public class Shimp extends GenericActor {
 		}
 		
 		else if (VirtualController.isMoveRight()) {
-			setPosition(getX() + SPEED * delta, getY());
+			
+			if (getX() <= GameScreen.WIDTH - getWidth())
+				setPosition(getX() + SPEED * delta, getY());
 			
 			moveLeft = false;
 			moveRight = true;
@@ -92,7 +96,7 @@ public class Shimp extends GenericActor {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
-		
+				
 		setSize(128, 128);
 	}
 }
