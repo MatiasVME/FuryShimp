@@ -2,6 +2,7 @@ package org.furygames.furyshimp;
 
 import org.furygames.screens.GameOverScreen;
 import org.furygames.screens.GameScreen;
+import org.furygames.screens.LevelScreen;
 import org.furygames.screens.MenuScreen;
 import org.furygames.screens.NextLevelScreen;
 import org.furygames.screens.ScoreScreen;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.Gdx;
 public class FuryShimp extends Game {
 
 	private SplashScreen splashScreen;
+	private LevelScreen levelScreen;
 	private MenuScreen menuScreen;
 	private ScoreScreen scoreScreen;
 	private GameScreen gameScreen;
@@ -22,6 +24,7 @@ public class FuryShimp extends Game {
 	@Override
 	public void create() {
 		splashScreen = new SplashScreen(this);
+		levelScreen = new LevelScreen(this);
 		menuScreen = new MenuScreen(this);
 		scoreScreen = new ScoreScreen(this);
 		gameScreen = new GameScreen(this);
@@ -30,6 +33,10 @@ public class FuryShimp extends Game {
 		
 		setScreen(splashScreen);
 		Gdx.input.setCatchBackKey(true); 
+	}
+	
+	public LevelScreen getLevelScreen() {
+		return levelScreen;
 	}
 	
 	public MenuScreen getMenuScreen() {

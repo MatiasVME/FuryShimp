@@ -12,7 +12,7 @@ public class NextLevelScreen extends GenericScreen {
 	private final int DURATION = 3;
 	
 	private BitmapFont bfNextLevel;
-	private String txtNextLevel = "ssss";
+	private String txtNextLevel = "Has accedido al siguiente nivel";
 	
 	public NextLevelScreen(FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -27,7 +27,7 @@ public class NextLevelScreen extends GenericScreen {
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
-				universalMonkey.setScreen(universalMonkey.getGameScreen());
+				universalMonkey.setScreen(universalMonkey.getLevelScreen());
 			}
 		}, DURATION);
 		
@@ -39,7 +39,7 @@ public class NextLevelScreen extends GenericScreen {
 		super.render(delta);
 		
 		batch.begin();
-			bfNextLevel.draw(batch, txtNextLevel, GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
+		bfNextLevel.draw(batch, txtNextLevel, GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
 		batch.end();
 	}
 	
