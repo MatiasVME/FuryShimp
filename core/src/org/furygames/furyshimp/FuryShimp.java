@@ -1,5 +1,6 @@
 package org.furygames.furyshimp;
 
+import org.furygames.screens.GameOverScreen;
 import org.furygames.screens.GameScreen;
 import org.furygames.screens.LevelScreen;
 import org.furygames.screens.MenuScreen;
@@ -18,6 +19,7 @@ public class FuryShimp extends Game {
 	private ScoreScreen scoreScreen;
 	private GameScreen gameScreen;
 	private StatisticsScreen nextLevelScreen;
+	private GameOverScreen gameOverScreen;
 
 	@Override
 	public void create() {
@@ -27,6 +29,7 @@ public class FuryShimp extends Game {
 		scoreScreen = new ScoreScreen(this);
 		gameScreen = new GameScreen(this);
 		nextLevelScreen = new StatisticsScreen(this);
+		gameOverScreen = new GameOverScreen(this);
 		
 		setScreen(splashScreen);
 		Gdx.input.setCatchBackKey(true); 
@@ -50,5 +53,9 @@ public class FuryShimp extends Game {
 	
 	public StatisticsScreen getNextLevelScreen () {
 		return nextLevelScreen;
+	}
+	
+	public GameOverScreen getGameOverScreen () {
+		return gameOverScreen;
 	}
 }

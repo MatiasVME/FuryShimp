@@ -194,7 +194,7 @@ public final class GameScreen extends GenericScreen {
 	
 	//metodo GAME OVER
 	private void gameOver() {
-		//universalMonkey.setScreen(universalMonkey.getGameOverScreen());
+		universalMonkey.setScreen(universalMonkey.getGameOverScreen());
 		music.dispose();
 		musicExist = false;
 		Score.setLifes(3);
