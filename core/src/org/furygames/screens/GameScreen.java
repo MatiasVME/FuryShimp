@@ -177,10 +177,10 @@ public final class GameScreen extends GenericScreen {
 	//metodo que finaliza el tiempo
 	private void endTime() {
 		
-		if(Score.getScore() >= 20){
+		if (Score.getScore() >= 20) {
 			universalMonkey.setScreen(universalMonkey.getStatisticScreen());
-		}else{
-			universalMonkey.setScreen(universalMonkey.getLevelScreen());
+		} else {
+			universalMonkey.setScreen(universalMonkey.getLevelsScreen());
 		}
 		
 		music.dispose();
@@ -330,7 +330,7 @@ public final class GameScreen extends GenericScreen {
 	}
 	
 	// Musica.
-	private void music(int track) {
+	private void music (int track) {
 		if (music != null) {
 			music.dispose();
 			music = null;

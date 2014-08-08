@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-public class LevelScreen extends GenericScreen{
+public class LevelsScreen extends GenericScreen{
 
 	private Skin skin;
 	private Texture bgTexture;
@@ -24,7 +24,7 @@ public class LevelScreen extends GenericScreen{
 	private TextButton levelTresButton;
 	private Table table;
 	
-	public LevelScreen(final FuryShimp universalMonkey) {
+	public LevelsScreen(final FuryShimp universalMonkey) {
 		super(universalMonkey);
 	}
 	
