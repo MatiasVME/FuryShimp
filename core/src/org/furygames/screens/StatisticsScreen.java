@@ -7,14 +7,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
-public class NextLevelScreen extends GenericScreen {
-
-	private final int DURATION = 3;
+public class StatisticsScreen extends GenericScreen {
 	
 	private BitmapFont bfNextLevel;
 	private String txtNextLevel = "ssss";
 	
-	public NextLevelScreen(FuryShimp universalMonkey) {
+	private boolean win;
+	
+	
+	public StatisticsScreen(FuryShimp universalMonkey) {
 		super(universalMonkey);
 	}
 	
@@ -22,14 +23,6 @@ public class NextLevelScreen extends GenericScreen {
 	public void show() {
 		bfNextLevel = new BitmapFont(Gdx.files.internal("fonts/jungle.fnt"),
 				Gdx.files.internal("fonts/jungle.png"), false);
-		
-		// Cambiar de pantalla 
-		Timer.schedule(new Task() {
-			@Override
-			public void run() {
-				universalMonkey.setScreen(universalMonkey.getGameScreen());
-			}
-		}, DURATION);
 		
 		super.show();
 	}
@@ -51,5 +44,13 @@ public class NextLevelScreen extends GenericScreen {
 	
 	public void setTxtNextLevel (String txtNextLevel) {
 		this.txtNextLevel = txtNextLevel;
+	}
+
+	public boolean isWin() {
+		return win;
+	}
+
+	public void setWin (boolean win) {
+		this.win = win;
 	}
 }

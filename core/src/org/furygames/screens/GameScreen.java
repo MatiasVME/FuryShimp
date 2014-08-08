@@ -20,7 +20,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -73,22 +72,22 @@ public final class GameScreen extends GenericScreen {
 		//Definiendo fondo de pantalla
 		bgManager = new BackgroundManager();
 		currentBackground = bgManager.getImage(1);
+		
+		stage.addActor(currentBackground);
+		stage.addActor(Creator.createArrowLeft());
+		stage.addActor(Creator.createArrowRigth());
+
+		shimp = new Shimp();
+		stage.addActor(shimp);
 	}
 	
 	@Override
 	public void show() {
 		super.show();
 
-		stage.addActor(currentBackground);
-		stage.addActor(Creator.createArrowLeft());
-		stage.addActor(Creator.createArrowRigth());
-
 		// Movimiento del mono mediante touchScreen y teclado
 		monkeyInput = new MonkeyInput();
 		Gdx.input.setInputProcessor(monkeyInput);
-		
-		shimp = new Shimp();
-		stage.addActor(shimp);
 	}    
     
 	@Override
@@ -145,6 +144,11 @@ public final class GameScreen extends GenericScreen {
 			universalMonkey.setScreen(universalMonkey.getMenuScreen());
 	}
 
+	@Override
+	public void dispose() {
+		super.dispose();
+	}
+	
 	private void collidesDetection() {
 		// Deteccion shimp banana
 		Collides.collidesMonkeyBananas(shimp, bananas, woop);
@@ -184,9 +188,8 @@ public final class GameScreen extends GenericScreen {
 
 	// Método level que se llama cada vez que el render es actualizado
 	private void level(int level) {
-		switch(level){
-		case 1:
-			
+		switch(level) {
+		case 1:			
 			if (nivelClear) {
 				nivelClear = false;
 				System.out.println(nivelClear);
@@ -199,10 +202,6 @@ public final class GameScreen extends GenericScreen {
 
 			// Si las rocas no estan volando eliminarlas.
 			else if (!FlyingObjets.isFlyingRocks(rocks)){
-				// Remover Rocas
-				for (Rock rock : rocks)
-					rock.remove();
-
 				// Vaciar array.
 				rocks.clear();
 			}
@@ -214,10 +213,6 @@ public final class GameScreen extends GenericScreen {
 
 			// Si las bananas no estan volando eliminarlas.
 			else if (!FlyingObjets.isFlyingBananas(bananas)){
-				// Remover bananas.
-				for (Bananas banana : bananas)
-					banana.remove();
-
 				// Vaciar array.
 				bananas.clear();
 			}
@@ -229,10 +224,6 @@ public final class GameScreen extends GenericScreen {
 
 			// Si los coconuts no estan volando eliminarlos.
 			else if (!FlyingObjets.isFlyingCoconut(coconuts)){
-				// Remover coconuts.
-				for (Coconut coconut : coconuts)
-					coconut.remove();
-
 				// Vaciar array.
 				coconuts.clear();
 			}
@@ -256,6 +247,7 @@ public final class GameScreen extends GenericScreen {
 				// necesariamente el primer actor debería ser el background.
 				stage.getActors().items[0] = currentBackground;
 				
+				// Eliminar musica.
 				music.dispose();
 				music = null;
 				musicExist = false;
