@@ -178,7 +178,7 @@ public final class GameScreen extends GenericScreen {
 	private void endTime() {
 		
 		if(Score.getScore() >= 20){
-			universalMonkey.setScreen(universalMonkey.getNextLevelScreen());
+			universalMonkey.setScreen(universalMonkey.getStatisticScreen());
 		}else{
 			universalMonkey.setScreen(universalMonkey.getLevelScreen());
 		}
@@ -269,7 +269,7 @@ public final class GameScreen extends GenericScreen {
 				
 				nivelClear = true;
 				
-				universalMonkey.setScreen(universalMonkey.getNextLevelScreen());
+				universalMonkey.setScreen(universalMonkey.getStatisticScreen());
 			}
 			
 			// Crear rocas del nivel.

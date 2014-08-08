@@ -18,7 +18,7 @@ public class FuryShimp extends Game {
 	private MenuScreen menuScreen;
 	private ScoreScreen scoreScreen;
 	private GameScreen gameScreen;
-	private StatisticsScreen nextLevelScreen;
+	private StatisticsScreen statisticScreen;
 	private GameOverScreen gameOverScreen;
 
 	@Override
@@ -28,7 +28,7 @@ public class FuryShimp extends Game {
 		menuScreen = new MenuScreen(this);
 		scoreScreen = new ScoreScreen(this);
 		gameScreen = new GameScreen(this);
-		nextLevelScreen = new StatisticsScreen(this);
+		statisticScreen = new StatisticsScreen(this);
 		gameOverScreen = new GameOverScreen(this);
 		
 		setScreen(splashScreen);
@@ -51,8 +51,8 @@ public class FuryShimp extends Game {
 		return gameScreen;
 	}
 	
-	public StatisticsScreen getNextLevelScreen () {
-		return nextLevelScreen;
+	public StatisticsScreen getStatisticScreen () {
+		return statisticScreen;
 	}
 	
 	public GameOverScreen getGameOverScreen () {
