@@ -4,13 +4,11 @@ import org.furygames.furyshimp.FuryShimp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 
 public class StatisticsScreen extends GenericScreen {
 	
 	private BitmapFont bfNextLevel;
-	private String txtNextLevel = "ssss";
+	private String txtNextLevel = "Has accedido al siguiente nivel";
 	
 	private boolean win;
 	
@@ -23,7 +21,6 @@ public class StatisticsScreen extends GenericScreen {
 	public void show() {
 		bfNextLevel = new BitmapFont(Gdx.files.internal("fonts/jungle.fnt"),
 				Gdx.files.internal("fonts/jungle.png"), false);
-		
 		super.show();
 	}
 	
@@ -32,7 +29,7 @@ public class StatisticsScreen extends GenericScreen {
 		super.render(delta);
 		
 		batch.begin();
-			bfNextLevel.draw(batch, txtNextLevel, GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
+		bfNextLevel.draw(batch, txtNextLevel, GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
 		batch.end();
 	}
 	

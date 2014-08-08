@@ -163,20 +163,38 @@ public final class GameScreen extends GenericScreen {
 	//compruebo si el tiempo no ha expirado
 	private void comprobarTiempo() {
 		if(SECONDS <= 0) {
-			finalizarPartida();
+			endTime();
 		}
 	}
 	
 	//compruebo si el mono tiene vidas
 	private void comprobarVidas() {
 		if(Score.getLifes() <= 0) {
-			finalizarPartida();
+			gameOver();
 		}
 	}
 	
-	//metodo que finaliza la partida
-	private void finalizarPartida() {
-		universalMonkey.setScreen(universalMonkey.getMenuScreen());
+	//metodo que finaliza el tiempo
+	private void endTime() {
+		
+		if(Score.getScore() >= 20){
+			universalMonkey.setScreen(universalMonkey.getNextLevelScreen());
+		}else{
+			universalMonkey.setScreen(universalMonkey.getLevelScreen());
+		}
+		
+		music.dispose();
+		musicExist = false;
+		Score.setLifes(3);
+		Score.setScore(0);
+		SECONDS = 60;
+		VirtualController.setMoveLeft(false);
+		VirtualController.setMoveRight(false);
+	}
+	
+	//metodo GAME OVER
+	private void gameOver() {
+		//universalMonkey.setScreen(universalMonkey.getGameOverScreen());
 		music.dispose();
 		musicExist = false;
 		Score.setLifes(3);
@@ -231,9 +249,6 @@ public final class GameScreen extends GenericScreen {
 			// Sonido.
 			if (!musicExist)
 				music(1);
-			
-			if (Score.getScore() >= 10)
-				levels = Levels.LEVEL2;
 			
 			break;
 			
