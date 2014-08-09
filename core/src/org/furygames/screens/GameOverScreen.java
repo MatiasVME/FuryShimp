@@ -59,7 +59,7 @@ public class GameOverScreen extends GenericScreen {
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
-				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
+				universalMonkey.setScreen(universalMonkey.getStatisticScreen());
 				splashTexture.dispose();
 				bgTexture.dispose();
 				music.dispose();

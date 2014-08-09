@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Timer.Task;
 public class SplashScreen extends GenericScreen {
 
 
-	private final float DURATION = 3f; // Segundos
+	private final float DURATION = 4.2f; // Segundos
 	
 	private Image splash2;
 	private Texture bgTexture;//textura para el fondo

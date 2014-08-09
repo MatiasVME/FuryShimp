@@ -1,19 +1,28 @@
 package org.furygames.furyshimp;
 
-public class Score {
+public class DataGame {
+	private static int level;
 	private static int lifes = 3;
 	private static int score = 0;
+	
+	public static int getLevel() {
+		return level;
+	}
+	
+	public static void setLevel(int level) {
+		DataGame.level = level;
+	}
 	
 	public static int getLifes() {
 		return lifes;
 	}
 	
 	public static void setLifes(int lifes) {
-		Score.lifes = lifes;
+		DataGame.lifes = lifes;
 	}
 	
 	public static void removeLife (int lifes) {
-		Score.lifes -= lifes;
+		DataGame.lifes -= lifes;
 	}
 	
 	public static int getScore() {
@@ -21,10 +30,10 @@ public class Score {
 	}
 	
 	public static void setScore(int score) {
-		Score.score = score;
+		DataGame.score = score;
 	}
 	
 	public static void addScore (int score) {
-		Score.score += score;
+		DataGame.score += score;
 	}
 }

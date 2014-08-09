@@ -11,22 +11,26 @@ import org.furygames.furyshimp.FlyingObjets;
 import org.furygames.furyshimp.FuryShimp;
 import org.furygames.furyshimp.GameSounds;
 import org.furygames.furyshimp.Levels;
-import org.furygames.furyshimp.Score;
+import org.furygames.furyshimp.DataGame;
 import org.furygames.inputs.MonkeyInput;
 import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public final class GameScreen extends GenericScreen {
+	
+	private final static int MIN_PUNTUACION_LEVEL_1 = 25; 
+	private final static int MIN_PUNTUACION_LEVEL_2 = 50; 
+	private final static int MIN_PUNTUACION_LEVEL_3 = 75; 
 	
 	private int SECONDS = 60; // Segundos
 	private long time;
@@ -128,13 +132,19 @@ public final class GameScreen extends GenericScreen {
 			 comprobarTiempo();
 		}
 		 
+		font.draw(batch, String.valueOf("Nivel: " + DataGame.getLevel()), 
+				Gdx.graphics.getWidth() - 1240, 
+				Gdx.graphics.getHeight() - 20);
+		font.draw(batch, String.valueOf("Minimo: " + 120), 
+				Gdx.graphics.getWidth() - 1040, 
+				Gdx.graphics.getHeight() - 20);
 		font.draw(batch, String.valueOf("00:" + SECONDS), 
 				Gdx.graphics.getWidth() - 730, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Puntuacion: " + Score.getScore()), 
+		font.draw(batch, String.valueOf("Puntuacion: " + DataGame.getScore()), 
 				Gdx.graphics.getWidth() - 540, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Vidas: " + Score.getLifes()), 
+		font.draw(batch, String.valueOf("Vidas: " + DataGame.getLifes()), 
 				Gdx.graphics.getWidth() - 200, 
 				Gdx.graphics.getHeight() - 20);
 		batch.end();
@@ -169,7 +179,7 @@ public final class GameScreen extends GenericScreen {
 	
 	//compruebo si el mono tiene vidas
 	private void comprobarVidas() {
-		if(Score.getLifes() <= 0) {
+		if(DataGame.getLifes() <= 0) {
 			gameOver();
 		}
 	}
@@ -177,16 +187,19 @@ public final class GameScreen extends GenericScreen {
 	//metodo que finaliza el tiempo
 	private void endTime() {
 		
-		if (Score.getScore() >= 20) {
-			universalMonkey.setScreen(universalMonkey.getStatisticScreen());
-		} else {
-			universalMonkey.setScreen(universalMonkey.getLevelsScreen());
+		//compruebo si la puntuacion minima ha sido alcanzada
+		if(DataGame.getScore() > MIN_PUNTUACION_LEVEL_1)
+		{
+			prefs.putInteger("level", prefs.getInteger("level") + 1);
+			prefs.flush();
 		}
 		
+		universalMonkey.setScreen(universalMonkey.getStatisticScreen());
 		music.dispose();
 		musicExist = false;
-		Score.setLifes(3);
-		Score.setScore(0);
+		DataGame.setLevel(0);
+		DataGame.setLifes(3);
+		DataGame.setScore(0);
 		SECONDS = 60;
 		VirtualController.setMoveLeft(false);
 		VirtualController.setMoveRight(false);
@@ -197,8 +210,9 @@ public final class GameScreen extends GenericScreen {
 		universalMonkey.setScreen(universalMonkey.getGameOverScreen());
 		music.dispose();
 		musicExist = false;
-		Score.setLifes(3);
-		Score.setScore(0);
+		DataGame.setLevel(0);
+		DataGame.setLifes(3);
+		DataGame.setScore(0);
 		SECONDS = 60;
 		VirtualController.setMoveLeft(false);
 		VirtualController.setMoveRight(false);

@@ -26,7 +26,7 @@ public class Collides {
 					sound.play();
 				
 				//sumamos 2 puntos de puntuacion del mono
-				Score.addScore(2);
+				DataGame.addScore(2);
 			}
 		}
 	}
@@ -44,7 +44,7 @@ public class Collides {
 					sound.play();
 				
 				//sumamos 1 punto de puntuacion del mono
-				Score.addScore(1);
+				DataGame.addScore(1);
 			}
 		}
 	}
@@ -62,7 +62,7 @@ public class Collides {
 					sound.play();
 				
 				//restamos 1 vida del mono
-				Score.removeLife(1);
+				DataGame.removeLife(1);
 			}
 		}
 	}

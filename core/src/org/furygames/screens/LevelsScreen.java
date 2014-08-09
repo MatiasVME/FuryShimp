@@ -1,8 +1,11 @@
 package org.furygames.screens;
 
+import org.furygames.furyshimp.DataGame;
 import org.furygames.furyshimp.FuryShimp;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -23,6 +26,7 @@ public class LevelsScreen extends GenericScreen{
 	private TextButton levelDosButton;
 	private TextButton levelTresButton;
 	private Table table;
+	private int level;
 	
 	public LevelsScreen(final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -47,12 +51,19 @@ public class LevelsScreen extends GenericScreen{
 		table.add(levelUnoButton).pad(50).width(100).height(100);
 		table.add(levelDosButton).pad(50).width(100).height(100);
 		table.add(levelTresButton).pad(50).width(100).height(100);
+
+		//obtenemos el nivel actual (Por defecto nivel 1)
+		level = prefs.getInteger("level", 1);
 		
 		//accedemos al nivel 1
 		levelUnoButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
+            	
             	universalMonkey.setScreen(universalMonkey.getGameScreen());
+            	
+            	//Recordamos durante la partida el nivel de juego
+            	DataGame.setLevel(1);
             }
         });
 		
@@ -60,7 +71,15 @@ public class LevelsScreen extends GenericScreen{
 		levelDosButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
-            	universalMonkey.setScreen(universalMonkey.getGameScreen());
+            	
+            	if(level > 1)
+            	{
+            		universalMonkey.setScreen(universalMonkey.getGameScreen());
+            		
+            		//Recordamos durante la partida el nivel de juego
+                	DataGame.setLevel(2);
+            	}
+        	
             }
         });
 		
@@ -68,7 +87,15 @@ public class LevelsScreen extends GenericScreen{
 		levelTresButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
-            	universalMonkey.setScreen(universalMonkey.getGameScreen());
+            	
+            	if(level > 2)
+            	{
+            		universalMonkey.setScreen(universalMonkey.getGameScreen());
+            		
+            		//Recordamos durante la partida el nivel de juego
+                	DataGame.setLevel(3);
+            	}
+            	
             }
         });
 		

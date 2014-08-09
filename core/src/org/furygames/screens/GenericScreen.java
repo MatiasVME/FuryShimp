@@ -3,6 +3,7 @@ package org.furygames.screens;
 import org.furygames.furyshimp.FuryShimp;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,6 +22,7 @@ public abstract class GenericScreen implements Screen {
 	protected Stage stage;
 	protected FitViewport fitViewport;
 	protected SpriteBatch batch;
+	Preferences prefs;
 	
 	public GenericScreen (FuryShimp universalMonkey) {
 		this.universalMonkey = universalMonkey;
@@ -29,6 +31,8 @@ public abstract class GenericScreen implements Screen {
 		stage = new Stage(fitViewport);
 		
 		batch = new SpriteBatch();
+		
+		prefs = Gdx.app.getPreferences("preferencias");
 	}
 	
 	@Override
