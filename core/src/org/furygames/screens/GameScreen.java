@@ -267,6 +267,8 @@ public final class GameScreen extends GenericScreen {
 			break;
 			
 		case 2:
+			System.out.println("level2");
+			
 			// Eliminar cosas del nivel1
 			if (!nivelClear) {
 				currentBackground = bgManager.getImage(2);
@@ -337,6 +339,9 @@ public final class GameScreen extends GenericScreen {
 			if (!musicExist)
 				music(2);
 			break;
+		
+		case 3:
+			System.out.println("level3");
 			
 		default:
 			break;
