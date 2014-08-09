@@ -29,10 +29,6 @@ public final class GameScreen extends GenericScreen {
 	
 	public static Levels levels;
 	
-	private final static int MIN_PUNTUACION_LEVEL_1 = 25; 
-	private final static int MIN_PUNTUACION_LEVEL_2 = 50; 
-	private final static int MIN_PUNTUACION_LEVEL_3 = 75; 
-	
 	private int SECONDS = 60; // Segundos
 	private long time;
 	private Array <Rock> rocks;
@@ -135,7 +131,7 @@ public final class GameScreen extends GenericScreen {
 		font.draw(batch, String.valueOf("Nivel: " + DataGame.getLevel()), 
 				Gdx.graphics.getWidth() - 1240, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Minimo: " + 120), 
+		font.draw(batch, String.valueOf("Minimo: " + levels.next().getMinScore()), 
 				Gdx.graphics.getWidth() - 1040, 
 				Gdx.graphics.getHeight() - 20);
 		font.draw(batch, String.valueOf("00:" + SECONDS), 
@@ -188,7 +184,7 @@ public final class GameScreen extends GenericScreen {
 	private void endTime() {
 		
 		//compruebo si la puntuacion minima ha sido alcanzada
-		if(DataGame.getScore() > MIN_PUNTUACION_LEVEL_1)
+		if(DataGame.getScore() > levels.next().getMinScore())
 		{
 			prefs.putInteger("level", prefs.getInteger("level") + 1);
 			prefs.flush();
