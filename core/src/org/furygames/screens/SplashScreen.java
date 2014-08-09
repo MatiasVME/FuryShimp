@@ -63,7 +63,7 @@ public class SplashScreen extends GenericScreen {
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
-				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
+				universalMonkey.setScreen(universalMonkey.getMenuScreen());
 				splashTexture.dispose();
 				bgTexture.dispose();
 				music.dispose();

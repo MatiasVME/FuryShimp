@@ -16,7 +16,6 @@ import org.furygames.inputs.MonkeyInput;
 import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -28,13 +27,14 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public final class GameScreen extends GenericScreen {
 	
+	public static Levels levels;
+	
 	private final static int MIN_PUNTUACION_LEVEL_1 = 25; 
 	private final static int MIN_PUNTUACION_LEVEL_2 = 50; 
 	private final static int MIN_PUNTUACION_LEVEL_3 = 75; 
 	
 	private int SECONDS = 60; // Segundos
 	private long time;
-	private Levels levels;
 	private Array <Rock> rocks;
 	private Array <Bananas> bananas;
 	private Array <Coconut> coconuts;
@@ -277,14 +277,10 @@ public final class GameScreen extends GenericScreen {
 				// necesariamente el primer actor debería ser el background.
 				stage.getActors().items[0] = currentBackground;
 				
-				// Eliminar musica.
-				music.dispose();
-				music = null;
-				musicExist = false;
-				
+				// Limpia el nivel
+				clearLevel();
+
 				nivelClear = true;
-				
-				universalMonkey.setScreen(universalMonkey.getStatisticScreen());
 			}
 			
 			// Crear rocas del nivel.
@@ -365,5 +361,17 @@ public final class GameScreen extends GenericScreen {
 			// Avisar de que si existe musica.
 			musicExist  = true;
 		}
+	}
+	
+	private void clearLevel () {
+		// Eliminar musica.
+		music.dispose();
+		music = null;
+		musicExist = false;
+		
+		// Eliminar Objetos anteriores
+		rocks.clear();
+		bananas.clear();
+		coconuts.clear();
 	}
 }

@@ -2,6 +2,7 @@ package org.furygames.screens;
 
 import org.furygames.furyshimp.DataGame;
 import org.furygames.furyshimp.FuryShimp;
+import org.furygames.furyshimp.Levels;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -60,6 +61,9 @@ public class LevelsScreen extends GenericScreen{
             @Override 
             public void clicked(InputEvent event, float x, float y){
             	
+            	// Dejamos levels en estado de nivel1
+            	GameScreen.levels = Levels.LEVEL1;
+            	
             	universalMonkey.setScreen(universalMonkey.getGameScreen());
             	
             	//Recordamos durante la partida el nivel de juego
@@ -71,9 +75,12 @@ public class LevelsScreen extends GenericScreen{
 		levelDosButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
-            	
+            
             	if(level > 1)
             	{
+            		// Dejamos levels en estado de level2
+            		GameScreen.levels = Levels.LEVEL2;
+            		
             		universalMonkey.setScreen(universalMonkey.getGameScreen());
             		
             		//Recordamos durante la partida el nivel de juego
@@ -90,6 +97,8 @@ public class LevelsScreen extends GenericScreen{
             	
             	if(level > 2)
             	{
+            		GameScreen.levels = Levels.LEVEL3;
+            		
             		universalMonkey.setScreen(universalMonkey.getGameScreen());
             		
             		//Recordamos durante la partida el nivel de juego
