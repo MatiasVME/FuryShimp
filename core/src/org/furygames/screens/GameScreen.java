@@ -220,7 +220,6 @@ public final class GameScreen extends GenericScreen {
 		case 1:			
 			if (nivelClear) {
 				nivelClear = false;
-				System.out.println(nivelClear);
 			}
 			
 			// Crear rocas del nivel.
@@ -265,7 +264,7 @@ public final class GameScreen extends GenericScreen {
 		case 2:
 			System.out.println("level2");
 			
-			// Eliminar cosas del nivel1
+			// Si el nivel no está limpio eliminar cosas del nivel
 			if (!nivelClear) {
 				currentBackground = bgManager.getImage(2);
 				
