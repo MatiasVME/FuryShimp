@@ -1,15 +1,16 @@
 package org.furygames.furyshimp;
 
 public enum Levels {
-	LEVEL3 (null, 60),
-	LEVEL2 (LEVEL3, 60),
-	LEVEL1 (LEVEL2, 60);
+	LEVEL3 (null, 30),
+	LEVEL2 (LEVEL3, 20),
+	LEVEL1 (LEVEL2, 10);
 	
 	private final Levels next;
 	private int minScore;
 	
 	private Levels (Levels next, int minScore) {
 		this.next = next;
+		this.minScore = minScore;
 	}
 	
 	public Levels next () {
