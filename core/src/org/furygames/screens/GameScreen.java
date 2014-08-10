@@ -43,7 +43,7 @@ public final class GameScreen extends GenericScreen {
 	private BitmapFont font;
 	private MonkeyInput monkeyInput;
 	private boolean musicExist = false;
-	private boolean nivelClear = true;
+	private static boolean needLevelClear = false;
 	
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -79,14 +79,16 @@ public final class GameScreen extends GenericScreen {
 
 		shimp = new Shimp();
 		stage.addActor(shimp);
+		
+		// Movimiento del mono mediante touchScreen y teclado
+		monkeyInput = new MonkeyInput();
 	}
 	
 	@Override
 	public void show() {
 		super.show();
 
-		// Movimiento del mono mediante touchScreen y teclado
-		monkeyInput = new MonkeyInput();
+		// Para que shimp se pueda mover.
 		Gdx.input.setInputProcessor(monkeyInput);
 	}    
     
@@ -213,13 +215,26 @@ public final class GameScreen extends GenericScreen {
 		VirtualController.setMoveLeft(false);
 		VirtualController.setMoveRight(false);
 	}
+	
+	public static boolean isNeedLevelClear() {
+		return needLevelClear;
+	}
 
+	public static void setNeedNivelClear (boolean needLevelClear) {
+		GameScreen.needLevelClear = needLevelClear;
+	}
+	
 	// Método level que se llama cada vez que el render es actualizado
 	private void level(int level) {
 		switch(level) {
-		case 1:			
-			if (nivelClear) {
-				nivelClear = false;
+		case 1:
+			// Sonido.
+			if (!musicExist)
+				music(1);
+			
+			// Si el nivel necesita ser limpiado lo limpia y añade las cosas del nivel
+			if (needLevelClear) {
+				clearLevel();
 			}
 			
 			// Crear rocas del nivel.
@@ -255,17 +270,15 @@ public final class GameScreen extends GenericScreen {
 				coconuts.clear();
 			}
 			
-			// Sonido.
-			if (!musicExist)
-				music(1);
-			
 			break;
 			
 		case 2:
-			System.out.println("level2");
+			// Sonido.
+			if (!musicExist)
+				music(2);
 			
-			// Si el nivel no está limpio eliminar cosas del nivel
-			if (!nivelClear) {
+			// Si el nivel necesita ser limpiado lo limpia y añade las cosas del nivel
+			if (needLevelClear) {
 				currentBackground = bgManager.getImage(2);
 				
 				// Hack: Accede al primer actor que es el background y lo cambia,
@@ -275,8 +288,6 @@ public final class GameScreen extends GenericScreen {
 				
 				// Limpia el nivel
 				clearLevel();
-
-				nivelClear = true;
 			}
 			
 			// Crear rocas del nivel.
@@ -326,9 +337,6 @@ public final class GameScreen extends GenericScreen {
 				coconuts.clear();
 			}
 			
-			// Sonido.
-			if (!musicExist)
-				music(2);
 			break;
 		
 		case 3:
@@ -361,13 +369,32 @@ public final class GameScreen extends GenericScreen {
 	
 	private void clearLevel () {
 		// Eliminar musica.
-		music.dispose();
-		music = null;
+		if (music != null) {
+			music.dispose();
+			music = null;
+		}
 		musicExist = false;
+		
+		for (Rock rock : rocks) {
+			rock.clearActions();
+			rock.remove();
+		}
+		
+		for (Bananas banana : bananas) {
+			banana.clearActions();
+			banana.remove();			
+		}
+		
+		for (Coconut coconut : coconuts) {
+			coconut.clearActions();
+			coconut.remove();
+		}
 		
 		// Eliminar Objetos anteriores
 		rocks.clear();
 		bananas.clear();
 		coconuts.clear();
+		
+		needLevelClear = false;
 	}
 }

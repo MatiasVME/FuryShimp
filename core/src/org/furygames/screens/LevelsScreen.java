@@ -63,6 +63,8 @@ public class LevelsScreen extends GenericScreen{
             	
             	// Dejamos levels en estado de nivel1
             	GameScreen.levels = Levels.LEVEL1;
+            	// Para que el nivel necesite ser limpiado
+            	GameScreen.setNeedNivelClear(true);
             	
             	universalMonkey.setScreen(universalMonkey.getGameScreen());
             	
@@ -80,6 +82,7 @@ public class LevelsScreen extends GenericScreen{
             	{
             		// Dejamos levels en estado de level2
             		GameScreen.levels = Levels.LEVEL2;
+            		GameScreen.setNeedNivelClear(true);
             		
             		universalMonkey.setScreen(universalMonkey.getGameScreen());
             		
@@ -98,6 +101,7 @@ public class LevelsScreen extends GenericScreen{
             	if(level > 2)
             	{
             		GameScreen.levels = Levels.LEVEL3;
+            		GameScreen.setNeedNivelClear(true);
             		
             		universalMonkey.setScreen(universalMonkey.getGameScreen());
             		
