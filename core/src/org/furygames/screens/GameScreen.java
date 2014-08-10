@@ -131,7 +131,7 @@ public final class GameScreen extends GenericScreen {
 		font.draw(batch, String.valueOf("Nivel: " + DataGame.getLevel()), 
 				Gdx.graphics.getWidth() - 1240, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Minimo: " + levels.next().getMinScore()), 
+		font.draw(batch, String.valueOf("Minimo: " + levels.getMinScore()), 
 				Gdx.graphics.getWidth() - 1040, 
 				Gdx.graphics.getHeight() - 20);
 		font.draw(batch, String.valueOf("00:" + SECONDS), 
@@ -184,7 +184,7 @@ public final class GameScreen extends GenericScreen {
 	private void endTime() {
 		
 		//compruebo si la puntuacion minima ha sido alcanzada
-		if(DataGame.getScore() > levels.next().getMinScore())
+		if(DataGame.getScore() >= levels.getMinScore())
 		{
 			prefs.putInteger("level", prefs.getInteger("level") + 1);
 			prefs.flush();
