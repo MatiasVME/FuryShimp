@@ -2,6 +2,7 @@ package org.furygames.inputs;
 
 import org.furygames.screens.GameScreen;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
 public class MonkeyInput extends InputAdapter {
@@ -33,4 +34,33 @@ public class MonkeyInput extends InputAdapter {
 		return super.touchUp(screenX, screenY, pointer, button);
 	}
 	
+<<<<<<< HEAD
+=======
+	@Override
+	public boolean keyDown(int keycode) {
+		switch (keycode) {
+			case Input.Keys.LEFT:
+				VirtualController.setMoveLeft(true);
+				break;
+			case Input.Keys.RIGHT:
+				VirtualController.setMoveRight(true);
+				break;
+		}
+
+		return super.keyDown(keycode);
+	}
+	
+	@Override
+	public boolean keyUp(int keycode) {
+		switch (keycode) {
+			case Input.Keys.LEFT:
+				VirtualController.setMoveLeft(false);
+				break;
+			case Input.Keys.RIGHT:
+				VirtualController.setMoveRight(false);
+				break;
+		}
+		return super.keyUp(keycode);
+	}
+>>>>>>> 55329b238ff8c925daa743186ac5e7e99a78a80d
 }

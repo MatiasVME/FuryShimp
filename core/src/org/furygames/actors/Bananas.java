@@ -11,11 +11,18 @@ public class Bananas extends Droppable {
 	public final static int WIDTH = 115;
 	public final static int HEIGHT = 128;
 	
-	public Bananas(Vector2 origin, Vector2 destination, float speed) {
+	private boolean isLarge = false;
+	
+	public Bananas(Vector2 origin, Vector2 destination, float speed, boolean large) {
 		super(origin, destination, speed, "actors/banana.png");
-
+		isLarge = large;
+		
 		textureRegion.setRegion(0, 0, WIDTH, HEIGHT);
-		setOrigin(WIDTH / 2 / 2, HEIGHT / 2 / 2);
+		
+		if (isLarge)
+			setOrigin(WIDTH / 2, HEIGHT / 2);
+		else
+			setOrigin(WIDTH / 2 / 2, HEIGHT / 2 / 2);
 		
 		// Movimiento.
 		ParallelAction pa = new ParallelAction();
@@ -28,6 +35,9 @@ public class Bananas extends Droppable {
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
 		
-		setSize(WIDTH / 2, HEIGHT / 2);
+		if (isLarge)
+			setSize(WIDTH, HEIGHT);
+		else
+			setSize(WIDTH / 2, HEIGHT / 2);
 	}
 }

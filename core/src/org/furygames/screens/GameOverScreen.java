@@ -4,8 +4,6 @@ import org.furygames.furyshimp.FuryShimp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -14,13 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
-public class SplashScreen extends GenericScreen {
-
-
-	private final float DURATION = 4.2f; // Segundos
+public class GameOverScreen extends GenericScreen {
+	
+	private final float DURATION = 2f; 
 	
 	private Image splash2;
-	private Texture bgTexture;//textura para el fondo
+	private Texture bgTexture;
 	private TextureRegion bgRegion;
 	private Music music;
 	
@@ -29,7 +26,7 @@ public class SplashScreen extends GenericScreen {
 	private Texture splashTexture;
 	private ParallelAction pa, pb;
 
-	public SplashScreen (final FuryShimp universalMonkey) {
+	public GameOverScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
 	}
 
@@ -44,7 +41,7 @@ public class SplashScreen extends GenericScreen {
 		
 		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro_0.mp3"));
 		
-		splashTexture = new Texture("splash.png");
+		splashTexture = new Texture("gameover.png");
 		splashRegion = new TextureRegion(splashTexture);
 		splash = new Image(splashRegion);
 		pa = new ParallelAction();
@@ -53,8 +50,7 @@ public class SplashScreen extends GenericScreen {
 		splash.setOrigin(splash.getWidth() / 2, splash.getHeight() / 2);
 
 		// acciones del splash
-		pa.addAction(Actions.fadeOut(DURATION));
-		pa.addAction(Actions.rotateBy(17, DURATION));	
+		pa.addAction(Actions.fadeOut(DURATION));	
 		splash.addAction(pa);
 		
 		splash2.setAlign(0);
@@ -63,7 +59,7 @@ public class SplashScreen extends GenericScreen {
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
-				universalMonkey.setScreen(universalMonkey.getMenuScreen());
+				universalMonkey.setScreen(universalMonkey.getStatisticScreen());
 				splashTexture.dispose();
 				bgTexture.dispose();
 				music.dispose();
@@ -82,5 +78,11 @@ public class SplashScreen extends GenericScreen {
 
 		stage.draw();
 		stage.act();
+	}
+	
+	@Override
+	public void dispose() {
+
+		super.dispose();
 	}
 }
