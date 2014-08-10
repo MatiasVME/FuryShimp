@@ -33,9 +33,7 @@ public class MonkeyInput extends InputAdapter {
 		
 		return super.touchUp(screenX, screenY, pointer, button);
 	}
-	
-<<<<<<< HEAD
-=======
+
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
@@ -62,5 +60,4 @@ public class MonkeyInput extends InputAdapter {
 		}
 		return super.keyUp(keycode);
 	}
->>>>>>> 55329b238ff8c925daa743186ac5e7e99a78a80d
 }
