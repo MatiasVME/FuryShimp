@@ -32,4 +32,5 @@ public class MonkeyInput extends InputAdapter {
 		
 		return super.touchUp(screenX, screenY, pointer, button);
 	}
+	
 }
