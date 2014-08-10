@@ -40,7 +40,7 @@ public class MenuScreen extends GenericScreen {
 		startButton.addListener(new ClickListener(){
 			@Override 
 			public void clicked(InputEvent event, float x, float y){
-				universalMonkey.setScreen(universalMonkey.getGameScreen());
+				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
 			}
 		});
 

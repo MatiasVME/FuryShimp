@@ -1,7 +1,7 @@
 package org.furygames.screens;
 
+import org.furygames.furyshimp.DataGame;
 import org.furygames.furyshimp.FuryShimp;
-import org.furygames.furyshimp.Levels;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -16,7 +16,6 @@ public class StatisticsScreen extends GenericScreen {
 	
 	private int star = -1;
 	private String score = "000";
-	private Levels currentLevel = Levels.LEVEL1;
 	
 	private Texture background;
 	private Array <Texture> stars;
@@ -76,12 +75,14 @@ public class StatisticsScreen extends GenericScreen {
 		buttonsListeners();
 		
 		// Temp
-		configStatistics (3, 99, true, Levels.LEVEL1);
+		configStatistics (3, true);
 	}
 	
 	@Override
 	public void show() {
 		super.show();
+		
+		score = String.valueOf(DataGame.getScore());
 	}
 	
 	@Override
@@ -105,11 +106,9 @@ public class StatisticsScreen extends GenericScreen {
 		super.dispose();
 	}
 	
-	public void configStatistics (int stars, int score, boolean win, Levels currentLevel) {
+	public void configStatistics (int stars, boolean win) {
 		setStars(stars);
-		setScore(score);
 		setWin(win);
-		setCurrentLevel(currentLevel);
 	}
 	
 	private void buttonsListeners() {
@@ -124,6 +123,7 @@ public class StatisticsScreen extends GenericScreen {
 		resume.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				GameScreen.setNeedNivelClear(true);
 				universalMonkey.setScreen(universalMonkey.getGameScreen());
 				super.clicked(event, x, y);
 			}
@@ -132,7 +132,8 @@ public class StatisticsScreen extends GenericScreen {
 		nextLevel.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				currentLevel = currentLevel.next();
+				GameScreen.levels = GameScreen.levels.next();
+				GameScreen.setNeedNivelClear(true);
 				universalMonkey.setScreen(universalMonkey.getGameScreen());
 				super.clicked(event, x, y);
 			}
@@ -149,10 +150,6 @@ public class StatisticsScreen extends GenericScreen {
 
 	public void setWin (boolean win) {
 		this.win = win;
-	}
-
-	public void setScore(int score) {
-		this.score = "" + score;
 	}
 
 	public void setStars(int star) {
@@ -172,13 +169,5 @@ public class StatisticsScreen extends GenericScreen {
 			for (int i = 0, x = 128 * 3; i < stars.size; i++, x += 128 + SEPARATOR)
 				batch.draw(stars.get(i), x, 490, 128, 128);
 		}
-	}
-
-	public void setCurrentLevel(Levels currentLevel) {
-		this.currentLevel = currentLevel;
-	}
-	
-	public Levels getCurrentLevel () {
-		return currentLevel;
 	}
 }
