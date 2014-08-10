@@ -31,11 +31,6 @@ public class LevelsScreen extends GenericScreen{
 	
 	public LevelsScreen(final FuryShimp universalMonkey) {
 		super(universalMonkey);
-	}
-	
-	@Override
-	public void show() {
-		super.show();
 		
 		skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
 		
@@ -52,9 +47,6 @@ public class LevelsScreen extends GenericScreen{
 		table.add(levelUnoButton).pad(50).width(100).height(100);
 		table.add(levelDosButton).pad(50).width(100).height(100);
 		table.add(levelTresButton).pad(50).width(100).height(100);
-
-		//obtenemos el nivel actual (Por defecto nivel 1)
-		level = prefs.getInteger("level", 1);
 		
 		//accedemos al nivel 1
 		levelUnoButton.addListener(new ClickListener(){
@@ -63,13 +55,11 @@ public class LevelsScreen extends GenericScreen{
             	
             	// Dejamos levels en estado de nivel1
             	GameScreen.levels = Levels.LEVEL1;
-            	// Para que el nivel necesite ser limpiado
-            	GameScreen.setNeedNivelClear(true);
-            	
-            	universalMonkey.setScreen(universalMonkey.getGameScreen());
             	
             	//Recordamos durante la partida el nivel de juego
             	DataGame.setLevel(1);
+            	
+            	universalMonkey.setScreen(universalMonkey.getGameScreen());
             }
         });
 		
@@ -82,12 +72,11 @@ public class LevelsScreen extends GenericScreen{
             	{
             		// Dejamos levels en estado de level2
             		GameScreen.levels = Levels.LEVEL2;
-            		GameScreen.setNeedNivelClear(true);
-            		
-            		universalMonkey.setScreen(universalMonkey.getGameScreen());
             		
             		//Recordamos durante la partida el nivel de juego
                 	DataGame.setLevel(2);
+            		
+            		universalMonkey.setScreen(universalMonkey.getGameScreen());
             	}
         	
             }
@@ -101,19 +90,28 @@ public class LevelsScreen extends GenericScreen{
             	if(level > 2)
             	{
             		GameScreen.levels = Levels.LEVEL3;
-            		GameScreen.setNeedNivelClear(true);
-            		
-            		universalMonkey.setScreen(universalMonkey.getGameScreen());
             		
             		//Recordamos durante la partida el nivel de juego
                 	DataGame.setLevel(3);
+            		
+            		universalMonkey.setScreen(universalMonkey.getGameScreen());
             	}
-            	
             }
         });
 		
 		stage.addActor(background);
 		stage.addActor(table);
+	}
+
+	@Override
+	public void show() {
+		super.show();
+		
+		// Para que el nivel necesite ser limpiado
+    	GameScreen.setNeedNivelClear(true);
+
+		//obtenemos el nivel actual (Por defecto nivel 1)
+		level = prefs.getInteger("level", 1);
 	}
 	
 	@Override

@@ -373,6 +373,7 @@ public final class GameScreen extends GenericScreen {
 			music.dispose();
 			music = null;
 		}
+		
 		musicExist = false;
 		
 		for (Rock rock : rocks) {

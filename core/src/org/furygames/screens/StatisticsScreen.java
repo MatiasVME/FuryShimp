@@ -123,6 +123,7 @@ public class StatisticsScreen extends GenericScreen {
 		resume.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				GameScreen.setNeedNivelClear(true);
 				universalMonkey.setScreen(universalMonkey.getGameScreen());
 				super.clicked(event, x, y);
 			}
@@ -131,8 +132,8 @@ public class StatisticsScreen extends GenericScreen {
 		nextLevel.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				System.out.println("next level");
 				GameScreen.levels = GameScreen.levels.next();
+				GameScreen.setNeedNivelClear(true);
 				universalMonkey.setScreen(universalMonkey.getGameScreen());
 				super.clicked(event, x, y);
 			}
