@@ -48,10 +48,10 @@ public final class GameScreen extends GenericScreen {
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
 		
-		// tratar el tiempo transcurrido
+		// Tratar el tiempo transcurrido
 		time = TimeUtils.millis();
 		
-		// establecemos el estilo de los marcadores
+		// Establecemos el estilo de los marcadores
 		font = new BitmapFont(Gdx.files.internal("fonts/jungle.fnt"), 
 				Gdx.files.internal("fonts/jungle.png"), false);
         font.setColor(Color.BLACK);
