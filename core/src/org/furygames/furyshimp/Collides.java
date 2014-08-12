@@ -7,7 +7,11 @@ import org.furygames.actors.Shimp;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 
 public class Collides {
 	
@@ -51,7 +55,7 @@ public class Collides {
 	
 	// Colicion shimp rock
 	public static void collidesMonkeyRocks (Shimp shimp, Array <Rock> rocks, Sound sound) {
-		for (Rock rock : rocks) {
+		for (final Rock rock : rocks) {
 			if (Intersector.overlaps(shimp.getRectangle(), rock.getRectangle()) 
 					&& rock.isAlive()) {
 				rock.clear();
@@ -60,8 +64,8 @@ public class Collides {
 				
 				if (sound != null)
 					sound.play();
-				
-				//restamos 1 vida del mono
+			
+				// restamos 1 vida del mono
 				DataGame.removeLife(1);
 			}
 		}

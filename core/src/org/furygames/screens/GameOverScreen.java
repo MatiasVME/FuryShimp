@@ -66,7 +66,7 @@ public class GameOverScreen extends GenericScreen {
 			}
 		}, DURATION);
 
-		//insertamos (imagen) dentro del escenario stage
+		// Insertamos (imagen) dentro del escenario stage
 		stage.addActor(splash2);
 		stage.addActor(splash);
 		music.play();

@@ -14,11 +14,11 @@ import com.badlogic.gdx.utils.Array;
 
 public class StatisticsScreen extends GenericScreen {
 	
-	private int star = -1;
-	private String score = "000";
+	private static int star = -1;
+	private static Array <Texture> stars;
 	
+	private String score = "000";
 	private Texture background;
-	private Array <Texture> stars;
 	private BitmapFont bfScore;
 	
 	// Buttons
@@ -32,7 +32,7 @@ public class StatisticsScreen extends GenericScreen {
 	private Image levels;
 	private Image nextLevel;
 	
-	private boolean win;
+	private static boolean win;
 	
 	
 	public StatisticsScreen(FuryShimp universalMonkey) {
@@ -106,7 +106,7 @@ public class StatisticsScreen extends GenericScreen {
 		super.dispose();
 	}
 	
-	public void configStatistics (int stars, boolean win) {
+	public static void configStatistics (int stars, boolean win) {
 		setStars(stars);
 		setWin(win);
 	}
@@ -148,12 +148,12 @@ public class StatisticsScreen extends GenericScreen {
 		return win;
 	}
 
-	public void setWin (boolean win) {
-		this.win = win;
+	public static void setWin (boolean win) {
+		StatisticsScreen.win = win;
 	}
 
-	public void setStars(int star) {
-		this.star = star;
+	public static void setStars(int star) {
+		StatisticsScreen.star = star;
 		
 		if (stars != null)
 			stars.clear();

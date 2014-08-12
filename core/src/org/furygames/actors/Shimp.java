@@ -3,12 +3,12 @@ package org.furygames.actors;
 import org.furygames.inputs.VirtualController;
 import org.furygames.screens.GameScreen;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 
 public class Shimp extends GenericActor {
@@ -96,6 +96,9 @@ public class Shimp extends GenericActor {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
+		
+		Color col = getColor();
+		batch.setColor(col.r, col.g, col.b, col.a * parentAlpha);
 				
 		setSize(128, 128);
 	}

@@ -107,7 +107,7 @@ public final class GameScreen extends GenericScreen {
 			case LEVEL3:
 				break;
 		}
-
+		
 		// Deteccion de coliciones.
 		collidesDetection();
 		
@@ -184,15 +184,38 @@ public final class GameScreen extends GenericScreen {
 	
 	//metodo que finaliza el tiempo
 	private void endTime() {
-		
+				
 		//compruebo si la puntuacion minima ha sido alcanzada
-		if(DataGame.getScore() >= levels.getMinScore())
-		{
+		if (DataGame.getScore() >= levels.getMinScore()) {
 			prefs.putInteger("level", prefs.getInteger("level") + 1);
 			prefs.flush();
 		}
 		
+		boolean win = false;
+		int stars = 0;
+		
+		System.out.println(DataGame.getScore() + " >= " + levels.getMinScore());
+		
+		if (DataGame.getScore() >= levels.getMinScore()) {
+			win = true;
+			stars++;
+			System.out.println(stars);
+			
+			if (DataGame.getScore() >= levels.getMedScore()){
+				stars++;
+				System.out.println(stars);
+
+				
+				if (DataGame.getScore() >= levels.getExcScore()) {
+					stars++;
+					System.out.println(stars);
+				}
+			}
+		}
+		
+		StatisticsScreen.configStatistics(stars, win);
 		universalMonkey.setScreen(universalMonkey.getStatisticScreen());
+		
 		music.dispose();
 		musicExist = false;
 		DataGame.setLevel(0);
