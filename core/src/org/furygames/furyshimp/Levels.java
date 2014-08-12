@@ -1,9 +1,9 @@
 package org.furygames.furyshimp;
 
 public enum Levels {
-	LEVEL3 (null, 80, 85, 90),
-	LEVEL2 (LEVEL3, 80, 85, 90),
-	LEVEL1 (LEVEL2, 80, 85, 90);
+	LEVEL3 (null, 100, 110, 120),
+	LEVEL2 (LEVEL3, 90, 100, 110),
+	LEVEL1 (LEVEL2, 80, 90, 100);
 	
 	private final Levels next;
 	private int minScore; // Puntaje minimo
