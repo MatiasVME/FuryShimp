@@ -39,7 +39,7 @@ public class GameOverScreen extends GenericScreen {
 		splash2 = new Image(bgRegion);
 		pb = new ParallelAction();
 		
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro_0.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
 		
 		splashTexture = new Texture("gameover.png");
 		splashRegion = new TextureRegion(splashTexture);
