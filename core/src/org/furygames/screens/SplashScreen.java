@@ -31,11 +31,6 @@ public class SplashScreen extends GenericScreen {
 
 	public SplashScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
-	}
-
-	@Override
-	public void show() {
-		super.show();
 		
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
 		bgRegion = new TextureRegion(bgTexture);
@@ -44,7 +39,7 @@ public class SplashScreen extends GenericScreen {
 		
 		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro_0.mp3"));
 		
-		splashTexture = new Texture("splash.png");
+		splashTexture = new Texture("logo.png");
 		splashRegion = new TextureRegion(splashTexture);
 		splash = new Image(splashRegion);
 		pa = new ParallelAction();
@@ -59,6 +54,15 @@ public class SplashScreen extends GenericScreen {
 		
 		splash2.setAlign(0);
 		
+		//insertamos (imagen) dentro del escenario stage
+		stage.addActor(splash2);
+		stage.addActor(splash);
+	}
+
+	@Override
+	public void show() {
+		super.show();
+		
 		// Cambiar de pantalla 
 		Timer.schedule(new Task() {
 			@Override
@@ -69,10 +73,7 @@ public class SplashScreen extends GenericScreen {
 				music.dispose();
 			}
 		}, DURATION);
-
-		//insertamos (imagen) dentro del escenario stage
-		stage.addActor(splash2);
-		stage.addActor(splash);
+		
 		music.play();
 	}
 

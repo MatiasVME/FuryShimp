@@ -14,9 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class MenuScreen extends GenericScreen {
 
 	private Skin skin;
-	private TextButton startButton;
 	private Table table;
-	private TextButton scoreButton;
+	private TextButton startButton;
+	private TextButton creditButton;
+	private TextButton exitButton;
 
 	public MenuScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -29,13 +30,20 @@ public class MenuScreen extends GenericScreen {
 		skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
 
 		startButton = new TextButton("Start", skin);
-		scoreButton = new TextButton("Score", skin);
+		creditButton = new TextButton("Credits", skin);
+		exitButton = new TextButton("Exit", skin);
+		
+		final float pad = 40;
+		final float width = 400f;
+		final float height = 100f;
 
 		table = new Table();
 		table.setFillParent(true);
-		table.add(startButton).pad(50).width(400f).height(100);
+		table.add(startButton).pad(pad).width(width).height(height);
 		table.row();
-		table.add(scoreButton).pad(50).width(400f).height(100);
+		table.add(creditButton).pad(pad).width(width).height(height);
+		table.row();
+		table.add(exitButton).pad(pad).width(width).height(height);
 
 		startButton.addListener(new ClickListener(){
 			@Override 
@@ -43,11 +51,11 @@ public class MenuScreen extends GenericScreen {
 				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
 			}
 		});
-
-		scoreButton.addListener(new ClickListener(){
+		
+		creditButton.addListener(new ClickListener(){
 			@Override 
 			public void clicked(InputEvent event, float x, float y){
-				universalMonkey.setScreen(universalMonkey.getScoreScreen());
+				universalMonkey.setScreen(universalMonkey.getCreditsScreen());
 			}
 		});
 
