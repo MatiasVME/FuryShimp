@@ -37,7 +37,7 @@ public class SplashScreen extends GenericScreen {
 		splash2 = new Image(bgRegion);
 		pb = new ParallelAction();
 		
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro_0.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
 		
 		splashTexture = new Texture("logo.png");
 		splashRegion = new TextureRegion(splashTexture);
