@@ -52,6 +52,7 @@ public class LevelsScreen extends GenericScreen{
 		levelUnoButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
+            	MenuScreen.stopMusic();
             	
             	// Dejamos levels en estado de nivel1
             	GameScreen.levels = Levels.LEVEL1;
@@ -67,9 +68,9 @@ public class LevelsScreen extends GenericScreen{
 		levelDosButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
-            
-            	if(level > 1)
-            	{
+            	MenuScreen.stopMusic();
+            	
+            	if(level > 1) {
             		// Dejamos levels en estado de level2
             		GameScreen.levels = Levels.LEVEL2;
             		
@@ -86,9 +87,9 @@ public class LevelsScreen extends GenericScreen{
 		levelTresButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
+            	MenuScreen.stopMusic();
             	
-            	if(level > 2)
-            	{
+            	if(level > 2) {
             		GameScreen.levels = Levels.LEVEL3;
             		
             		//Recordamos durante la partida el nivel de juego
@@ -121,5 +122,4 @@ public class LevelsScreen extends GenericScreen{
 		stage.draw();
 		stage.act();
 	}
-
 }

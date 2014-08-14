@@ -4,6 +4,7 @@ import org.furygames.furyshimp.FuryShimp;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -18,16 +19,13 @@ public class MenuScreen extends GenericScreen {
 	private TextButton startButton;
 	private TextButton creditButton;
 	private TextButton exitButton;
+	private static Music music;
 
 	public MenuScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
-	}
-
-	@Override
-	public void show() {
-		super.show();
-
+		
 		skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Salt Marsh Birds.mp3"));
 
 		startButton = new TextButton("Start", skin);
 		creditButton = new TextButton("Credits", skin);
@@ -63,6 +61,14 @@ public class MenuScreen extends GenericScreen {
 	}
 
 	@Override
+	public void show() {
+		super.show();
+		
+		music.setLooping(true);
+		music.play();
+	}
+
+	@Override
 	public void render(float delta) {
 		super.render(delta);
 
@@ -71,6 +77,10 @@ public class MenuScreen extends GenericScreen {
 
 		// Condicion si el boton presionado es BACK ejecutar la accion salir de la app
 		if(Gdx.input.isKeyPressed(Keys.BACK))Gdx.app.exit();
+	}
+	
+	public static void stopMusic() {
+		music.stop();
 	}
 
 }
