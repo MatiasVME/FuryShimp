@@ -29,7 +29,7 @@ public class SplashScreen extends GenericScreen {
 	private Texture splashTexture;
 	private ParallelAction pa, pb;
 
-	public SplashScreen (final FuryShimp universalMonkey) {
+	public SplashScreen (FuryShimp universalMonkey) {
 		super(universalMonkey);
 		
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
