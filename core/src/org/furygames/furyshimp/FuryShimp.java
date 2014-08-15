@@ -5,8 +5,7 @@ import org.furygames.screens.GameOverScreen;
 import org.furygames.screens.GameScreen;
 import org.furygames.screens.LevelsScreen;
 import org.furygames.screens.MenuScreen;
-import org.furygames.screens.StatisticsScreen;
-import org.furygames.screens.ScoreScreen;
+import org.furygames.screens.StadisticsScreen;
 import org.furygames.screens.SplashScreen;
 
 import com.badlogic.gdx.Game;
@@ -17,9 +16,8 @@ public class FuryShimp extends Game {
 	private SplashScreen splashScreen;
 	private LevelsScreen levelsScreen;
 	private MenuScreen menuScreen;
-	private ScoreScreen scoreScreen;
 	private GameScreen gameScreen;
-	private StatisticsScreen statisticScreen;
+	private StadisticsScreen statisticScreen;
 	private GameOverScreen gameOverScreen;
 	private CreditsScreen creditsScreen;
 
@@ -28,9 +26,8 @@ public class FuryShimp extends Game {
 		splashScreen = new SplashScreen(this);
 		levelsScreen = new LevelsScreen(this);
 		menuScreen = new MenuScreen(this);
-		scoreScreen = new ScoreScreen(this);
 		gameScreen = new GameScreen(this);
-		statisticScreen = new StatisticsScreen(this);
+		statisticScreen = new StadisticsScreen(this);
 		gameOverScreen = new GameOverScreen(this);
 		creditsScreen = new CreditsScreen(this);
 		
@@ -46,15 +43,11 @@ public class FuryShimp extends Game {
 		return menuScreen;
 	}
 	
-	public ScoreScreen getScoreScreen () {
-		return scoreScreen;
-	}
-	
 	public GameScreen getGameScreen () {
 		return gameScreen;
 	}
 	
-	public StatisticsScreen getStatisticScreen () {
+	public StadisticsScreen getStatisticScreen () {
 		return statisticScreen;
 	}
 	

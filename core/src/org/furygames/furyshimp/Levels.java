@@ -1,7 +1,15 @@
 package org.furygames.furyshimp;
 
 public enum Levels {
-	LEVEL3 (null, 100, 110, 120),
+	
+	LEVEL10 (null, 65, 70, 80),
+	LEVEL9 (LEVEL10, 65, 70, 80),
+	LEVEL8 (LEVEL9, 65, 70, 80),
+	LEVEL7 (LEVEL8, 65, 70, 80),
+	LEVEL6 (LEVEL7, 65, 70, 80),
+	LEVEL5 (LEVEL6, 65, 70, 80),
+	LEVEL4 (LEVEL5, 65, 70, 80),
+	LEVEL3 (LEVEL4, 100, 110, 120),
 	LEVEL2 (LEVEL3, 90, 100, 110),
 	LEVEL1 (LEVEL2, 65, 70, 80);
 	
@@ -18,7 +26,7 @@ public enum Levels {
 	}
 	
 	public Levels next () {
-		return next == null ? LEVEL3 : next;
+		return next == null ? LEVEL10 : next;
 	}
 	
 	public int getMinScore () {

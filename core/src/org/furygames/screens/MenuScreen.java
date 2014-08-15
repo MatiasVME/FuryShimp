@@ -56,6 +56,13 @@ public class MenuScreen extends GenericScreen {
 				universalMonkey.setScreen(universalMonkey.getCreditsScreen());
 			}
 		});
+		
+		exitButton.addListener(new ClickListener(){
+			@Override 
+			public void clicked(InputEvent event, float x, float y){
+				Gdx.app.exit();
+			}
+		});
 
 		stage.addActor(table);
 	}
@@ -74,9 +81,6 @@ public class MenuScreen extends GenericScreen {
 
 		stage.draw();
 		stage.act();
-
-		// Condicion si el boton presionado es BACK ejecutar la accion salir de la app
-		if(Gdx.input.isKeyPressed(Keys.BACK))Gdx.app.exit();
 	}
 	
 	public static void stopMusic() {
