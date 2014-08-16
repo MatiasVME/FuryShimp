@@ -20,7 +20,7 @@ public class SplashScreen extends GenericScreen {
 	private final float DURATION = 4.2f; // Segundos
 	
 	private Image splash2;
-	private Texture bgTexture;//textura para el fondo
+	private Texture bgTexture; //textura para el fondo
 	private TextureRegion bgRegion;
 	private Music music;
 	

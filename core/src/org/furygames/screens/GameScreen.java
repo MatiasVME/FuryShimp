@@ -183,19 +183,19 @@ public final class GameScreen extends GenericScreen {
 			 comprobarTiempo();
 		}
 		 
-		font.draw(batch, String.valueOf("Nivel: " + DataGame.getLevel()), 
+		font.draw(batch, String.valueOf("Level: " + DataGame.getLevel()), 
 				Gdx.graphics.getWidth() - 1240, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Minimo: " + levels.getMinScore()), 
+		font.draw(batch, String.valueOf("Min: " + levels.getMinScore()), 
 				Gdx.graphics.getWidth() - 1040, 
 				Gdx.graphics.getHeight() - 20);
 		font.draw(batch, cronometro, 
 				Gdx.graphics.getWidth() - 730, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Puntuacion: " + DataGame.getScore()), 
+		font.draw(batch, String.valueOf("Score: " + DataGame.getScore()), 
 				Gdx.graphics.getWidth() - 540, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Vidas: " + DataGame.getLifes()), 
+		font.draw(batch, String.valueOf("Lives: " + DataGame.getLifes()), 
 				Gdx.graphics.getWidth() - 200, 
 				Gdx.graphics.getHeight() - 20);
 		batch.end();
@@ -338,9 +338,13 @@ public final class GameScreen extends GenericScreen {
 				break;
 				
 			case 2:
+				System.out.println("level2");
+				break;
+			
+			case 3:
 				// Sonido.
 				if (!musicExist)
-					music(2);
+					music(3);
 				
 				// Si el nivel necesita ser limpiado lo limpia y añade las cosas del nivel
 				if (needLevelClear) {
@@ -401,11 +405,6 @@ public final class GameScreen extends GenericScreen {
 					// Vaciar array.
 					coconuts.clear();
 				}
-				
-				break;
-			
-			case 3:
-				System.out.println("level3");
 				break;
 				
 			case 4:
