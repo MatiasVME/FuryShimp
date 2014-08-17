@@ -16,7 +16,7 @@ import org.furygames.inputs.MonkeyInput;
 import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -45,6 +45,7 @@ public final class GameScreen extends GenericScreen {
 	private MonkeyInput monkeyInput;
 	private boolean musicExist = false;
 	private static boolean needLevelClear = false;
+	private static Preferences prefs;
 	
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -80,6 +81,8 @@ public final class GameScreen extends GenericScreen {
 
 		shimp = new Shimp();
 		stage.addActor(shimp);
+		
+		prefs = Gdx.app.getPreferences("furygames-furyshimp");
 		
 		// Movimiento del mono mediante touchScreen y teclado
 		monkeyInput = new MonkeyInput();
@@ -168,13 +171,11 @@ public final class GameScreen extends GenericScreen {
 			 String minutos = String.valueOf(min);
 			 String segundos = String.valueOf(seg);
 
-			 if(minutos.length() < 2)
-			 {
+			 if(minutos.length() < 2) {
 				 minutos = "0"+minutos;
 			 }
 
-			 if(segundos.length() < 2)
-			 {
+			 if(segundos.length() < 2) {
 				 segundos = "0"+segundos;
 			 }
 			 
@@ -183,19 +184,19 @@ public final class GameScreen extends GenericScreen {
 			 comprobarTiempo();
 		}
 		 
-		font.draw(batch, String.valueOf("Nivel: " + DataGame.getLevel()), 
+		font.draw(batch, String.valueOf("Level: " + DataGame.getLevel()), 
 				Gdx.graphics.getWidth() - 1240, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Minimo: " + levels.getMinScore()), 
+		font.draw(batch, String.valueOf("Min: " + levels.getMinScore()), 
 				Gdx.graphics.getWidth() - 1040, 
 				Gdx.graphics.getHeight() - 20);
 		font.draw(batch, cronometro, 
 				Gdx.graphics.getWidth() - 730, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Puntuacion: " + DataGame.getScore()), 
+		font.draw(batch, String.valueOf("Score: " + DataGame.getScore()), 
 				Gdx.graphics.getWidth() - 540, 
 				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Vidas: " + DataGame.getLifes()), 
+		font.draw(batch, String.valueOf("Lives: " + DataGame.getLifes()), 
 				Gdx.graphics.getWidth() - 200, 
 				Gdx.graphics.getHeight() - 20);
 		batch.end();
@@ -234,36 +235,29 @@ public final class GameScreen extends GenericScreen {
 	//metodo que finaliza el tiempo
 	private void endTime() {
 				
+		boolean isLastLevel = prefs.getInteger("max-level", 1) == levels.getNumLevel();
+		
 		//compruebo si la puntuacion minima ha sido alcanzada
-		if (DataGame.getScore() >= levels.getMinScore()) {
-			prefs.putInteger("level", prefs.getInteger("level") + 1);
+		if (DataGame.getScore() >= levels.getMinScore() && isLastLevel) {
+			prefs.putInteger("max-level", prefs.getInteger("max-level", 1) + 1);
 			prefs.flush();
 		}
 		
 		boolean win = false;
 		int stars = 0;
 		
-		System.out.println(DataGame.getScore() + " >= " + levels.getMinScore());
-		
 		if (DataGame.getScore() >= levels.getMinScore()) {
 			win = true;
 			stars++;
-			System.out.println(stars);
 			
 			if (DataGame.getScore() >= levels.getMedScore()){
 				stars++;
-				System.out.println(stars);
-
 				
-				if (DataGame.getScore() >= levels.getExcScore()) {
+				if (DataGame.getScore() >= levels.getExcScore())
 					stars++;
-					System.out.println(stars);
-				}
 			}
 		}
 		
-		StadisticsScreen.configStadistics(stars, win);
-		universalMonkey.setScreen(universalMonkey.getStadisticScreen());
 		
 		music.dispose();
 		musicExist = false;
@@ -294,6 +288,10 @@ public final class GameScreen extends GenericScreen {
 
 	public static void setNeedNivelClear (boolean needLevelClear) {
 		GameScreen.needLevelClear = needLevelClear;
+	}
+	
+	public static Preferences getPreferences () {
+		return prefs;
 	}
 	
 	// Método level que se llama cada vez que el render es actualizado
@@ -348,6 +346,51 @@ public final class GameScreen extends GenericScreen {
 				// Sonido.
 				if (!musicExist)
 					music(2);
+				
+				// Si el nivel necesita ser limpiado lo limpia y añade las cosas del nivel
+				if (needLevelClear) {
+					clearLevel();
+				}
+				
+				// Crear rocas del nivel.
+				if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
+					Creator.createRocks(2, rocks, stage);
+				}
+	
+				// Si las rocas no estan volando eliminarlas.
+				else if (!FlyingObjets.isFlyingRocks(rocks)){
+					// Vaciar array.
+					rocks.clear();
+				}
+	
+				// Crear bananas del nivel.
+				if (bananas.size == 0 && !FlyingObjets.isFlyingBananas(bananas)) {
+					Creator.createBananas(3, bananas, stage);
+				}
+	
+				// Si las bananas no estan volando eliminarlas.
+				else if (!FlyingObjets.isFlyingBananas(bananas)){
+					// Vaciar array.
+					bananas.clear();
+				}
+				
+				// Crear coconuts del nivel.
+				if (coconuts.size == 0 && !FlyingObjets.isFlyingCoconut(coconuts)) {
+					Creator.createCoconuts(3, coconuts, stage);
+				}
+	
+				// Si los coconuts no estan volando eliminarlos.
+				else if (!FlyingObjets.isFlyingCoconut(coconuts)){
+					// Vaciar array.
+					coconuts.clear();
+				}				
+				
+				break;
+			
+			case 3:
+				// Sonido.
+				if (!musicExist)
+					music(3);
 				
 				// Si el nivel necesita ser limpiado lo limpia y añade las cosas del nivel
 				if (needLevelClear) {
@@ -409,10 +452,6 @@ public final class GameScreen extends GenericScreen {
 					coconuts.clear();
 				}
 				
-				break;
-			
-			case 3:
-				System.out.println("level3");
 				break;
 				
 			case 4:

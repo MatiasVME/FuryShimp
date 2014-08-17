@@ -19,7 +19,8 @@ public class MenuScreen extends GenericScreen {
 	private TextButton startButton;
 	private TextButton creditButton;
 	private TextButton exitButton;
-	private static Music music;
+	
+	private static Music music = null;
 
 	public MenuScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -83,8 +84,7 @@ public class MenuScreen extends GenericScreen {
 		stage.act();
 	}
 	
-	public static void stopMusic() {
-		music.stop();
+	public static Music getMusic() {
+		return music;
 	}
-
 }
