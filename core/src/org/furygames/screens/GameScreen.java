@@ -16,7 +16,7 @@ import org.furygames.inputs.MonkeyInput;
 import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -45,6 +45,7 @@ public final class GameScreen extends GenericScreen {
 	private MonkeyInput monkeyInput;
 	private boolean musicExist = false;
 	private static boolean needLevelClear = false;
+	private static Preferences prefs;
 	
 	public GameScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -80,6 +81,8 @@ public final class GameScreen extends GenericScreen {
 
 		shimp = new Shimp();
 		stage.addActor(shimp);
+		
+		prefs = Gdx.app.getPreferences("furygames-furyshimp");
 		
 		// Movimiento del mono mediante touchScreen y teclado
 		monkeyInput = new MonkeyInput();
@@ -168,13 +171,11 @@ public final class GameScreen extends GenericScreen {
 			 String minutos = String.valueOf(min);
 			 String segundos = String.valueOf(seg);
 
-			 if(minutos.length() < 2)
-			 {
+			 if(minutos.length() < 2) {
 				 minutos = "0"+minutos;
 			 }
 
-			 if(segundos.length() < 2)
-			 {
+			 if(segundos.length() < 2) {
 				 segundos = "0"+segundos;
 			 }
 			 
@@ -235,8 +236,10 @@ public final class GameScreen extends GenericScreen {
 	private void endTime() {
 				
 		//compruebo si la puntuacion minima ha sido alcanzada
+		// nota: pero esto debería verificar si esta jugando el último nivel
+		// y también si ese nivel no lo ha pasado todavia.
 		if (DataGame.getScore() >= levels.getMinScore()) {
-			prefs.putInteger("level", prefs.getInteger("level") + 1);
+			prefs.putInteger("level", prefs.getInteger("level", 1) + 1);
 			prefs.flush();
 		}
 		
@@ -255,8 +258,14 @@ public final class GameScreen extends GenericScreen {
 			}
 		}
 		
-		StadisticsScreen.configStatistics(stars, win);
-		universalMonkey.setScreen(universalMonkey.getStatisticScreen());
+		if (win ==  true) {
+			StadisticsScreen.configStatistics(stars, win);
+			universalMonkey.setScreen(universalMonkey.getStatisticScreen());
+		}
+		
+		else {
+			universalMonkey.setScreen(universalMonkey.getGameOverScreen());
+		}
 		
 		music.dispose();
 		musicExist = false;
@@ -287,6 +296,10 @@ public final class GameScreen extends GenericScreen {
 
 	public static void setNeedNivelClear (boolean needLevelClear) {
 		GameScreen.needLevelClear = needLevelClear;
+	}
+	
+	public static Preferences getPreferences () {
+		return prefs;
 	}
 	
 	// Método level que se llama cada vez que el render es actualizado
