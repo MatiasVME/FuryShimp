@@ -338,7 +338,48 @@ public final class GameScreen extends GenericScreen {
 				break;
 				
 			case 2:
-				System.out.println("level2");
+				// Sonido.
+				if (!musicExist)
+					music(2);
+				
+				// Si el nivel necesita ser limpiado lo limpia y añade las cosas del nivel
+				if (needLevelClear) {
+					clearLevel();
+				}
+				
+				// Crear rocas del nivel.
+				if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
+					Creator.createRocks(2, rocks, stage);
+				}
+	
+				// Si las rocas no estan volando eliminarlas.
+				else if (!FlyingObjets.isFlyingRocks(rocks)){
+					// Vaciar array.
+					rocks.clear();
+				}
+	
+				// Crear bananas del nivel.
+				if (bananas.size == 0 && !FlyingObjets.isFlyingBananas(bananas)) {
+					Creator.createBananas(3, bananas, stage);
+				}
+	
+				// Si las bananas no estan volando eliminarlas.
+				else if (!FlyingObjets.isFlyingBananas(bananas)){
+					// Vaciar array.
+					bananas.clear();
+				}
+				
+				// Crear coconuts del nivel.
+				if (coconuts.size == 0 && !FlyingObjets.isFlyingCoconut(coconuts)) {
+					Creator.createCoconuts(3, coconuts, stage);
+				}
+	
+				// Si los coconuts no estan volando eliminarlos.
+				else if (!FlyingObjets.isFlyingCoconut(coconuts)){
+					// Vaciar array.
+					coconuts.clear();
+				}				
+				
 				break;
 			
 			case 3:
@@ -405,6 +446,7 @@ public final class GameScreen extends GenericScreen {
 					// Vaciar array.
 					coconuts.clear();
 				}
+				
 				break;
 				
 			case 4:

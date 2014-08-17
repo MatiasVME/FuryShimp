@@ -14,9 +14,10 @@ public class GameSounds {
 	private static final String MUSIC_SNOWLAND = "sounds/levels/Snowland Loop Short.mp3";
 	private static final String MUSIC_ENCHANTED = "sounds/levels/Enchanted Festival Loop.mp3";
 	
+	private static Music m = null;
+	private static Sound s = null;
+	
 	public static Sound newSound(int tipo) {
-		Sound s = null;
-		
 		switch (tipo) {
 			case 1:
 				s = Gdx.audio.newSound(Gdx.files.internal(SOUND_WOOP));
@@ -33,7 +34,6 @@ public class GameSounds {
 	}
 	
 	public static Music newMusic(int tipo) {
-		Music m = null;
 		
 		switch (tipo) {
 			case 1:
