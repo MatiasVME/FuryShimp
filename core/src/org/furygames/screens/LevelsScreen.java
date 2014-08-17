@@ -72,9 +72,6 @@ public class LevelsScreen extends GenericScreen{
 		table.add(levelNueveButton).pad(50).width(100).height(100);
 		table.add(levelDiezButton).pad(50).width(100).height(100);
 		
-		//obtenemos el nivel actual (Por defecto nivel 1)
-		level = prefs.getInteger("level", 1);
-		
 		//accedemos al nivel 1
 		levelUnoButton.addListener(new ClickListener(){
             @Override 
@@ -95,9 +92,10 @@ public class LevelsScreen extends GenericScreen{
 		levelDosButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
-            	MenuScreen.getMusic().stop();
             	
             	if(level > 1) {
+                	MenuScreen.getMusic().stop();
+
             		// Dejamos levels en estado de level2
             		GameScreen.levels = Levels.LEVEL2;
             		
@@ -113,9 +111,9 @@ public class LevelsScreen extends GenericScreen{
 		levelTresButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
-            	MenuScreen.getMusic().stop();
-            	
+     
             	if(level > 2) {
+            		MenuScreen.getMusic().stop();
             		GameScreen.levels = Levels.LEVEL3;
             		
             		//Recordamos durante la partida el nivel de juego
@@ -256,6 +254,10 @@ public class LevelsScreen extends GenericScreen{
 		// Colocar musica en caso de que no se este reproduciendo
 		if (!MenuScreen.getMusic().isPlaying())
 			MenuScreen.getMusic().play();
+		
+		// obtenemos el nivel actual (Por defecto nivel 1)
+		if (GameScreen.getPreferences() != null)
+			level = GameScreen.getPreferences().getInteger("max-level", 1);
 		
 		// Para que el nivel necesite serlimpiado
     	GameScreen.setNeedNivelClear(true);

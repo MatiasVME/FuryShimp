@@ -24,9 +24,9 @@ public class FuryShimp extends Game {
 	@Override
 	public void create() {
 		splashScreen = new SplashScreen(this);
+		gameScreen = new GameScreen(this);
 		levelsScreen = new LevelsScreen(this);
 		menuScreen = new MenuScreen(this);
-		gameScreen = new GameScreen(this);
 		statisticScreen = new StadisticsScreen(this);
 		gameOverScreen = new GameOverScreen(this);
 		creditsScreen = new CreditsScreen(this);

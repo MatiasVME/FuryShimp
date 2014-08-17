@@ -235,11 +235,11 @@ public final class GameScreen extends GenericScreen {
 	//metodo que finaliza el tiempo
 	private void endTime() {
 				
+		boolean isLastLevel = prefs.getInteger("max-level", 1) == levels.getNumLevel();
+		
 		//compruebo si la puntuacion minima ha sido alcanzada
-		// nota: pero esto debería verificar si esta jugando el último nivel
-		// y también si ese nivel no lo ha pasado todavia.
-		if (DataGame.getScore() >= levels.getMinScore()) {
-			prefs.putInteger("level", prefs.getInteger("level", 1) + 1);
+		if (DataGame.getScore() >= levels.getMinScore() && isLastLevel) {
+			prefs.putInteger("max-level", prefs.getInteger("max-level", 1) + 1);
 			prefs.flush();
 		}
 		
