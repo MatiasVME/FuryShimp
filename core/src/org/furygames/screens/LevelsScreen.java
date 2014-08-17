@@ -73,21 +73,22 @@ public class LevelsScreen extends GenericScreen{
 		table.add(levelDiezButton).pad(50).width(100).height(100);
 		
 		//obtenemos el nivel actual (Por defecto nivel 1)
-		level = prefs.getInteger("level", 1);
+		level = prefs.getInteger("level");
 		
 		//accedemos al nivel 1
 		levelUnoButton.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
             	MenuScreen.stopMusic();
-            	
-            	// Dejamos levels en estado de nivel1
-            	GameScreen.levels = Levels.LEVEL1;
-            	
-            	//Recordamos durante la partida el nivel de juego
-            	DataGame.setLevel(1);
-            	
-            	universalMonkey.setScreen(universalMonkey.getGameScreen());
+            	if(level > 0) {
+	            	// Dejamos levels en estado de nivel1
+	            	GameScreen.levels = Levels.LEVEL1;
+	            	
+	            	//Recordamos durante la partida el nivel de juego
+	            	DataGame.setLevel(1);
+	            	
+	            	universalMonkey.setScreen(universalMonkey.getGameScreen());
+            	}
             }
         });
 		
@@ -227,23 +228,7 @@ public class LevelsScreen extends GenericScreen{
 				}
 			}
 		});
-				
-		//accedemos al nivel 10
-		levelNueveButton.addListener(new ClickListener(){
-			@Override 
-			public void clicked(InputEvent event, float x, float y){
-				MenuScreen.stopMusic();
-				            	
-				if(level > 9) {
-					GameScreen.levels = Levels.LEVEL10;
-				            		
-				       	//Recordamos durante la partida el nivel de juego
-				       	DataGame.setLevel(10);
-				            		
-				       	universalMonkey.setScreen(universalMonkey.getGameScreen());
-				}
-			}
-		});
+		
 		
 		stage.addActor(background);
 		stage.addActor(table);

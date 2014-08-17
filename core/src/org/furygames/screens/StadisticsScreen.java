@@ -68,7 +68,7 @@ public class StadisticsScreen extends GenericScreen {
 		buttonsListeners();
 		
 		// Temp
-		configStatistics (3, true);
+		configStadistics (3, true);
 	}
 	
 	@Override
@@ -99,7 +99,7 @@ public class StadisticsScreen extends GenericScreen {
 		super.dispose();
 	}
 	
-	public static void configStatistics (int stars, boolean win) {
+	public static void configStadistics (int stars, boolean win) {
 		setStars(stars);
 		setWin(win);
 	}
