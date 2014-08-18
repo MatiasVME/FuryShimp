@@ -28,6 +28,11 @@ public class GameOverScreen extends GenericScreen {
 
 	public GameOverScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
+	}
+
+	@Override
+	public void show() {
+		super.show();
 		
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
 		bgRegion = new TextureRegion(bgTexture);
@@ -52,11 +57,6 @@ public class GameOverScreen extends GenericScreen {
 		// Insertamos (imagen) dentro del escenario stage
 		stage.addActor(splash2);
 		stage.addActor(splash);
-	}
-
-	@Override
-	public void show() {
-		super.show();
 		
 		// Cambiar de pantalla 
 		Timer.schedule(new Task() {
