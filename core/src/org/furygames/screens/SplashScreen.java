@@ -2,6 +2,7 @@ package org.furygames.screens;
 
 import org.furygames.furyshimp.FuryShimp;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -33,7 +34,7 @@ public class SplashScreen extends GenericScreen {
 		bgRegion = new TextureRegion(bgTexture);
 		splash2 = new Image(bgRegion);
 		
-		//music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
 		
 		splashTexture = new Texture("logo.png");
 		splashRegion = new TextureRegion(splashTexture);
@@ -65,13 +66,13 @@ public class SplashScreen extends GenericScreen {
 			public void run() {
 				splashTexture.dispose();
 				bgTexture.dispose();
-				//music.stop();
-				//music.dispose();
+				music.stop();
+				music.dispose();
 				universalMonkey.setScreen(universalMonkey.getMenuScreen());
 			}
 		}, DURATION);
 		
-		//music.play();
+		music.play();
 	}
 
 	@Override
