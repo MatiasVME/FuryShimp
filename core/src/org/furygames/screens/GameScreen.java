@@ -94,6 +94,10 @@ public final class GameScreen extends GenericScreen {
 
 		// Para que shimp se pueda mover.
 		Gdx.input.setInputProcessor(monkeyInput);
+		
+		// Centrar Shimp
+		shimp.setPosition(WIDTH / 2 - shimp.getWidth() / 2, 
+				20f);
 	}    
     
 	@Override

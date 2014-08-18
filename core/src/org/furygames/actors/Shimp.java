@@ -45,8 +45,6 @@ public class Shimp extends GenericActor {
 		dudeFrames[dudeFrames.length - 1] = dudeFrames[0];
 		
 		dudeAnimation = new Animation(0.03f, dudeFrames);
-		
-		setCenterPosition(GameScreen.WIDTH / 2, 30f);
 	}
 	
 	@Override
@@ -96,9 +94,6 @@ public class Shimp extends GenericActor {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
-		
-		Color col = getColor();
-		batch.setColor(col.r, col.g, col.b, col.a * parentAlpha);
 				
 		setSize(128, 128);
 	}

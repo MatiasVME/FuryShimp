@@ -49,8 +49,25 @@ public class LevelsScreen extends GenericScreen{
 		imgLock = new Texture(Gdx.files.internal("extras/lock.png"));
 		lock = new TextureRegion(imgLock);
 		
-		level = GameScreen.getPreferences().getInteger("max-level", 1);
-		System.out.println("max-level: " + level);
+		
+	}
+
+	@Override
+	public void show() {
+		super.show();
+		
+		// Colocar musica en caso de que no se este reproduciendo
+		if (!MenuScreen.getMusic().isPlaying())
+			MenuScreen.getMusic().play();
+		
+		// obtenemos el nivel actual (Por defecto nivel 1)
+		if (GameScreen.getPreferences() != null)
+			level = GameScreen.getPreferences().getInteger("max-level", 1);
+		
+		// Para que el nivel necesite serlimpiado
+    	GameScreen.setNeedNivelClear(true);
+    	
+    	level = GameScreen.getPreferences().getInteger("max-level", 1);
 		
 		if(level >= 0)
 		{
@@ -287,22 +304,6 @@ public class LevelsScreen extends GenericScreen{
 		
 		stage.addActor(background);
 		stage.addActor(table);
-	}
-
-	@Override
-	public void show() {
-		super.show();
-		
-		// Colocar musica en caso de que no se este reproduciendo
-		if (!MenuScreen.getMusic().isPlaying())
-			MenuScreen.getMusic().play();
-		
-		// obtenemos el nivel actual (Por defecto nivel 1)
-		if (GameScreen.getPreferences() != null)
-			level = GameScreen.getPreferences().getInteger("max-level", 1);
-		
-		// Para que el nivel necesite serlimpiado
-    	GameScreen.setNeedNivelClear(true);
 	}
 	
 	@Override
