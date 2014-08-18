@@ -362,7 +362,7 @@ public final class GameScreen extends GenericScreen {
 				
 				// Crear rocas del nivel.
 				if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
-					Creator.createRocks(2, rocks, stage);
+					Creator.createRocks(3, rocks, stage);
 				}
 	
 				// Si las rocas no estan volando eliminarlas.
@@ -373,7 +373,7 @@ public final class GameScreen extends GenericScreen {
 	
 				// Crear bananas del nivel.
 				if (bananas.size == 0 && !FlyingObjets.isFlyingBananas(bananas)) {
-					Creator.createBananas(3, bananas, stage);
+					Creator.createBananas(2, bananas, stage);
 				}
 	
 				// Si las bananas no estan volando eliminarlas.
@@ -384,7 +384,7 @@ public final class GameScreen extends GenericScreen {
 				
 				// Crear coconuts del nivel.
 				if (coconuts.size == 0 && !FlyingObjets.isFlyingCoconut(coconuts)) {
-					Creator.createCoconuts(3, coconuts, stage);
+					Creator.createCoconuts(4, coconuts, stage);
 				}
 	
 				// Si los coconuts no estan volando eliminarlos.

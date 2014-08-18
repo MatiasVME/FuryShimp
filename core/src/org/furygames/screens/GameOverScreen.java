@@ -36,10 +36,29 @@ public class GameOverScreen extends GenericScreen {
 		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
 		
 		splashTexture = new Texture("gameover.png");
+	}
+
+	@Override
+	public void show() {
+		super.show();
+		
 		splashRegion = new TextureRegion(splashTexture);
 		splash = new Image(splashRegion);
 		pa = new ParallelAction();
-
+		
+		// Cambiar de pantalla 
+		Timer.schedule(new Task() {
+			@Override
+			public void run() {
+				//splashTexture.dispose();
+				//bgTexture.dispose();
+				music.stop();
+				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
+			}
+		}, DURATION);
+		
+		music.play();
+		
 		splash.setCenterPosition(WIDTH / 2, HEIGHT / 2);
 		splash.setOrigin(splash.getWidth() / 2, splash.getHeight() / 2);
 
@@ -55,25 +74,6 @@ public class GameOverScreen extends GenericScreen {
 	}
 
 	@Override
-	public void show() {
-		super.show();
-		
-		// Cambiar de pantalla 
-		Timer.schedule(new Task() {
-			@Override
-			public void run() {
-				splashTexture.dispose();
-				bgTexture.dispose();
-				music.stop();
-				music.dispose();
-				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
-			}
-		}, DURATION);
-		
-		music.play();
-	}
-
-	@Override
 	public void render(float delta) {
 		super.render(delta);
 
@@ -84,6 +84,6 @@ public class GameOverScreen extends GenericScreen {
 	@Override
 	public void dispose() {
 
-		super.dispose();
+		//super.dispose();
 	}
 }
