@@ -37,6 +37,8 @@ public class BackgroundManager {
 		imgBackgrounds[0].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
 		imgBackgrounds[1].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
 		imgBackgrounds[2].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
+		
+	
 	}
 	
 	public Image getImage(int img) {

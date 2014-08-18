@@ -5,10 +5,7 @@ import org.furygames.furyshimp.FuryShimp;
 import org.furygames.furyshimp.Levels;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -17,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.sun.rowset.internal.Row;
 
 public class LevelsScreen extends GenericScreen{
 
@@ -75,15 +71,23 @@ public class LevelsScreen extends GenericScreen{
 		//accedemos al nivel 1
 		levelUnoButton.addListener(new ClickListener(){
             @Override 
-            public void clicked(InputEvent event, float x, float y){
-
+            public void clicked(InputEvent event, float x, float y) {
+            	MenuScreen.getMusic().stop();
+            	             	
+             	// Dejamos levels en estado de nivel1
+             	GameScreen.levels = Levels.LEVEL1;
+             	
+             	//Recordamos durante la partida el nivel de juego
+             	DataGame.setLevel(1);
+             	
+             	universalMonkey.setScreen(universalMonkey.getGameScreen());
             }
         });
 		
 		//accedemos al nivel 2
 		levelDosButton.addListener(new ClickListener(){
             @Override 
-            public void clicked(InputEvent event, float x, float y){
+            public void clicked(InputEvent event, float x, float y) {
             	
             	if(level > 1) {
                 	MenuScreen.getMusic().stop();

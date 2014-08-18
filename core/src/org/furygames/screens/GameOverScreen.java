@@ -24,7 +24,7 @@ public class GameOverScreen extends GenericScreen {
 	private Image splash;
 	private TextureRegion splashRegion;
 	private Texture splashTexture;
-	private ParallelAction pa, pb;
+	private ParallelAction pa;
 
 	public GameOverScreen (final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -32,7 +32,6 @@ public class GameOverScreen extends GenericScreen {
 		bgTexture = new Texture("backgrounds/bgbeach.jpg");
 		bgRegion = new TextureRegion(bgTexture);
 		splash2 = new Image(bgRegion);
-		pb = new ParallelAction();
 		
 		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
 		
@@ -63,10 +62,10 @@ public class GameOverScreen extends GenericScreen {
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
-				/*splashTexture.dispose();
+				splashTexture.dispose();
 				bgTexture.dispose();
-				music.dispose();*/
 				music.stop();
+				music.dispose();
 				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
 			}
 		}, DURATION);

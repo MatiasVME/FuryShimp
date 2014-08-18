@@ -22,7 +22,6 @@ public abstract class GenericScreen implements Screen {
 	protected Stage stage;
 	protected FitViewport fitViewport;
 	protected SpriteBatch batch;
-	static Preferences prefs = Gdx.app.getPreferences("preferencias");
 	
 	public GenericScreen (FuryShimp universalMonkey) {
 		this.universalMonkey = universalMonkey;
