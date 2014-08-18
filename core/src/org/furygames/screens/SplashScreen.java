@@ -46,7 +46,7 @@ public class SplashScreen extends GenericScreen {
 
 		// acciones del splash
 		pa.addAction(Actions.fadeOut(DURATION));
-		pa.addAction(Actions.rotateBy(17, DURATION));	
+		//pa.addAction(Actions.rotateBy(17, DURATION));	
 		splash.addAction(pa);
 		
 		//splash2.setAlign(0);
@@ -64,7 +64,8 @@ public class SplashScreen extends GenericScreen {
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
-				splashTexture.dispose();
+				//splashTexture.dispose();
+				//bgTexture.dispose();
 				music.stop();
 				music.dispose();
 				universalMonkey.setScreen(universalMonkey.getMenuScreen());
