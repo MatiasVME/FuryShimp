@@ -28,6 +28,7 @@ public class FuryShimp extends Game {
 		levelsScreen = new LevelsScreen(this);
 		menuScreen = new MenuScreen(this);
 		gameOverScreen = new GameOverScreen(this);
+		stadisticScreen = new StadisticsScreen(this);
 		creditsScreen = new CreditsScreen(this);
 		
 		setScreen(splashScreen);

@@ -14,10 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.sun.rowset.internal.Row;
 
 public class LevelsScreen extends GenericScreen{
 
@@ -52,6 +49,9 @@ public class LevelsScreen extends GenericScreen{
 		imgLock = new Texture(Gdx.files.internal("extras/lock.png"));
 		lock = new TextureRegion(imgLock);
 		
+		level = GameScreen.getPreferences().getInteger("max-level", 1);
+		System.out.println("max-level: " + level);
+		
 		if(level >= 0)
 		{
 			levelUnoButton = new TextButton("1", skin);
@@ -65,7 +65,7 @@ public class LevelsScreen extends GenericScreen{
 	            		// Dejamos levels en estado de level2
 	            		GameScreen.levels = Levels.LEVEL1;
 	            		
-	            		//Recordamos durante la partida el nivel de juego
+	            		//Recordamos durante la partida el nivel de jue1go
 	                	DataGame.setLevel(1);
 	            		
 	            		universalMonkey.setScreen(universalMonkey.getGameScreen());

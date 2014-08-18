@@ -258,7 +258,10 @@ public final class GameScreen extends GenericScreen {
 			}
 		}
 		
-		universalMonkey.setScreen(universalMonkey.getLevelsScreen());
+		if (win == true) {
+			StadisticsScreen.configStadistics(stars, win);
+			universalMonkey.setScreen(universalMonkey.getStadisticScreen());
+		}
 		
 		music.dispose();
 		musicExist = false;
