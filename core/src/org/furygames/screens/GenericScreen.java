@@ -26,7 +26,6 @@ public abstract class GenericScreen implements Screen {
 	
 	public GenericScreen (FuryShimp universalMonkey) {
 		this.universalMonkey = universalMonkey;
-		
 		fitViewport = new FitViewport(WIDTH, HEIGHT);
 		stage = new Stage(fitViewport);
 		
