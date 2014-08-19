@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.Timer.Task;
 
 public class GameOverScreen extends GenericScreen {
 	
-	private final float DURATION = 2f; 
+	private final float DURATION = 1f; 
 	
 	private Image splash2;
 	private Texture bgTexture;
@@ -38,7 +38,7 @@ public class GameOverScreen extends GenericScreen {
 		bgRegion = new TextureRegion(bgTexture);
 		splash2 = new Image(bgRegion);
 		
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/game_over.mp3"));
 		
 		splashTexture = new Texture("gameover.png");
 		

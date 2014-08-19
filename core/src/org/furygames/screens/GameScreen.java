@@ -262,8 +262,13 @@ public final class GameScreen extends GenericScreen {
 			}
 		}
 		
-		StadisticsScreen.configStadistics(stars, win);
-		universalMonkey.setScreen(universalMonkey.getStadisticScreen());
+		if (win) {
+			StadisticsScreen.configStadistics(stars, win);
+			universalMonkey.setScreen(universalMonkey.getStadisticScreen());	
+		}
+		
+		else
+			universalMonkey.setScreen(universalMonkey.getGameOverScreen());
 		
 		music.dispose();
 		musicExist = false;
@@ -611,7 +616,70 @@ public final class GameScreen extends GenericScreen {
 				break;
 				
 			case 6:
-				System.out.println("level6");
+				// Sonido.
+				if (!musicExist)
+					music(2);
+				
+				// Si el nivel necesita ser limpiado lo limpia y añade las cosas del nivel
+				if (needLevelClear) {
+					currentBackground = bgManager.getImage(2);
+					
+					// Hack: Accede al primer actor que es el background y lo cambia,
+					// esto se podría optimizar de alguna forma, ya que no 
+					// necesariamente el primer actor debería ser el background.
+					stage.getActors().items[0] = currentBackground;
+					
+					// Limpia el nivel
+					clearLevel();
+				}
+				
+				// Crear rocas del nivel.
+				if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
+					Creator.createRocks(5, rocks, stage);
+					Creator.createLargeRocks(4, rocks, stage);
+				}
+	
+				// Si las rocas no estan volando eliminarlas.
+				else if (!FlyingObjets.isFlyingRocks(rocks)){
+					// Remover Rocas
+					for (Rock rock : rocks)
+						rock.remove();
+	
+					// Vaciar array.
+					rocks.clear();
+				}
+	
+				// Crear bananas del nivel.
+				if (bananas.size == 0 && !FlyingObjets.isFlyingBananas(bananas)) {
+					Creator.createBananas(3, bananas, stage);
+					Creator.createLargeBananas(1, bananas, stage);
+				}
+	
+				// Si las bananas no estan volando eliminarlas.
+				else if (!FlyingObjets.isFlyingBananas(bananas)){
+					// Remover bananas.
+					for (Bananas banana : bananas)
+						banana.remove();
+	
+					// Vaciar array.
+					bananas.clear();
+				}
+				
+				// Crear coconuts del nivel.
+				if (coconuts.size == 0 && !FlyingObjets.isFlyingCoconut(coconuts)) {
+					Creator.createCoconuts(4, coconuts, stage);
+					Creator.createLargeCoconuts(1, coconuts, stage);
+				}
+	
+				// Si los coconuts no estan volando eliminarlos.
+				else if (!FlyingObjets.isFlyingCoconut(coconuts)){
+					// Remover coconuts.
+					for (Coconut coconut : coconuts)
+						coconut.remove();
+	
+					// Vaciar array.
+					coconuts.clear();
+				}
 				break;
 				
 			case 7:
