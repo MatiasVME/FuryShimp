@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.Timer.Task;
 
 public class GameOverScreen extends GenericScreen {
 	
-	private final float DURATION = 2f; 
+	private final float DURATION = 1f; 
 	
 	private Image splash2;
 	private Texture bgTexture;
@@ -38,9 +38,10 @@ public class GameOverScreen extends GenericScreen {
 		bgRegion = new TextureRegion(bgTexture);
 		splash2 = new Image(bgRegion);
 		
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/game_over.mp3"));
 		
 		splashTexture = new Texture("gameover.png");
+		
 		splashRegion = new TextureRegion(splashTexture);
 		splash = new Image(splashRegion);
 		pa = new ParallelAction();
@@ -62,15 +63,27 @@ public class GameOverScreen extends GenericScreen {
 		Timer.schedule(new Task() {
 			@Override
 			public void run() {
-				splashTexture.dispose();
-				bgTexture.dispose();
+				//splashTexture.dispose();
+				//bgTexture.dispose();
 				music.stop();
-				music.dispose();
 				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
 			}
 		}, DURATION);
 		
 		music.play();
+		
+		splash.setCenterPosition(WIDTH / 2, HEIGHT / 2);
+		splash.setOrigin(splash.getWidth() / 2, splash.getHeight() / 2);
+
+		// acciones del splash
+		pa.addAction(Actions.fadeOut(DURATION));	
+		splash.addAction(pa);
+		
+		splash2.setAlign(0);
+		
+		// Insertamos (imagen) dentro del escenario stage
+		stage.addActor(splash2);
+		stage.addActor(splash);
 	}
 
 	@Override

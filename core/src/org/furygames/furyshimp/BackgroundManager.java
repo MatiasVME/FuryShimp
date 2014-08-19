@@ -9,7 +9,7 @@ public class BackgroundManager {
 	
 	private final float WIDTH = 1280f;
 	private final float HEIGHT = 720f;
-	private final int TOTAL_BACKGROUNDS = 3;
+	private final int TOTAL_BACKGROUNDS = 10;
 		
 	private Texture [] ttBackgrounds;	
 	private Image [] imgBackgrounds;
@@ -22,36 +22,50 @@ public class BackgroundManager {
 		ttBackgrounds[0] = new Texture ("backgrounds/bgjungle.jpg");
 		ttBackgrounds[1] = new Texture ("backgrounds/bgbeach.jpg");
 		ttBackgrounds[2] = new Texture ("backgrounds/bgmountains.jpg");
+		ttBackgrounds[3] = new Texture ("backgrounds/bgbeach2.jpg");
+		ttBackgrounds[4] = new Texture ("backgrounds/bg5.jpg");
+		ttBackgrounds[5] = new Texture ("backgrounds/bg6.jpg");
+		ttBackgrounds[6] = new Texture ("backgrounds/bg7.jpg");
+		ttBackgrounds[7] = new Texture ("backgrounds/bg8.jpg");
+		ttBackgrounds[8] = new Texture ("backgrounds/bg9.jpg");
+		ttBackgrounds[9] = new Texture ("backgrounds/bg10.jpg");
 		
-		// Inicializar actores img
-		imgBackgrounds[0] = new Image(ttBackgrounds[0]);
-		imgBackgrounds[1] = new Image(ttBackgrounds[1]);
-		imgBackgrounds[2] = new Image(ttBackgrounds[2]);
-		
-		// Le damos tamaño a los actores
-		imgBackgrounds[0].setSize(WIDTH, HEIGHT);
-		imgBackgrounds[1].setSize(WIDTH, HEIGHT);
-		imgBackgrounds[2].setSize(WIDTH, HEIGHT);
-		
-		// Le damos posición a los actores
-		imgBackgrounds[0].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
-		imgBackgrounds[1].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
-		imgBackgrounds[2].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
-		
-	
+		for (int i = 0; i < TOTAL_BACKGROUNDS; i++) {
+			// Inicializar actores img
+			imgBackgrounds[i] = new Image(ttBackgrounds[i]);
+			// Le damos tamaño a los actores
+			imgBackgrounds[i].setSize(WIDTH, HEIGHT);
+			// Le damos posición a los actores
+			imgBackgrounds[i].setCenterPosition(GameScreen.WIDTH / 2, GameScreen.HEIGHT / 2);
+		}
 	}
 	
 	public Image getImage(int img) {
 		switch (img) {
-		case 1:
-			return imgBackgrounds[0];
-		case 2:
-			return imgBackgrounds[1];
-		case 3:
-			return imgBackgrounds[2];
-		default:
-			break;
+			case 1:
+				return imgBackgrounds[0];
+			case 2:
+				return imgBackgrounds[1];
+			case 3:
+				return imgBackgrounds[2];
+			case 4:
+				return imgBackgrounds[3];
+			case 5:
+				return imgBackgrounds[4];
+			case 6:
+				return imgBackgrounds[5];
+			case 7:
+				return imgBackgrounds[6];
+			case 8:
+				return imgBackgrounds[7];
+			case 9:
+				return imgBackgrounds[8];
+			case 10:
+				return imgBackgrounds[9];
+			default:
+				break;
 		}
+		
 		return null;
 	}
 }
