@@ -121,7 +121,27 @@ public class Creator {
 					0 - Coconut.HEIGHT);
 
 			coconuts.add(new Coconut(origin, destination,
-					MathUtils.random(2f, 4f)));
+					MathUtils.random(2f, 4f), false));
+		}
+
+		for (Coconut coconut : coconuts) {
+			stage.addActor(coconut);
+		}
+	}
+	
+	public static void createLargeCoconuts (int max, Array <Coconut> coconuts, Stage stage) {
+		int numOfCoconuts = MathUtils.random(0, max);
+
+		for (int i = 0; i < numOfCoconuts; i++) {
+			Vector2 origin = new Vector2(
+					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2), 
+					GameScreen.HEIGHT);
+			Vector2 destination = new Vector2(
+					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2),
+					0 - Coconut.HEIGHT);
+
+			coconuts.add(new Coconut(origin, destination,
+					MathUtils.random(3f, 5f), true));
 		}
 
 		for (Coconut coconut : coconuts) {

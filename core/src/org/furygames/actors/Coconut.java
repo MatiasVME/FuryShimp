@@ -10,12 +10,19 @@ public class Coconut extends Droppable {
 
 	public final static int WIDTH = 122;
 	public final static int HEIGHT = 128;
+	
+	private boolean isLarge = false;
 
-	public Coconut(Vector2 origin, Vector2 destination, float speed) {
+	public Coconut(Vector2 origin, Vector2 destination, float speed, boolean isLarge) {
 		super(origin, destination, speed, "actors/coconut.png");
+		this.isLarge = isLarge;
 		
 		textureRegion.setRegion(0, 0, WIDTH, HEIGHT);
-		setOrigin(WIDTH / 2 / 2, HEIGHT / 2 / 2);
+		
+		if (isLarge)
+			setOrigin(WIDTH / 2, HEIGHT / 2);
+		else
+			setOrigin(WIDTH / 2 / 2, HEIGHT / 2 / 2);
 
 		// Movimiento.
 		ParallelAction pa = new ParallelAction();
@@ -28,6 +35,9 @@ public class Coconut extends Droppable {
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
 		
-		setSize(WIDTH / 2, HEIGHT / 2);
+		if (isLarge)
+			setSize(WIDTH, HEIGHT);
+		else
+			setSize(WIDTH / 2, HEIGHT / 2);
 	}
 }
