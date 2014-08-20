@@ -2,11 +2,11 @@ package org.furygames.furyshimp;
 
 public enum Levels {
 	
-	LEVEL10 (null, 10, 65, 70, 80),
-	LEVEL9 (LEVEL10, 9, 65, 70, 80),
-	LEVEL8 (LEVEL9, 8, 65, 70, 80),
-	LEVEL7 (LEVEL8, 7, 65, 70, 80),
-	LEVEL6 (LEVEL7, 6, 65, 70, 80),
+	LEVEL10 (null, 10, 0, 1, 2),
+	LEVEL9 (LEVEL10, 9, 0, 1, 2),
+	LEVEL8 (LEVEL9, 8, 0, 1, 2),
+	LEVEL7 (LEVEL8, 7, 0, 1, 2),
+	LEVEL6 (LEVEL7, 6, 70, 80, 90),
 	LEVEL5 (LEVEL6, 5, 100, 110, 120),
 	LEVEL4 (LEVEL5, 4, 100, 110, 115),
 	LEVEL3 (LEVEL4, 3, 100, 110, 115),
