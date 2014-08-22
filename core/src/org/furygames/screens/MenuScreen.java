@@ -77,8 +77,6 @@ public class MenuScreen extends GenericScreen {
 	public void show() {
 		super.show();
 		
-		//universalMonkey.myRequestHandler.showOrLoadInterstital();
-		
 		music.setLooping(true);
 		music.play();
 	}
@@ -86,7 +84,7 @@ public class MenuScreen extends GenericScreen {
 	@Override
 	public void render(float delta) {
 		super.render(delta);
-
+		
 		stage.draw();
 		stage.act();
 	}

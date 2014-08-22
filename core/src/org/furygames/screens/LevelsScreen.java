@@ -56,6 +56,8 @@ public class LevelsScreen extends GenericScreen{
 	public void show() {
 		super.show();
 		
+		universalMonkey.myRequestHandler.showOrLoadInterstital();
+		
 		// Colocar musica en caso de que no se este reproduciendo
 		if (!MenuScreen.getMusic().isPlaying())
 			MenuScreen.getMusic().play();
