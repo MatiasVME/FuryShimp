@@ -635,7 +635,7 @@ public final class GameScreen extends GenericScreen {
 				
 				// Crear rocas del nivel.
 				if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
-					Creator.createRocks(5, rocks, stage);
+					Creator.createRocks(3, rocks, stage);
 					Creator.createLargeRocks(4, rocks, stage);
 				}
 	
@@ -703,8 +703,8 @@ public final class GameScreen extends GenericScreen {
 				
 				// Crear rocas del nivel.
 				if (rocks.size == 0 && !FlyingObjets.isFlyingRocks(rocks)) {
-					Creator.createRocks(3, rocks, stage);
-					Creator.createLargeRocks(3, rocks, stage);
+					Creator.createRocks(2, rocks, stage);
+					Creator.createLargeRocks(5, rocks, stage);
 				}
 	
 				// Si las rocas no estan volando eliminarlas.

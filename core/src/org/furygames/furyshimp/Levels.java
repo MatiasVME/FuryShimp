@@ -7,11 +7,11 @@ public enum Levels {
 	LEVEL8 (LEVEL9, 8, 0, 1, 2),
 	LEVEL7 (LEVEL8, 7, 0, 1, 2),
 	LEVEL6 (LEVEL7, 6, 70, 80, 90),
-	LEVEL5 (LEVEL6, 5, 100, 110, 120),
-	LEVEL4 (LEVEL5, 4, 100, 110, 115),
-	LEVEL3 (LEVEL4, 3, 100, 110, 115),
-	LEVEL2 (LEVEL3, 2, 100, 105, 110),
-	LEVEL1 (LEVEL2, 1, 95, 100, 110);
+	LEVEL5 (LEVEL6, 5, 114, 118, 120), // Ok
+	LEVEL4 (LEVEL5, 4, 115, 125, 140), // Ok
+	LEVEL3 (LEVEL4, 3, 110, 130, 145), // Ok
+	LEVEL2 (LEVEL3, 2, 105, 110, 115), // Ok
+	LEVEL1 (LEVEL2, 1, 95, 100, 110); // Ok
 	
 	private final Levels next;
 	private int numLevel; // Numero del nivel

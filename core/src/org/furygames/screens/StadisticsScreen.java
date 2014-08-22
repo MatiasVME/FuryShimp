@@ -80,6 +80,8 @@ public class StadisticsScreen extends GenericScreen {
 		super.show();
 		
 		score = String.valueOf(DataGame.getScore());
+		
+		MenuScreen.getMusic().play();
 	}
 	
 	@Override

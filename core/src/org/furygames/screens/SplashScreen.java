@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Timer.Task;
 public class SplashScreen extends GenericScreen {
 
 
-	private final float DURATION = 4.2f; // Segundos
+	private final float DURATION = 3.0f; // Segundos
 	private Music music;
 	private Image splash;
 	private TextureRegion splashRegion;
@@ -27,7 +27,7 @@ public class SplashScreen extends GenericScreen {
 		
 		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/levels/Movie Theater Intro.mp3"));
 		
-		splashTexture = new Texture("logo.png");
+		splashTexture = new Texture("splash.jpg");
 		splashRegion = new TextureRegion(splashTexture);
 		splash = new Image(splashRegion);
 		pa = new ParallelAction();
