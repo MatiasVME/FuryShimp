@@ -65,7 +65,7 @@ public class Creator {
 			stage.addActor(rock);
 		}
 	}
-
+	
 	// Crea las bananas y las añade al escenario.
 	public static void createBananas (int max, Array <Bananas> bananas, Stage stage) {
 		int numOfBananas = MathUtils.random(0, max);

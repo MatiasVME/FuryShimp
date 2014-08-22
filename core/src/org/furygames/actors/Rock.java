@@ -7,6 +7,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 
 public class Rock extends Droppable {
 	
@@ -19,7 +21,6 @@ public class Rock extends Droppable {
 	public Rock(Vector2 origin, Vector2 destination, float speed, boolean isLarge) {
 		super(origin, destination, speed, "actors/rock.png");
 		this.isLarge = isLarge;
-		this.isBoomeran = isBoomeran;
 
 		textureRegion.setRegion(0, 0, WIDTH, HEIGHT);
 		
@@ -33,6 +34,7 @@ public class Rock extends Droppable {
 		pa.addAction(Actions.moveTo(destination.x, destination.y, speed));
 		pa.addAction(Actions.rotateBy(MathUtils.random(-360 * 4, 360 * 4), speed));
 		addAction(pa);
+
 	}
 	
 	@Override
