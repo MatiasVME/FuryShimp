@@ -14,7 +14,7 @@ public class Bananas extends Droppable {
 	private boolean isLarge = false;
 	
 	public Bananas(Vector2 origin, Vector2 destination, float speed, boolean large) {
-		super(origin, destination, speed, "actors/banana.png");
+                super(origin, destination, speed, "actors/banana.png");
 		isLarge = large;
 		
 		textureRegion.setRegion(0, 0, WIDTH, HEIGHT);

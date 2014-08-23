@@ -53,6 +53,8 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+.nb-gradle-properties
+.nb-gradle/
 
 ## Gradle
 
@@ -63,3 +65,4 @@ build/
 .DS_Store
 .directory
 *~
+/.nb-gradle/private/
