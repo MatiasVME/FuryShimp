@@ -57,13 +57,16 @@ public class StadisticsScreen extends GenericScreen {
 		levels = new Image(ttLevels);
 		nextLevel = new Image(ttNextLevel);
 		
-		resume.setSize(128f, 128f);
-		levels.setSize(128f, 128f);
-		nextLevel.setSize(128f, 128f);
+		resume.setSize(437f, 281f);
+		levels.setSize(422f, 323f);
+		nextLevel.setSize(323f, 277f);
 		
-		levels.setCenterPosition(300, 200);
-		resume.setCenterPosition(700, 220);
-		nextLevel.setCenterPosition(1050, 190);
+		levels.setCenterPosition(282, 195);
+		resume.setCenterPosition(718, 215);
+		nextLevel.setCenterPosition(1068, 180);
+		
+		//configStadistics(3, true);
+		//DataGame.setScore(999);
 		
 		// Añadir actores
 		//
@@ -91,7 +94,7 @@ public class StadisticsScreen extends GenericScreen {
 		batch.begin();
 			batch.draw(background, 0, 0, GenericScreen.WIDTH, 
 					GenericScreen.HEIGHT);
-			bfScore.draw(batch, score, GameScreen.WIDTH / 2, 460);
+			bfScore.draw(batch, score, GameScreen.WIDTH / 2, 440);
 			drawStars();
 		batch.end();
 		
@@ -131,6 +134,7 @@ public class StadisticsScreen extends GenericScreen {
 		nextLevel.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				MenuScreen.getMusic().stop();
 				GameScreen.setNeedNivelClear(true);
 				GameScreen.levels = GameScreen.levels.next();
 				universalMonkey.setScreen(universalMonkey.getGameScreen());
@@ -162,7 +166,7 @@ public class StadisticsScreen extends GenericScreen {
 		
 		if (stars.size > 0) {
 			for (int i = 0, x = 128 * 3; i < stars.size; i++, x += 128 + SEPARATOR)
-				batch.draw(stars.get(i), x, 490, 128, 128);
+				batch.draw(stars.get(i), x, 480, 128, 128);
 		}
 	}
 }

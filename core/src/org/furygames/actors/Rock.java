@@ -12,7 +12,6 @@ public class Rock extends Droppable {
 	public final static int HEIGHT = 108;
 	
 	private boolean isLarge = false;
-	private boolean isBoomeran = false;
 	
 	public Rock(Vector2 origin, Vector2 destination, float speed, boolean isLarge) {
 		super(origin, destination, speed, "actors/rock.png");
@@ -20,9 +19,9 @@ public class Rock extends Droppable {
 
 		textureRegion.setRegion(0, 0, WIDTH, HEIGHT);
 		
-		if (isLarge && !isBoomeran)
+		if (isLarge)
 			setOrigin(WIDTH / 2, HEIGHT / 2);
-		else if (!isLarge && !isBoomeran)
+		else if (!isLarge)
 			setOrigin(WIDTH / 2 / 2, HEIGHT / 2 / 2);
 		
 		// Movimiento.
