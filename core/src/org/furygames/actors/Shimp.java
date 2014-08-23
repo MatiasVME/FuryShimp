@@ -3,13 +3,9 @@ package org.furygames.actors;
 import org.furygames.inputs.VirtualController;
 import org.furygames.screens.GameScreen;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-
 
 public class Shimp extends GenericActor {
 

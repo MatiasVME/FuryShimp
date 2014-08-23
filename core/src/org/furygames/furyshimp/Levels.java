@@ -6,7 +6,7 @@ public enum Levels {
 	LEVEL9 (LEVEL10, 9, 0, 1, 2),
 	LEVEL8 (LEVEL9, 8, 0, 1, 2),
 	LEVEL7 (LEVEL8, 7, 0, 1, 2),
-	LEVEL6 (LEVEL7, 6, 70, 80, 90),
+	LEVEL6 (LEVEL7, 6, 110, 115, 120), // ~
 	LEVEL5 (LEVEL6, 5, 114, 118, 120), // Ok
 	LEVEL4 (LEVEL5, 4, 115, 125, 140), // Ok
 	LEVEL3 (LEVEL4, 3, 110, 130, 145), // Ok

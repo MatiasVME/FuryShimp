@@ -7,11 +7,7 @@ import org.furygames.actors.Shimp;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 
 public class Collides {
 	
