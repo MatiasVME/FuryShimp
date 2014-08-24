@@ -19,16 +19,16 @@ public class BackgroundManager {
 		imgBackgrounds = new Image [TOTAL_BACKGROUNDS];
 		
 		// Inicializar backgrounds
-		ttBackgrounds[0] = new Texture ("backgrounds/bgjungle.jpg");
-		ttBackgrounds[1] = new Texture ("backgrounds/bgbeach.jpg");
-		ttBackgrounds[2] = new Texture ("backgrounds/bgmountains.jpg");
-		ttBackgrounds[3] = new Texture ("backgrounds/bgbeach2.jpg");
-		ttBackgrounds[4] = new Texture ("backgrounds/bg5.jpg");
-		ttBackgrounds[5] = new Texture ("backgrounds/bg6.jpg");
-		ttBackgrounds[6] = new Texture ("backgrounds/bg7.jpg");
-		ttBackgrounds[7] = new Texture ("backgrounds/bg8.jpg");
-		ttBackgrounds[8] = new Texture ("backgrounds/bg9.jpg");
-		ttBackgrounds[9] = new Texture ("backgrounds/bg10.jpg");
+		ttBackgrounds[0] = new Texture ("backgrounds/bg-level-1.jpg");
+		ttBackgrounds[1] = new Texture ("backgrounds/bg-level-2.jpg");
+		ttBackgrounds[2] = new Texture ("backgrounds/bg-level-3.jpg");
+		ttBackgrounds[3] = new Texture ("backgrounds/bg-level-4.jpg");
+		ttBackgrounds[4] = new Texture ("backgrounds/bg-level-5.jpg");
+		ttBackgrounds[5] = new Texture ("backgrounds/bg-level-6.jpg");
+		ttBackgrounds[6] = new Texture ("backgrounds/bg-level-7.jpg");
+		ttBackgrounds[7] = new Texture ("backgrounds/bg-level-8.jpg");
+		ttBackgrounds[8] = new Texture ("backgrounds/bg-level-9.jpg");
+		ttBackgrounds[9] = new Texture ("backgrounds/bg-level-10.jpg");
 		
 		for (int i = 0; i < TOTAL_BACKGROUNDS; i++) {
 			// Inicializar actores img

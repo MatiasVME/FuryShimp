@@ -44,7 +44,7 @@ public class LevelsScreen extends GenericScreen{
 		
 		skin = new Skin(Gdx.files.internal("uiskin/uiskin.json"));
 		
-		bgTexture = new Texture("backgrounds/bgbeach.jpg");
+		bgTexture = new Texture("backgrounds/bg-levels.jpg");
 		bgRegion = new TextureRegion(bgTexture);
 		background = new Image(bgRegion);
 		
