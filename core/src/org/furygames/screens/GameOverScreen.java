@@ -34,7 +34,7 @@ public class GameOverScreen extends GenericScreen {
 	public void show() {
 		super.show();
 		
-		bgTexture = new Texture("backgrounds/bgbeach.jpg");
+		bgTexture = new Texture("backgrounds/bg-levels.jpg");
 		bgRegion = new TextureRegion(bgTexture);
 		splash2 = new Image(bgRegion);
 		
