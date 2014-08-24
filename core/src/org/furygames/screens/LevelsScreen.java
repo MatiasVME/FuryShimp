@@ -36,6 +36,8 @@ public class LevelsScreen extends GenericScreen{
 	private Button levelDiezButton;
 	private Table table;
 	private int level;
+	private Texture ttBackButton;
+	private Image imgBackButton;
 	
 	public LevelsScreen(final FuryShimp universalMonkey) {
 		super(universalMonkey);
@@ -49,7 +51,18 @@ public class LevelsScreen extends GenericScreen{
 		imgLock = new Texture(Gdx.files.internal("extras/lock.png"));
 		lock = new TextureRegion(imgLock);
 		
+		// Back button
+		ttBackButton = new Texture("buttons/back_button.png");
+		imgBackButton = new Image(ttBackButton);
+		imgBackButton.setSize(128, 128);
+		imgBackButton.setPosition(GameScreen.WIDTH - 128f, 0);
 		
+		imgBackButton.addListener(new ClickListener(){
+            @Override 
+            public void clicked(InputEvent event, float x, float y){
+            	universalMonkey.setScreen(universalMonkey.getMenuScreen());
+            }
+        });
 	}
 
 	@Override
@@ -306,6 +319,7 @@ public class LevelsScreen extends GenericScreen{
 		
 		stage.addActor(background);
 		stage.addActor(table);
+		stage.addActor(imgBackButton);
 	}
 	
 	@Override
