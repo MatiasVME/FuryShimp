@@ -30,10 +30,6 @@ public class LevelsScreen extends GenericScreen{
 	private Button levelCuatroButton;
 	private Button levelCincoButton;
 	private Button levelSeisButton;
-	private Button levelSieteButton;
-	private Button levelOchoButton;
-	private Button levelNueveButton;
-	private Button levelDiezButton;
 	private Table table;
 	private int level;
 	private Texture ttBackButton;
@@ -219,103 +215,15 @@ public class LevelsScreen extends GenericScreen{
 			levelSeisButton = new Button(new Image(lock), skin);
 		}
 		
-		if(level >= 7)
-		{
-			levelSieteButton = new TextButton("7", skin);
-			
-			//accedemos al nivel 7
-			levelSieteButton.addListener(new ClickListener(){
-				@Override 
-				public void clicked(InputEvent event, float x, float y){	            	
-						MenuScreen.getMusic().stop();	
-						GameScreen.levels = Levels.LEVEL7;
-					            		
-						//Recordamos durante la partida el nivel de juego
-						DataGame.setLevel(7);
-					            		
-					 	universalMonkey.setScreen(universalMonkey.getGameScreen());
-				}
-			});
-		}else{
-			levelSieteButton = new Button(new Image(lock), skin);
-		}
-		
-		if(level >= 8)
-		{
-			levelOchoButton = new TextButton("8", skin);
-			
-			//accedemos al nivel 8
-			levelOchoButton.addListener(new ClickListener(){
-				@Override 
-				public void clicked(InputEvent event, float x, float y){
-						MenuScreen.getMusic().stop();	
-						GameScreen.levels = Levels.LEVEL8;
-					            		
-						//Recordamos durante la partida el nivel de juego
-						DataGame.setLevel(8);
-					            		
-					    universalMonkey.setScreen(universalMonkey.getGameScreen());
-				}
-			});		
-		}else{
-			levelOchoButton = new Button(new Image(lock), skin);
-		}
-		
-		if(level >= 9)
-		{
-			levelNueveButton = new TextButton("9", skin);
-			
-			//accedemos al nivel 9
-			levelNueveButton.addListener(new ClickListener(){
-				@Override 
-				public void clicked(InputEvent event, float x, float y){        	
-						MenuScreen.getMusic().stop();	
-						GameScreen.levels = Levels.LEVEL9;
-					            		
-						//Recordamos durante la partida el nivel de juego
-						DataGame.setLevel(9);
-					            		
-						universalMonkey.setScreen(universalMonkey.getGameScreen());
-					}
-			});
-		}else{
-			levelNueveButton = new Button(new Image(lock), skin);
-		}
-		
-		if(level >= 10)
-		{
-			levelDiezButton = new TextButton("10", skin);
-			
-			//accedemos al nivel 10
-			levelNueveButton.addListener(new ClickListener(){
-				@Override 
-				public void clicked(InputEvent event, float x, float y){        	
-						MenuScreen.getMusic().stop();	
-						GameScreen.levels = Levels.LEVEL10;
-					            		
-						//Recordamos durante la partida el nivel de juego
-						DataGame.setLevel(10);
-					            		
-						universalMonkey.setScreen(universalMonkey.getGameScreen());
-				}
-			});
-		}else{
-			levelDiezButton = new Button(new Image(lock), skin);
-		}
-		
 		table = new Table();
 		table.setFillParent(true);
 		table.add(levelUnoButton).pad(50).width(100).height(100);
 		table.add(levelDosButton).pad(50).width(100).height(100);
 		table.add(levelTresButton).pad(50).width(100).height(100);
+		table.row();
 		table.add(levelCuatroButton).pad(50).width(100).height(100);
 		table.add(levelCincoButton).pad(50).width(100).height(100);
-		table.row();
 		table.add(levelSeisButton).pad(50).width(100).height(100);
-		table.add(levelSieteButton).pad(50).width(100).height(100);
-		table.add(levelOchoButton).pad(50).width(100).height(100);
-		table.add(levelNueveButton).pad(50).width(100).height(100);
-		table.add(levelDiezButton).pad(50).width(100).height(100);
 		
 		stage.addActor(background);
 		stage.addActor(table);

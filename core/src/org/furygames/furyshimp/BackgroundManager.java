@@ -9,7 +9,7 @@ public class BackgroundManager {
 	
 	private final float WIDTH = 1280f;
 	private final float HEIGHT = 720f;
-	private final int TOTAL_BACKGROUNDS = 10;
+	private final int TOTAL_BACKGROUNDS = 6;
 		
 	private Texture [] ttBackgrounds;	
 	private Image [] imgBackgrounds;
@@ -25,10 +25,6 @@ public class BackgroundManager {
 		ttBackgrounds[3] = new Texture ("backgrounds/bg-level-4.jpg");
 		ttBackgrounds[4] = new Texture ("backgrounds/bg-level-5.jpg");
 		ttBackgrounds[5] = new Texture ("backgrounds/bg-level-6.jpg");
-		ttBackgrounds[6] = new Texture ("backgrounds/bg-level-7.jpg");
-		ttBackgrounds[7] = new Texture ("backgrounds/bg-level-8.jpg");
-		ttBackgrounds[8] = new Texture ("backgrounds/bg-level-9.jpg");
-		ttBackgrounds[9] = new Texture ("backgrounds/bg-level-10.jpg");
 		
 		for (int i = 0; i < TOTAL_BACKGROUNDS; i++) {
 			// Inicializar actores img
@@ -54,14 +50,6 @@ public class BackgroundManager {
 				return imgBackgrounds[4];
 			case 6:
 				return imgBackgrounds[5];
-			case 7:
-				return imgBackgrounds[6];
-			case 8:
-				return imgBackgrounds[7];
-			case 9:
-				return imgBackgrounds[8];
-			case 10:
-				return imgBackgrounds[9];
 			default:
 				break;
 		}
