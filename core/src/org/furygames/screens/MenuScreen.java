@@ -14,10 +14,12 @@ public class MenuScreen extends GenericScreen {
 	private Texture ttStartButton;
 	private Texture ttCreditButton;
 	private Texture ttExitButton;
+	private Texture ttBackground;
 	
 	private Image startButton;
 	private Image creditButton;
 	private Image exitButton;
+	private Image background;
 	
 	private static Music music = null;
 
@@ -26,18 +28,22 @@ public class MenuScreen extends GenericScreen {
 		
 		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/Salt Marsh Birds.mp3"));
 		
+		ttBackground = new Texture ("backgrounds/menu-background.png");
 		ttStartButton = new Texture ("buttons/start_button.png");
 		ttCreditButton = new Texture ("buttons/credit_button.png");
 		ttExitButton = new Texture ("buttons/exit_button.png");
 
+		background = new Image(ttBackground);
 		startButton = new Image(ttStartButton);
 		creditButton = new Image(ttCreditButton);
 		exitButton = new Image(ttExitButton);
 		
-		startButton.setSize(256f, 128f);
-		creditButton.setSize(256f, 128f);
-		exitButton.setSize(256f, 128f);		
+		background.setSize(WIDTH, HEIGHT);
+		startButton.setSize(251f, 170f);
+		creditButton.setSize(294f, 168f);
+		exitButton.setSize(243f, 158f);		
 		
+		background.setCenterPosition(WIDTH / 2, HEIGHT / 2);
 		startButton.setCenterPosition(WIDTH / 2, 600f);
 		creditButton.setCenterPosition(WIDTH / 2, 400f);
 		exitButton.setCenterPosition(WIDTH / 2, 200f);
@@ -63,6 +69,7 @@ public class MenuScreen extends GenericScreen {
 			}
 		});
 
+		stage.addActor(background);
 		stage.addActor(startButton);
 		stage.addActor(creditButton);
 		stage.addActor(exitButton);

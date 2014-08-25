@@ -24,7 +24,7 @@ public class CreditsScreen extends GenericScreen {
 		// Back button
 		ttBackButton = new Texture("buttons/back_button.png");
 		imgBackButton = new Image(ttBackButton);
-		imgBackButton.setSize(128, 128);
+		imgBackButton.setSize(80, 82);
 		imgBackButton.setPosition(GameScreen.WIDTH - 128f, 0);
 		
 		imgBackButton.addListener(new ClickListener(){
