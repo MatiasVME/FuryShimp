@@ -51,7 +51,7 @@ public class LevelsScreen extends GenericScreen{
 		ttBackButton = new Texture("buttons/back_button.png");
 		imgBackButton = new Image(ttBackButton);
 		imgBackButton.setSize(80, 82);
-		imgBackButton.setPosition(GameScreen.WIDTH - 128f, 0);
+		imgBackButton.setPosition(GameScreen.WIDTH - 128f, 30);
 		
 		imgBackButton.addListener(new ClickListener(){
             @Override 

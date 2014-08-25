@@ -44,9 +44,9 @@ public class MenuScreen extends GenericScreen {
 		exitButton.setSize(243f, 158f);		
 		
 		background.setCenterPosition(WIDTH / 2, HEIGHT / 2);
-		startButton.setCenterPosition(WIDTH / 2, 600f);
-		creditButton.setCenterPosition(WIDTH / 2, 400f);
-		exitButton.setCenterPosition(WIDTH / 2, 200f);
+		startButton.setCenterPosition(WIDTH / 2, HEIGHT / 2 + HEIGHT / 4);
+		creditButton.setCenterPosition(WIDTH / 2, HEIGHT / 2);
+		exitButton.setCenterPosition(WIDTH / 2, HEIGHT / 4);
 	
 		startButton.addListener(new ClickListener(){
 			@Override 

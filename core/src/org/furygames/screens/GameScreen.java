@@ -76,8 +76,6 @@ public final class GameScreen extends GenericScreen {
 		currentBackground = bgManager.getImage(1);
 		
 		stage.addActor(currentBackground);
-		stage.addActor(Creator.createArrowLeft());
-		stage.addActor(Creator.createArrowRigth());
 
 		shimp = new Shimp();
 		stage.addActor(shimp);

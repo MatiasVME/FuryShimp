@@ -31,7 +31,7 @@ public class Creator {
 			// Crear el vector destino en una posicion aleatorio de la parte inferior
 			// de la pantalla.
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
+					MathUtils.random(0, GameScreen.WIDTH - Rock.WIDTH / 2),
 					0 - Rock.HEIGHT - 10);
 
 			// Añade las rocas al array de rocas, con una velocidad aleatoria.
@@ -40,9 +40,8 @@ public class Creator {
 		}
 
 		// Recorre el Array rocks para añadir cada roca al escenario
-		for (Rock rock : rocks) {
+		for (Rock rock : rocks)
 			stage.addActor(rock);
-		}
 	}
 	
 	// Crea las rocas grandes en el esenario
@@ -54,16 +53,15 @@ public class Creator {
 					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Rock.WIDTH / 2, GameScreen.WIDTH - Rock.WIDTH / 2),
+					MathUtils.random(0, GameScreen.WIDTH - Rock.WIDTH / 2),
 					0 - Rock.HEIGHT - 10);
 
 			rocks.add(new Rock(origin, destination,
 					MathUtils.random(2f, 4f), true));
 		}
 
-		for (Rock rock : rocks) {
+		for (Rock rock : rocks)
 			stage.addActor(rock);
-		}
 	}
 	
 	// Crea las bananas y las añade al escenario.
@@ -75,16 +73,15 @@ public class Creator {
 					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2),
+					MathUtils.random(0, GameScreen.WIDTH - Bananas.WIDTH / 2),
 					0 - Bananas.HEIGHT - 10);
 
 			bananas.add(new Bananas(origin, destination,
 					MathUtils.random(2f, 4f), false));
 		}
 
-		for (Bananas banana : bananas) {
+		for (Bananas banana : bananas)
 			stage.addActor(banana);
-		}
 	}
 	
 	// Crea las bananas y las añade al escenario.
@@ -96,16 +93,15 @@ public class Creator {
 					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Bananas.WIDTH / 2, GameScreen.WIDTH - Bananas.WIDTH / 2),
+					MathUtils.random(0, GameScreen.WIDTH - Bananas.WIDTH / 2),
 					0 - Bananas.HEIGHT - 10);
 
 			bananas.add(new Bananas(origin, destination,
 					MathUtils.random(1f, 2f), true));
 		}
 
-		for (Bananas banana : bananas) {
+		for (Bananas banana : bananas)
 			stage.addActor(banana);
-		}
 	}
 
 	// Crea los cocos y los añade al escenario.
@@ -117,16 +113,15 @@ public class Creator {
 					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2),
+					MathUtils.random(0, GameScreen.WIDTH - Coconut.WIDTH / 2),
 					0 - Coconut.HEIGHT - 10);
 
 			coconuts.add(new Coconut(origin, destination,
 					MathUtils.random(2f, 4f), false));
 		}
 
-		for (Coconut coconut : coconuts) {
+		for (Coconut coconut : coconuts)
 			stage.addActor(coconut);
-		}
 	}
 	
 	public static void createLargeCoconuts (int max, Array <Coconut> coconuts, Stage stage) {
@@ -137,36 +132,14 @@ public class Creator {
 					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2), 
 					GameScreen.HEIGHT);
 			Vector2 destination = new Vector2(
-					MathUtils.random(0 + Coconut.WIDTH / 2, GameScreen.WIDTH - Coconut.WIDTH / 2),
+					MathUtils.random(0, GameScreen.WIDTH - Coconut.WIDTH / 2),
 					0 - Coconut.HEIGHT - 10);
 
 			coconuts.add(new Coconut(origin, destination,
 					MathUtils.random(3f, 5f), true));
 		}
 
-		for (Coconut coconut : coconuts) {
+		for (Coconut coconut : coconuts)
 			stage.addActor(coconut);
-		}
-	}
-	
-	public static Image createArrowLeft () {
-		Texture texture = new Texture("extras/arrow.png");
-		TextureRegion txtRegion = new TextureRegion(texture);
-		Image arrowLeft = new Image(txtRegion);
-		arrowLeft.setSize(128, 128);
-		arrowLeft.setPosition(0, 240);
-
-		return arrowLeft;
-	}
-	
-	public static Image createArrowRigth () {
-		Texture texture = new Texture("extras/arrow.png");
-		TextureRegion txtRegion = new TextureRegion(texture);
-		txtRegion.flip(true, false);
-		Image arrowRight = new Image(txtRegion);
-		arrowRight.setSize(128, 128);
-		arrowRight.setPosition(GameScreen.WIDTH - arrowRight.getWidth(), 240);
-		
-		return arrowRight;
 	}
 }
