@@ -8,13 +8,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 public class LevelsScreen extends GenericScreen{
 
@@ -85,57 +88,58 @@ public class LevelsScreen extends GenericScreen{
 			levelUnoButton = new TextButton("1", skin);
 			
 			//accedemos al nivel 1
-			levelUnoButton.addListener(new ClickListener(){
-	            @Override 
-	            public void clicked(InputEvent event, float x, float y){
-	                	MenuScreen.getMusic().stop();
+			levelUnoButton.addListener(new ChangeListener() {
+				
+				@Override
+				public void changed(ChangeEvent event, Actor actor) {
+					MenuScreen.getMusic().stop();
 
-	            		// Dejamos levels en estado de level2
-	            		GameScreen.levels = Levels.LEVEL1;
-	            		
-	            		//Recordamos durante la partida el nivel de jue1go
-	                	DataGame.setLevel(1);
-	            		
-	            		universalMonkey.setScreen(universalMonkey.getGameScreen());
-	            }
+            		// Dejamos levels en estado de level2
+            		GameScreen.levels = Levels.LEVEL1;
+            		
+            		//Recordamos durante la partida el nivel de jue1go
+                	DataGame.setLevel(1);
+            		
+            		universalMonkey.setScreen(universalMonkey.getGameScreen());
+				}
 	        });
 			
 		}else{
 			levelUnoButton = new Button(new Image(lock), skin);
 		}
 		
-		if(level >= 2)
-		{
+		if(level >= 2) {
 			levelDosButton = new TextButton("2", skin);
 			
 			//accedemos al nivel 2
-			levelDosButton.addListener(new ClickListener(){
-	            @Override 
-	            public void clicked(InputEvent event, float x, float y){
-	            	
-	                	MenuScreen.getMusic().stop();
+			levelDosButton.addListener(new ChangeListener() {
+				
+				@Override
+				public void changed(ChangeEvent event, Actor actor) {
+					MenuScreen.getMusic().stop();
 
-	            		// Dejamos levels en estado de level2
-	            		GameScreen.levels = Levels.LEVEL2;
-	            		
-	            		//Recordamos durante la partida el nivel de juego
-	                	DataGame.setLevel(2);
-	            		
-	            		universalMonkey.setScreen(universalMonkey.getGameScreen());
-	            }
-	        });
-		}else{
+            		// Dejamos levels en estado de level2
+            		GameScreen.levels = Levels.LEVEL2;
+            		
+            		//Recordamos durante la partida el nivel de juego
+                	DataGame.setLevel(2);
+            		
+            		universalMonkey.setScreen(universalMonkey.getGameScreen());					
+				}
+			});
+		} else {
 			levelDosButton = new Button(new Image(lock), skin);
 		}
 		
-		if(level >= 3)
+		if (level >= 3)
 		{
 			levelTresButton = new TextButton("3", skin);
 			
 			//accedemos al nivel 3
-			levelTresButton.addListener(new ClickListener(){
-	            @Override 
-	            public void clicked(InputEvent event, float x, float y){
+			levelTresButton.addListener(new ChangeListener() {
+				
+				@Override
+				public void changed(ChangeEvent event, Actor actor) {
 	     
 	            		MenuScreen.getMusic().stop();
 	            		GameScreen.levels = Levels.LEVEL3;
@@ -155,9 +159,10 @@ public class LevelsScreen extends GenericScreen{
 			levelCuatroButton = new TextButton("4", skin);
 			
 			//accedemos al nivel 4
-			levelCuatroButton.addListener(new ClickListener(){
-				@Override 
-				public void clicked(InputEvent event, float x, float y){
+			levelCuatroButton.addListener(new ChangeListener() {
+				
+				@Override
+				public void changed(ChangeEvent event, Actor actor) {
 					MenuScreen.getMusic().stop();
 
 						GameScreen.levels = Levels.LEVEL4;
@@ -177,9 +182,10 @@ public class LevelsScreen extends GenericScreen{
 			levelCincoButton = new TextButton("5", skin);
 			
 			//accedemos al nivel 5
-			levelCincoButton.addListener(new ClickListener(){
-				@Override 
-				public void clicked(InputEvent event, float x, float y){
+			levelCincoButton.addListener(new ChangeListener() {
+				
+				@Override
+				public void changed(ChangeEvent event, Actor actor) {
 						MenuScreen.getMusic().stop();
 						GameScreen.levels = Levels.LEVEL5;
 			            		
@@ -198,9 +204,10 @@ public class LevelsScreen extends GenericScreen{
 			levelSeisButton = new TextButton("6", skin);
 			
 			//accedemos al nivel 6
-			levelSeisButton.addListener(new ClickListener(){
-				@Override 
-				public void clicked(InputEvent event, float x, float y){			
+			levelSeisButton.addListener(new ChangeListener() {
+				
+				@Override
+				public void changed(ChangeEvent event, Actor actor) {			
 						MenuScreen.getMusic().stop();	
 						GameScreen.levels = Levels.LEVEL6;
 					            		
@@ -237,6 +244,7 @@ public class LevelsScreen extends GenericScreen{
 		stage.draw();
 		stage.act();
 		
-		if(Gdx.input.isKeyPressed(Keys.BACK))universalMonkey.setScreen(universalMonkey.getMenuScreen());
+		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) 
+			universalMonkey.setScreen(universalMonkey.getMenuScreen());
 	}
 }

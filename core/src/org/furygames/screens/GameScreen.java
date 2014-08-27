@@ -16,6 +16,7 @@ import org.furygames.inputs.MonkeyInput;
 import org.furygames.inputs.VirtualController;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -155,8 +156,6 @@ public final class GameScreen extends GenericScreen {
 		stage.draw();
 		stage.act();
 		
-		batch.begin();
-		
 		//Si el tiempo en ejecucion, que no a parado se le resta el tiempo que hemos almacenado nos dar� el 
 		//tiempo en millis que ha pasado, en caso de ser mayor que 1000 es que habr� llegado al segundo
 		//Al entrar en el condicional, volvemos  a asignar el tiempo actual de ejecucion a la variable time
@@ -185,23 +184,29 @@ public final class GameScreen extends GenericScreen {
 			 
 			 comprobarTiempo();
 		}
-		 
-		font.draw(batch, String.valueOf("Level: " + DataGame.getLevel()), 
-				Gdx.graphics.getWidth() - 1240, 
-				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Min: " + levels.getMinScore()), 
-				Gdx.graphics.getWidth() - 1040, 
-				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, cronometro, 
-				Gdx.graphics.getWidth() - 730, 
-				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Score: " + DataGame.getScore()), 
-				Gdx.graphics.getWidth() - 540, 
-				Gdx.graphics.getHeight() - 20);
-		font.draw(batch, String.valueOf("Lives: " + DataGame.getLifes()), 
-				Gdx.graphics.getWidth() - 200, 
-				Gdx.graphics.getHeight() - 20);
+		batch.begin(); 
+			font.draw(batch, String.valueOf("Level: " + DataGame.getLevel()), 
+					Gdx.graphics.getWidth() - 1240, 
+					Gdx.graphics.getHeight() - 20);
+			font.draw(batch, String.valueOf("Min: " + levels.getMinScore()), 
+					Gdx.graphics.getWidth() - 1040, 
+					Gdx.graphics.getHeight() - 20);
+			font.draw(batch, cronometro, 
+					Gdx.graphics.getWidth() - 730, 
+					Gdx.graphics.getHeight() - 20);
+			font.draw(batch, String.valueOf("Score: " + DataGame.getScore()), 
+					Gdx.graphics.getWidth() - 540, 
+					Gdx.graphics.getHeight() - 20);
+			font.draw(batch, String.valueOf("Lives: " + DataGame.getLifes()), 
+					Gdx.graphics.getWidth() - 200, 
+					Gdx.graphics.getHeight() - 20);
 		batch.end();
+		
+		// Se va a GameOver Cuando se presiona back o escape
+		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) {
+			music.stop();
+			universalMonkey.setScreen(universalMonkey.getGameOverScreen());
+		}
 	}
 
 	@Override

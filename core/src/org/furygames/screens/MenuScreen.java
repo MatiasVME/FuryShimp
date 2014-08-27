@@ -11,15 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class MenuScreen extends GenericScreen {
 	
-	private Texture ttStartButton;
-	private Texture ttCreditButton;
-	private Texture ttExitButton;
-	private Texture ttBackground;
-	
-	private Image startButton;
-	private Image creditButton;
-	private Image exitButton;
-	private Image background;
+	private Texture ttStartButton, ttCreditButton, ttExitButton, ttBackground;
+	private Image startButton, creditButton, exitButton, background;
 	
 	private static Music music = null;
 
