@@ -32,7 +32,7 @@ public class FuryShimp extends Game {
 		stadisticScreen = new StadisticsScreen(this);
 		creditsScreen = new CreditsScreen(this);
 		
-		setScreen(stadisticScreen);
+		setScreen(splashScreen);
 		
 		Gdx.input.setCatchBackKey(true); 
 	}
