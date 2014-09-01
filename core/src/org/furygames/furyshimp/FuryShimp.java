@@ -21,12 +21,6 @@ public class FuryShimp extends Game {
 	private StadisticsScreen stadisticScreen;
 	private GameOverScreen gameOverScreen;
 	private CreditsScreen creditsScreen;
-	
-	public IActivityRequestHandler myRequestHandler;
-
-	public FuryShimp(IActivityRequestHandler myRequestHandler) {
-	    this.myRequestHandler = myRequestHandler;
-	}
 
 	@Override
 	public void create() {
@@ -38,7 +32,7 @@ public class FuryShimp extends Game {
 		stadisticScreen = new StadisticsScreen(this);
 		creditsScreen = new CreditsScreen(this);
 		
-		setScreen(splashScreen);
+		setScreen(stadisticScreen);
 		
 		Gdx.input.setCatchBackKey(true); 
 	}

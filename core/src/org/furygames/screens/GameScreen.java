@@ -129,22 +129,6 @@ public final class GameScreen extends GenericScreen {
 			case LEVEL6:
 				level(6);
 				break;
-				
-			case LEVEL7:
-				level(7);
-				break;
-				
-			case LEVEL8:
-				level(8);
-				break;
-				
-			case LEVEL9:
-				level(9);
-				break;
-				
-			case LEVEL10:
-				level(10);
-				break;
 		}
 		
 		// Deteccion de coliciones.

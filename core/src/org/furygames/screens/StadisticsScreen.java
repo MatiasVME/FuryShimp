@@ -28,6 +28,7 @@ public class StadisticsScreen extends GenericScreen {
 	private Texture ttLevels;
 	private Texture ttNextLevel;
 	
+	private Image imgBackground;
 	private Image resume;
 	private Image levels;
 	private Image nextLevel;
@@ -53,24 +54,28 @@ public class StadisticsScreen extends GenericScreen {
 		ttLevels = new Texture ("buttons/levels_button.png");
 		ttNextLevel = new Texture ("buttons/next_button.png");
 		
+		imgBackground = new Image(background);
 		resume = new Image(ttResume);
 		levels = new Image(ttLevels);
 		nextLevel = new Image(ttNextLevel);
 		
+		imgBackground.setSize(WIDTH, HEIGHT);
 		resume.setSize(437f, 281f);
 		levels.setSize(422f, 323f);
 		nextLevel.setSize(323f, 277f);
 		
+		imgBackground.setCenterPosition(WIDTH / 2, HEIGHT / 2);
 		levels.setCenterPosition(282, 195);
 		resume.setCenterPosition(718, 215);
 		nextLevel.setCenterPosition(1068, 180);
 		
-		//configStadistics(3, true);
-		//DataGame.setScore(999);
+		configStadistics(3, true);
+		DataGame.setScore(999);
 		
 		// Añadir actores
 		//
 		
+		stage.addActor(imgBackground);
 		stage.addActor(resume);
 		stage.addActor(levels);
 		stage.addActor(nextLevel);
@@ -91,15 +96,13 @@ public class StadisticsScreen extends GenericScreen {
 	public void render(float delta) {
 		super.render(delta);
 		
+		stage.act();
+		stage.draw();
+		
 		batch.begin();
-			batch.draw(background, 0, 0, GenericScreen.WIDTH, 
-					GenericScreen.HEIGHT);
 			bfScore.draw(batch, score, GameScreen.WIDTH / 2, 440);
 			drawStars();
 		batch.end();
-		
-		stage.act();
-		stage.draw();
 	}
 	
 	@Override
@@ -125,6 +128,7 @@ public class StadisticsScreen extends GenericScreen {
 		resume.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				MenuScreen.getMusic().stop();
 				GameScreen.setNeedNivelClear(true);
 				universalMonkey.setScreen(universalMonkey.getGameScreen());
 				super.clicked(event, x, y);
@@ -166,7 +170,7 @@ public class StadisticsScreen extends GenericScreen {
 		
 		if (stars.size > 0) {
 			for (int i = 0, x = 128 * 3; i < stars.size; i++, x += 128 + SEPARATOR)
-				batch.draw(stars.get(i), x, 480, 128, 128);
+				batch.draw(stars.get(i), x, 485, 128, 128);
 		}
 	}
 }
