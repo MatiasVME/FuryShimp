@@ -68,9 +68,10 @@ public class StadisticsScreen extends GenericScreen {
 		levels.setCenterPosition(282, 195);
 		resume.setCenterPosition(718, 215);
 		nextLevel.setCenterPosition(1068, 180);
-		
-		configStadistics(3, true);
-		DataGame.setScore(999);
+
+        // Debug
+		// configStadistics(3, true);
+		// DataGame.setScore(999);
 		
 		// Añadir actores
 		//
@@ -100,7 +101,7 @@ public class StadisticsScreen extends GenericScreen {
 		stage.draw();
 		
 		batch.begin();
-			bfScore.draw(batch, score, GameScreen.WIDTH / 2, 440);
+			bfScore.draw(batch, score, GameScreen.WIDTH / 2, 460);
 			drawStars();
 		batch.end();
 	}
@@ -170,7 +171,7 @@ public class StadisticsScreen extends GenericScreen {
 		
 		if (stars.size > 0) {
 			for (int i = 0, x = 128 * 3; i < stars.size; i++, x += 128 + SEPARATOR)
-				batch.draw(stars.get(i), x, 485, 128, 128);
+				batch.draw(stars.get(i), x, 515, 128, 128);
 		}
 	}
 }
