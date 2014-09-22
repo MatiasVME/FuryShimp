@@ -156,11 +156,11 @@ public final class GameScreen extends GenericScreen {
 			 String minutos = String.valueOf(min);
 			 String segundos = String.valueOf(seg);
 
-			 if(minutos.length() < 2) {
+			 if (minutos.length() < 2) {
 				 minutos = "0"+minutos;
 			 }
 
-			 if(segundos.length() < 2) {
+			 if (segundos.length() < 2) {
 				 segundos = "0"+segundos;
 			 }
 			 
@@ -168,8 +168,9 @@ public final class GameScreen extends GenericScreen {
 			 
 			 comprobarTiempo();
 		}
+
 		batch.begin(); 
-			font.draw(batch, String.valueOf("Level: " + DataGame.getLevel()), 
+			font.draw(batch, String.valueOf("Level: " + levels.getNumLevel()), 
 					Gdx.graphics.getWidth() - 1240, 
 					Gdx.graphics.getHeight() - 20);
 			font.draw(batch, String.valueOf("Min: " + levels.getMinScore()), 
@@ -211,16 +212,14 @@ public final class GameScreen extends GenericScreen {
 	
 	//compruebo si el tiempo no ha expirado
 	private void comprobarTiempo() {
-		if(SECONDS <= 0) {
+		if(SECONDS <= 0)
 			endTime();
-		}
 	}
 	
 	//compruebo si el mono tiene vidas
 	private void comprobarVidas() {
-		if(DataGame.getLifes() <= 0) {
+		if(DataGame.getLifes() <= 0)
 			gameOver();
-		}
 	}
 	
 	//metodo que finaliza el tiempo
@@ -259,15 +258,18 @@ public final class GameScreen extends GenericScreen {
 		
 		music.dispose();
 		musicExist = false;
+		
 		DataGame.setLevel(0);
 		DataGame.setLifes(3);
 		DataGame.setScore(0);
+		
 		SECONDS = 90;
+		
 		VirtualController.setMoveLeft(false);
 		VirtualController.setMoveRight(false);
 	}
 	
-	//metodo GAME OVER
+	// metodo GAME OVER
 	private void gameOver() {
 		universalMonkey.setScreen(universalMonkey.getGameOverScreen());
 		music.dispose();
@@ -736,18 +738,6 @@ public final class GameScreen extends GenericScreen {
 					coconuts.clear();
 				}
 				
-				break;
-				
-			case 8:
-				System.out.println("level8");
-				break;
-				
-			case 9:
-				System.out.println("level9");
-				break;
-				
-			case 10:
-				System.out.println("level10");
 				break;
 				
 			default:

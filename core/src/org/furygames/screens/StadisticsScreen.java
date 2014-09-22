@@ -122,6 +122,7 @@ public class StadisticsScreen extends GenericScreen {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				universalMonkey.setScreen(universalMonkey.getLevelsScreen());
+				
 				super.clicked(event, x, y);
 			}
 		});
@@ -132,6 +133,7 @@ public class StadisticsScreen extends GenericScreen {
 				MenuScreen.getMusic().stop();
 				GameScreen.setNeedNivelClear(true);
 				universalMonkey.setScreen(universalMonkey.getGameScreen());
+				
 				super.clicked(event, x, y);
 			}
 		});
@@ -139,10 +141,18 @@ public class StadisticsScreen extends GenericScreen {
 		nextLevel.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				int MAX_LEVEL = 6;
+				
 				MenuScreen.getMusic().stop();
 				GameScreen.setNeedNivelClear(true);
-				GameScreen.levels = GameScreen.levels.next();
-				universalMonkey.setScreen(universalMonkey.getGameScreen());
+				
+				if (GameScreen.levels.getNumLevel() == MAX_LEVEL)
+					universalMonkey.setScreen(universalMonkey.getCreditsScreen());
+				else {
+					GameScreen.levels = GameScreen.levels.next();
+					universalMonkey.setScreen(universalMonkey.getGameScreen());
+				}
+				
 				super.clicked(event, x, y);
 			}
 		});

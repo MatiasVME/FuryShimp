@@ -40,6 +40,14 @@ public class CreditsScreen extends GenericScreen {
 	@Override
 	public void show() {
 		super.show();
+		
+		// En el caso de que la musica no se este reproduciendo poner musica,
+		// por ejemplo este es el caso cuando se pasa el último nivel y llega
+		// al creditsScreen
+		if (!MenuScreen.getMusic().isPlaying()) {
+			MenuScreen.getMusic().setLooping(true);
+			MenuScreen.getMusic().play();
+		}
 	}
 	
 	@Override

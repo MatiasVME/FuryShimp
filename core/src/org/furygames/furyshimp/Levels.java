@@ -2,12 +2,12 @@ package org.furygames.furyshimp;
 
 public enum Levels {
 	
-	LEVEL6 (null, 6, 11, 115, 120), // ~
-	LEVEL5 (LEVEL6, 5, 11, 118, 120), // Ok
-	LEVEL4 (LEVEL5, 4, 11, 125, 140), // Ok
-	LEVEL3 (LEVEL4, 3, 11, 130, 145), // Ok
-	LEVEL2 (LEVEL3, 2, 10, 110, 115), // Ok
-	LEVEL1 (LEVEL2, 1, 10, 100, 110); // 
+	LEVEL6 (null, 6, 100, 105, 110), 
+	LEVEL5 (LEVEL6, 5, 95, 98, 105),
+	LEVEL4 (LEVEL5, 4, 110, 115, 125), 
+	LEVEL3 (LEVEL4, 3, 105, 110, 115), 
+	LEVEL2 (LEVEL3, 2, 80, 86, 90), 
+	LEVEL1 (LEVEL2, 1, 95, 100, 105); 
 	
 	private final Levels next;
 	private int numLevel; // Numero del nivel

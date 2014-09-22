@@ -66,9 +66,7 @@ public class LevelsScreen extends GenericScreen{
 	@Override
 	public void show() {
 		super.show();
-		
-		//universalMonkey.myRequestHandler.showOrLoadInterstital();
-		
+			
 		// Colocar musica en caso de que no se este reproduciendo
 		if (!MenuScreen.getMusic().isPlaying())
 			MenuScreen.getMusic().play();
@@ -82,8 +80,7 @@ public class LevelsScreen extends GenericScreen{
     	
     	level = GameScreen.getPreferences().getInteger("max-level", 1);
 		
-		if(level >= 0)
-		{
+		if(level >= 0) {
 			levelUnoButton = new TextButton("1", skin);
 			
 			//accedemos al nivel 1
@@ -198,8 +195,7 @@ public class LevelsScreen extends GenericScreen{
 			levelCincoButton = new Button(new Image(lock), skin);
 		}
 		
-		if(level >= 6)
-		{
+		if (level >= 6) {
 			levelSeisButton = new TextButton("6", skin);
 			
 			//accedemos al nivel 6
@@ -217,7 +213,7 @@ public class LevelsScreen extends GenericScreen{
 				}
 			});
 					
-		}else{
+		} else {
 			levelSeisButton = new Button(new Image(lock), skin);
 		}
 		
